@@ -24,11 +24,7 @@ module LinguaMentor
 
     # config/application.rb
 
-Cloudinary.config do |config|
-  config.cloud_name = 'dinso4to6'
-  config.api_key = '693913435535997'
-  config.api_secret = 'a_DE0uCdMg-slHWciVmj1kOb-qk'
-end
+
 
     # Configuration for the application, engines, and railties goes here.
     #
