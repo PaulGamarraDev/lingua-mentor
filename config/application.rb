@@ -21,6 +21,15 @@ module LinguaMentor
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+
+    # config/application.rb
+
+Cloudinary.config do |config|
+  config.cloud_name = 'dinso4to6'
+  config.api_key = '693913435535997'
+  config.api_secret = 'a_DE0uCdMg-slHWciVmj1kOb-qk'
+end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
