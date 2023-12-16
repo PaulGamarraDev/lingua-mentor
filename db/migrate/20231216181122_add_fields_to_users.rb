@@ -3,8 +3,8 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :role, :integer
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
-    add_column :users, :country, :text
-    add_column :users, :city, :text
+    add_column :users, :country, :string
+    add_column :users, :city, :string
     add_column :users, :date_of_birth, :date
     add_column :users, :about_me, :text
     add_column :users, :native_language, :string

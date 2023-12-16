@@ -1,0 +1,37 @@
+<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+  <div class="carousel-inner" style="max-height: 720px;">
+
+    <div class="carousel-item active">
+      <%= image_tag 'banner1.jpg', class: 'd-block w-100', alt: 'Banner 1' %>
+    </div>
+
+    <div class="carousel-item">
+      <%= image_tag 'banner2.jpg', class: 'd-block w-100', alt: 'Banner 2' %>
+    </div>
+
+    <div class="carousel-item">
+      <%= image_tag 'banner3.jpg', class: 'd-block w-100', alt: 'Banner 3' %>
+    </div>
+
+    <div class="carousel-item">
+      <%= image_tag 'banner4.jpg', class: 'd-block w-100', alt: 'Banner 4' %>
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="banner">
+  <div class="banner-content text-center">
+    <h1>Change your life: learn to code!</h1>
+    <p>Le Wagon brings technical skills to creative people</p>
+    <%= link_to "Start now", new_user_session_path, class: "btn btn-lg btn-primary"  %>
+  </div>
+</div>
