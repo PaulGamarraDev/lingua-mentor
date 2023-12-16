@@ -4,16 +4,31 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: { student: 0, teacher: 1 }
-  #Assosiations
+  #ASSOCIATIONS
   has_many :bookings
   has_many :teaching_language_sessions
-  has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
-  has_many :received_messages, foreign_key: 'receiver_id', class_name: 'Message'
   has_one :data_teacher
 
-  # cloudinary
+  #CLOUDINARY
   has_one_attached :photo
 
-  #Validations
+  #VALIDATIONS
+  validates :email, :role, presence: true
+  #:first_name, :last_name, :country, :city,
+  #:date_of_birth, :about_me, :native_language, :other_language, :learning_language, :objectives
+  validates :email, uniqueness: true
+
+  #ROLES (student by default)
+  enum role: {
+    student: 0,
+    teacher: 1
+  }
+
+  after_initialize :set_default_role, if: :new_record?
+
+  #METHODS
+  def set_default_role
+    self.role ||= :student
+  end
+
 end
