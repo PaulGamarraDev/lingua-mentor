@@ -10,3 +10,14 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.btn-custom {
+  display: flex;
+  width: 400px;
+  height: 40px;
+  padding: 0 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background: var(--fondo-verde, #39B54A);
+}
