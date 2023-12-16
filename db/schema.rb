@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_15_230944) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_16_181122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,43 +43,32 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_230944) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "teaching_language_session_id"
     t.date "date"
     t.time "time_in"
+    t.bigint "user_id", null: false
+    t.bigint "teaching_language_session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teaching_language_session_id"], name: "index_bookings_on_teaching_language_session_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "data_teachers", force: :cascade do |t|
     t.text "teaching_languages"
     t.text "teacher_description"
     t.integer "usd_per_hour"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.integer "chat_id"
-    t.integer "sender_id"
-    t.integer "receiver_id"
-    t.date "created_on"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "booking_id"
-    t.text "success_url"
-    t.text "cancel_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_data_teachers_on_user_id"
   end
 
   create_table "teaching_language_sessions", force: :cascade do |t|
     t.text "language"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teaching_language_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,8 +82,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_230944) do
     t.integer "role"
     t.string "first_name"
     t.string "last_name"
-    t.text "country"
-    t.text "city"
+    t.string "country"
+    t.string "city"
     t.date "date_of_birth"
     t.text "about_me"
     t.string "native_language"
@@ -107,4 +96,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_230944) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "teaching_language_sessions"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "data_teachers", "users"
+  add_foreign_key "teaching_language_sessions", "users"
 end
