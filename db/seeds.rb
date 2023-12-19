@@ -659,3 +659,4 @@ booking04 = Booking.create!(
   teaching_language_session: teaching_language_session_01,
   date: "2023-12-20".to_date,
   time_in: "19:00:00 -0300".to_time
+)
