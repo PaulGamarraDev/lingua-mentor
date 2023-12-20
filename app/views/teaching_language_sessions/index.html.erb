@@ -1,0 +1,7 @@
+<h1>TeachingLanguageSessions#index</h1>
+<p>Find me in app/views/teaching_language_sessions/index.html.erb</p>
+
+<% @teaching_language_sessions.each do |teaching_language_session| %>
+  <p><%= teaching_language_session.user.first_name %> <%= teaching_language_session.user.last_name %></p>
+  <p><%= teaching_language_session.language %></p>
+<% end %>

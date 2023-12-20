@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  get 'teaching_language_sessions/new'
+  get 'teaching_language_sessions/create'
+  get 'teaching_language_sessions/index'
+  get 'teaching_language_sessions/show'
+  get 'teaching_language_sessions/new'
+  get 'teaching_language_sessions/create'
+  get 'teaching_language_sessions/destroy'
+
   root to: "pages#home"
 
   devise_for :users
 
+  #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
   get 'profesores', to: "users#teachers", as: :teachers
   get 'comunidad', to: "users#students", as: :students
   get 'perfil/:id', to: "users#show", as: :user
