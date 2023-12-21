@@ -21,13 +21,15 @@ class TeachingLanguageSessionsController < ApplicationController
   end
 
   def show
-    @teaching_language_session = TeachingLanguageSession.find(params[:id])
+    #@teaching_language_session = TeachingLanguageSession.find(params[:id])
+    @teaching_language_session = TeachingLanguageSession.find(params[:format]) #por qué format???
   end
 
   def destroy
-    @teaching_language_session = TeachingLanguageSession.find(params[:id])
+    #@teaching_language_session = TeachingLanguageSession.find(params[:id])
+    @teaching_language_session = TeachingLanguageSession.find(params[:format])
     @teaching_language_session.destroy
-    redirect_to teaching_language_session_index
+    redirect_to teaching_language_session_index, status: :see_other #see_other???
   end
 
   private

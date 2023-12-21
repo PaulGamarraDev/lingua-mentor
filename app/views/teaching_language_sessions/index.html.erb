@@ -2,6 +2,10 @@
 <p>Find me in app/views/teaching_language_sessions/index.html.erb</p>
 
 <% @teaching_language_sessions.each do |teaching_language_session| %>
-  <p><%= teaching_language_session.user.first_name %> <%= teaching_language_session.user.last_name %></p>
-  <p><%= teaching_language_session.language %></p>
+  <div class="container border bg-info m-3">
+    <p><%= teaching_language_session.user.first_name %> <%= teaching_language_session.user.last_name %></p>
+    <p><%= teaching_language_session.language %></p>
+    <%= link_to teaching_language_session.language, teaching_language_sessions_show_path(teaching_language_session), class: "btn btn-primary" %>
+    <%= link_to "Eliminar", teaching_language_sessions_destroy_path(teaching_language_session), class: "btn btn-danger" %>
+  </div>
 <% end %>
