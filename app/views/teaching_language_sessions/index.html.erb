@@ -1,0 +1,17 @@
+<h1>TeachingLanguageSessions#index</h1>
+<p>Find me in app/views/teaching_language_sessions/index.html.erb</p>
+
+<%# BOTON PARA CREAR CLASE NUEVA %>
+<% if current_user =  %>
+
+<% end %>
+<%= link_to "Nueva materia", new_teaching_language_session_path(current_user), class: "btn btn-primary" %>
+
+<% @teaching_language_sessions.each do |teaching_language_session| %>
+  <div class="container border bg-info m-3">
+    <p><%= teaching_language_session.user.first_name %> <%= teaching_language_session.user.last_name %></p>
+    <p><%= teaching_language_session.language %></p>
+    <%= link_to teaching_language_session.language, teaching_language_session_path(teaching_language_session), class: "btn btn-primary" %>
+    <%= link_to "Eliminar", teaching_language_session_path(teaching_language_session), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "¿Estás seguro de eliminar tu clase de idiomas?"} %>
+  </div>
+<% end %>
