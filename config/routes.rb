@@ -1,20 +1,17 @@
 Rails.application.routes.draw do
-  get 'teaching_language_sessions/new'
-  get 'teaching_language_sessions/create'
-  get 'teaching_language_sessions/index'
-  get 'teaching_language_sessions/show'
-  get 'teaching_language_sessions/new'
-  get 'teaching_language_sessions/create'
-  get 'teaching_language_sessions/destroy'
-
   root to: "pages#home"
 
   devise_for :users
 
-  #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
   get 'profesores', to: "users#teachers", as: :teachers
   get 'comunidad', to: "users#students", as: :students
   get 'perfil/:id', to: "users#show", as: :user
+
+  resources :teaching_language_sessions, only: %i[index show destroy]
+  scope "/perfil/:id" do
+    #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
+    resources :teaching_language_sessions, only: %i[new create]
+  end
 
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
