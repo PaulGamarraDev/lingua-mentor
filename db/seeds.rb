@@ -1,12 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 require 'open-uri'
 
 Booking.destroy_all
@@ -14,649 +5,139 @@ TeachingLanguageSession.destroy_all
 DataTeacher.destroy_all
 User.destroy_all
 
-puts "creando usuarios estudiantes"
-# Usuario 1
-user_student1 = User.create!(
-  email: "alejandro.perez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Alejandro",
-  last_name: "Pérez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Apasionado por la diversidad lingüística y cultural del mundo.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Portugués",
-  objectives: "Viajar a Estados Unidos"
-)
 
-file_student1 = URI.open("https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM2fHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_student1.photo.attach(io: file_student1, filename: "federica_image.png", content_type: "image/png")
-user_student1.save!
+# Crear teachers -----------------------------------------------------------------------------------------------------------------------------------------------------
+puts "Creando usuarios profesores"
+
+teachers_data = [
+  { email: "user1@gmail.com", first_name: "Juan", last_name: "Gómez", country: "España", city: "Madrid", native_language: "español", date_of_birth: "1990-01-15".to_date, about_me: "¡Hola! Soy Juan, un amante de la cultura española. Me encanta la música flamenca y disfruto explorando los rincones históricos de Madrid.", other_languages: "inglés", learning_languages: "francés", teaching_languages: "español", teacher_description: "Profesor de español con experiencia, enfocado en mejorar tu fluidez y comprensión. ¡Vamos a aprender juntos!" , price: 10, file_teacher: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user2@gmail.com", first_name: "María", last_name: "López", country: "México", city: "Ciudad de México", native_language: "español", date_of_birth: "1988-07-22".to_date, about_me: "Saludos, soy María. Enamorada de la riqueza cultural de México, me encanta bailar y experimentar con la deliciosa comida mexicana.", other_languages: "inglés", learning_languages: "francés", teaching_languages: "español", teacher_description: "Profesora de español apasionada por la enseñanza. Descubre la belleza del idioma y sumérgete en la cultura latinoamericana.", price: 12, file_teacher: URI.open("https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1286&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")  },
+  { email: "user3@gmail.com", first_name: "Carlos", last_name: "Fernández", country: "Argentina", city: "Buenos Aires", native_language: "español", date_of_birth: "1995-03-10".to_date, about_me: "¡Hola! Soy Carlos, un apasionado del tango argentino y un ávido lector de la literatura de Buenos Aires.", other_languages: "inglés", learning_languages: "inglés", teaching_languages: "español", teacher_description: "Maestro de español con enfoque en la cultura argentina. Aprende a hablar español con autenticidad y pasión.", price: 8, file_teacher: URI.open("https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D")  },
+  { email: "user4@gmail.com", first_name: "Ana", last_name: "Martínez", country: "Colombia", city: "Bogotá", native_language: "español", date_of_birth: "1987-12-05".to_date, about_me: "Hola, soy Ana. Me considero una aventurera culinaria y siempre estoy en busca del mejor café colombiano.", other_languages: "inglés", learning_languages: "inglés", teaching_languages: "español", teacher_description: "Profesora de español con amor por la cultura colombiana. ¡Vamos a explorar juntos la riqueza de este hermoso idioma!", price: 25, file_teacher: URI.open("https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D") },
+
+  { email: "user5@gmail.com", first_name: "Pedro", last_name: "Rodríguez", country: "Canadá", city: "Ottawa", native_language: "francés", date_of_birth: "1992-09-30".to_date, about_me: "¡Saludos! Soy Pedro, un entusiasta de la historia inca y amante de la naturaleza peruana.", other_languages: "inglés", learning_languages: "español", teaching_languages: "francés", teacher_description: "Maestro de francés con enfoque en la cultura franca. Descubre la belleza de este idioma mientras exploramos la historia canadiense.", price: 14, file_teacher: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user6@gmail.com", first_name: "Laura", last_name: "González", country: "Francia", city: "París", native_language: "francés", date_of_birth: "1998-04-18".to_date, about_me: "Hola, soy Laura. Admiro la diversidad cultural de Venezuela y trabajo como activista por los derechos humanos.", other_languages: "inglés", learning_languages: "español", teaching_languages: "francés", teacher_description: "Profesora de francés comprometida con la justicia social. ¡Descubre la lengua mientras exploramos la cultura francesa!", price: 17, file_teacher: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user7@gmail.com", first_name: "Diego", last_name: "Díaz", country: "Canadá", city: "Ottawa", native_language: "francés", date_of_birth: "1985-11-12".to_date, about_me: "¡Hola a todos! Soy Diego, un aficionado al vino chileno y un amante de la majestuosa cordillera de los Andes.", other_languages: "inglés", learning_languages: "alemán", teaching_languages: "francés", teacher_description: "Maestro de francés y amante del vino. Descubre la riqueza del idioma mientras exploramos la belleza de canada.", price: 25, file_teacher: "https://images.unsplash.com/photo-1615813967515-e1838c1c5116?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user8@gmail.com", first_name: "Isabel", last_name: "Hernández", country: "Francia", city: "París", native_language: "francés", date_of_birth: "1993-06-25".to_date, about_me: "Saludos, soy Isabel. Defiendo la biodiversidad ecuatoriana y disfruto explorando la belleza natural a través del ecoturismo.", other_languages: "inglés", learning_languages: "alemán", teaching_languages: "francés", teacher_description: "Profesora de francés y amante de la naturaleza. ¡Aprende el idioma mientras exploramos la diversidad de francia!", price: 25, file_teacher: "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+
+  { email: "user9@gmail.com", first_name: "Luis", last_name: "Suárez", country: "Australia", city: "Canberra", native_language: "inglés", date_of_birth: "1989-08-07".to_date, about_me: "¡Hola a todos! Soy Luis, un apasionado de la arqueología maya y me encanta sumergirme en la música tradicional.", other_languages: "español", learning_languages: "alemán", teaching_languages: "inglés", teacher_description: "Maestro de inglés con amor por la arqueología. ¡Descubre la riqueza de la cultura maya mientras aprendemos el idioma!", price: 12, file_teacher: "https://images.unsplash.com/photo-1488161628813-04466f872be2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user10@gmail.com", first_name: "Elena", last_name: "Pérez", country: "Australia", city: "Canberra", native_language: "inglés", date_of_birth: "1996-02-14".to_date, about_me: "Hola, soy Elena. Amo la danza salsa y siempre estoy orgullosa de compartir la rica cultura.", other_languages: "español", learning_languages: "español", teaching_languages: "inglés", teacher_description: "Profesora de inglés y bailarina de salsa. ¡Aprende el idioma mientras disfrutamos de la música y el baile australiano!", price: 13, file_teacher: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user11@gmail.com", first_name: "Federico", last_name: "Alvarez", country: "Estados Unidos", city: "Washington, D.C.", native_language: "inglés", date_of_birth: "1986-10-03".to_date, about_me: "Greetings! I'm Federico, passionate about international politics and urban photography. Excited to explore the diverse culture of Washington, D.C.", other_languages: "alemán", learning_languages: "español", teaching_languages: "inglés", teacher_description: "Experienced English teacher with a focus on practical communication skills. Let's improve your English together!", price: 18, file_teacher: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzl8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user12@gmail.com", first_name: "Camila", last_name: "Flores", country: "Reino Unido", city: "Londres", native_language: "inglés", date_of_birth: "1991-04-28".to_date, about_me: "Hello, I'm Camila. A Shakespeare enthusiast and an explorer of the charming British pubs. Join me for a cultural journey in London!", other_languages: "alemán", learning_languages: "español", teaching_languages: "inglés", teacher_description: "Native English speaker with a passion for literature. Let's enhance your English skills through engaging conversations and storytelling.", price: 7, file_teacher: "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODh8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+
+  { email: "user13@gmail.com", first_name: "Roberto", last_name: "Santos", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1994-11-08".to_date, about_me: "Hey there! I'm Roberto, an avid fan of winter sports and a nature lover. Let's explore the breathtaking Canadian landscapes together.", other_languages: "inglés", learning_languages: "español", teaching_languages: "alemán", teacher_description: "Outdoor enthusiast and English teacher. Improve your language skills while enjoying the beauty of Canada's nature.", price: 9, file_teacher: "https://images.unsplash.com/photo-1492288991661-058aa541ff43?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTV8fHBlcnNvbmF8ZW58MHx8MHx8fDA%3D" },
+  { email: "user14@gmail.com", first_name: "Claudia", last_name: "Moreno", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1984-06-19".to_date, about_me: "G'day! I'm Claudia, an explorer of Australian wildlife and a passionate surfer. Join me for an adventure Down Under!", other_languages: "inglés", learning_languages: "español", teaching_languages: "alemán", teacher_description: "Australian English teacher with a love for nature. Let's improve your language skills while discovering the beauty of Australia.", price: 11, file_teacher: "https://images.unsplash.com/photo-1618835962148-cf177563c6c0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAyfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "user15@gmail.com", first_name: "Javier", last_name: "Jiménez", country: "Alemania", city: "Berlíni", native_language: "alemán", date_of_birth: "1983-01-12".to_date, about_me: "Hello, I'm Javier. Passionate about the diverse culture of India and an avid collector of stories. Let's discover the wonders of New Delhi together!", other_languages: "inglés", learning_languages: "español", teaching_languages: "alemán", teacher_description: "English teacher with a fascination for Indian culture. Let's enhance your language skills while exploring the beauty of New Delhi.", price: 8, file_teacher: "https://images.unsplash.com/photo-1549068106-b024baf5062d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTExfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "user16@gmail.com", first_name: "Patricia", last_name: "Castro", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1997-07-01".to_date, about_me: "Mis clases van más allá de la gramática y el vocabulario; te sumergirás en la cultura alemana a través de literatura.", other_languages: "inglés", learning_languages: "español", teaching_languages: "alemán", teacher_description: "Professeur de français passionné par la culture parisienne. Améliorons ensemble vos compétences linguistiques!", price: 10, file_teacher: "https://images.unsplash.com/photo-1597586124394-fbd6ef244026?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI0fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  
+  { email: "user17@gmail.com", first_name: "Martín", last_name: "Leroy", country: "Bélgica", city: "Bruselas", native_language: "francés", date_of_birth: "1992-03-19".to_date, about_me: "Salut! Je suis Martín, passionné par la bande dessinée belge et amateur de chocolat. Rejoignez-moi pour une exploration culturelle à Bruxelles!", other_languages: "inglés", learning_languages: "español", teaching_languages: "francés", teacher_description: "Professeur de français et espagnol. Plongeons dans la richesse de la bande dessinée belge et de la culture espagnole ensemble!", price: 13, file_teacher: "https://images.unsplash.com/photo-1563584316028-2b70b3a3a8bf?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM0fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "user18@gmail.com", first_name: "Sophie", last_name: "Müller", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1989-08-14".to_date, about_me: "Hallo, ich bin Sophie. Ich liebe die deutsche Geschichte und erkunde gerne die künstlerische Szene in Berlin. Begleite mich auf eine kulturelle Reise!", other_languages: "inglés", learning_languages: "español",  teaching_languages: "francés", teacher_description: "Aprender español para sumergirme en la cultura y la historia de España.", price: 11, file_teacher: "https://images.unsplash.com/photo-1589696485114-9e2f81d83484?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM2fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "user19@gmail.com", first_name: "Giorgio", last_name: "Ricci", country: "Italia", city: "Roma", native_language: "italiano", date_of_birth: "1993-12-08".to_date, about_me: "Ciao, sono Giorgio. Appassionato di arte e storia italiana, esploro le strade di Roma in cerca di nuove scoperte. Unisciti a me in questo viaggio culturale!", other_languages: "inglés", learning_languages: "español",  teaching_languages: "francés", teacher_description: "Desarrollar habilidades en francés para explorar la rica literatura y la escena artística de Francia.", price: 7, file_teacher: "https://images.unsplash.com/photo-1542838686-37da4a9fd1b3?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTY3fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "user20@gmail.com", first_name: "Mia", last_name: "Andersen", country: "Dinamarca", city: "Copenhague", native_language: "danés", date_of_birth: "1996-06-25".to_date, about_me: "Hej, jeg er Mia. Jeg elsker den danske hygge og udforsker gerne de historiske steder i København. Kom med på en kulturel rejse!", other_languages: "inglés", learning_languages: "español",  teaching_languages: "francés", teacher_description: "Mejorar mi sueco para conectarme con la cultura y la historia de Suecia.", price: 9, file_teacher: "https://images.unsplash.com/photo-1548142542-c53707f8b05b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcxfHxwZXJzb25hfGVufDB8fDB8fHww" },
+]
+
+teachers_data.each do |teacher_info|
+  user_teacher = User.create!(
+    email: teacher_info[:email],
+    role: 1,
+    password: "123456",
+    first_name: teacher_info[:first_name],
+    last_name: teacher_info[:last_name],
+    country: teacher_info[:country],
+    city: teacher_info[:city],
+    date_of_birth: teacher_info[:date_of_birth],
+    about_me: teacher_info[:about_me],
+    native_language: teacher_info[:native_language],
+    other_languages: teacher_info[:other_languages],
+    learning_languages: teacher_info[:learning_languages],
+    objectives: "poliglota"
+  )
+
+  file_teacher = URI.open(teacher_info[:file_teacher])
+  user_teacher.photo.attach(io: file_teacher, filename: "#{teacher_info[:first_name].downcase}_image.png", content_type: "image/png")
+  user_teacher.save!
+
+
+  teacher_data = DataTeacher.create!(
+    teaching_languages: teacher_info[:teaching_languages],
+    teacher_description: teacher_info[:teacher_description],
+    usd_per_hour: teacher_info[:price],
+    user: user_teacher
+  )
+
+  puts "creando  TeachingLanguageSession"
+  TeachingLanguageSession.create!(language: teacher_info[:teaching_languages], user: user_teacher)
+end
+
+
+
+# Crear students -----------------------------------------------------------------------------------------------------------------------------------------------------
+puts "Creando usuarios estudiantes"
+
+students_data = [
+  { email: "student1@gmail.com", first_name: "Lucho", last_name: "Gómez", country: "España", city: "Madrid", native_language: "español", date_of_birth: "1990-01-15".to_date, about_me: "¡Hola! Soy Juan, un amante de la cultura española. Me encanta la música flamenca y disfruto explorando los rincones históricos de Madrid.", other_languages: "inglés", learning_languages: "francés", file_teacher: "https://images.unsplash.com/photo-1563240619-44ec0047592c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTgyfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student2@gmail.com", first_name: "Maríana", last_name: "López", country: "México", city: "Ciudad de México", native_language: "español", date_of_birth: "1988-07-22".to_date, about_me: "Saludos, soy María. Enamorada de la riqueza cultural de México, me encanta bailar y experimentar con la deliciosa comida mexicana.", other_languages: "inglés", learning_languages: "francés", file_teacher: "https://images.unsplash.com/photo-1601412436009-d964bd02edbc?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg0fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student3@gmail.com", first_name: "Carloto", last_name: "Fernánd", country: "Argentina", city: "Buenos Aires", native_language: "español", date_of_birth: "1995-03-10".to_date, about_me: "¡Hola! Soy Carlos, un apasionado del tango argentino y un ávido lector de la literatura de Buenos Aires.", other_languages: "inglés", learning_languages: "inglés", file_teacher: "https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTk2fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student4@gmail.com", first_name: "Anam", last_name: "Martínez", country: "Colombia", city: "Bogotá", native_language: "español", date_of_birth: "1987-12-05".to_date, about_me: "Hola, soy Ana. Me considero una aventurera culinaria y siempre estoy en busca del mejor café colombiano.", other_languages: "inglés", learning_languages: "inglés", file_teacher: "https://images.unsplash.com/photo-1612469294274-b1baaf5125ca?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTkyfHxwZXJzb25hfGVufDB8fDB8fHww" },
+
+  { email: "student5@gmail.com", first_name: "Pedrito", last_name: "Rodríguez", country: "Canadá", city: "Ottawa", native_language: "francés", date_of_birth: "1992-09-30".to_date, about_me: "¡Saludos! Soy Pedro, un entusiasta de la historia inca y amante de la naturaleza peruana.", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA0fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student6@gmail.com", first_name: "Lauri", last_name: "González", country: "Francia", city: "París", native_language: "francés", date_of_birth: "1998-04-18".to_date, about_me: "Hola, soy Laura. Admiro la diversidad cultural de Venezuela y trabajo como activista por los derechos humanos.", other_languages: "inglés", learning_languages: "español", file_teacher: "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjAxfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student7@gmail.com", first_name: "Diego", last_name: "Díaz", country: "Canadá", city: "Ottawa", native_language: "francés", date_of_birth: "1985-11-12".to_date, about_me: "¡Hola a todos! Soy Diego, un aficionado al vino chileno y un amante de la majestuosa cordillera de los Andes.", other_languages: "inglés", learning_languages: "alemán", file_teacher: "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA1fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "studentr8@gmail.com", first_name: "Isabela", last_name: "Hernández", country: "Francia", city: "París", native_language: "francés", date_of_birth: "1993-06-25".to_date, about_me: "Saludos, soy Isabel. Defiendo la biodiversidad ecuatoriana y disfruto explorando la belleza natural a través del ecoturismo.", other_languages: "inglés", learning_languages: "alemán", file_teacher: "https://images.unsplash.com/photo-1613566028327-4a32e02f6ab1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA4fHxwZXJzb25hfGVufDB8fDB8fHww" },
+
+  { email: "student9@gmail.com", first_name: "Lui", last_name: "Suárez", country: "Australia", city: "Canberra", native_language: "inglés", date_of_birth: "1989-08-07".to_date, about_me: "¡Hola a todos! Soy Luis, un apasionado de la arqueología maya y me encanta sumergirme en la música tradicional.", other_languages: "español", learning_languages: "alemán", file_teacher: "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjIyfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student10@gmail.com", first_name: "Elena", last_name: "Pérez", country: "Australia", city: "Canberra", native_language: "inglés", date_of_birth: "1996-02-14".to_date, about_me: "Hola, soy Elena. Amo la danza salsa y siempre estoy orgullosa de compartir la rica cultura.", other_languages: "español", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1508184964240-ee96bb9677a7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjExfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student11@gmail.com", first_name: "Federino", last_name: "Alvarez", country: "Estados Unidos", city: "Washington, D.C.", native_language: "inglés", date_of_birth: "1986-10-03".to_date, about_me: "Greetings! I'm Federico, passionate about international politics and urban photography. Excited to explore the diverse culture of Washington, D.C.", other_languages: "alemán", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1546820389-44d77e1f3b31?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjMwfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student12@gmail.com", first_name: "Cami", last_name: "Flores", country: "Reino Unido", city: "Londres", native_language: "inglés", date_of_birth: "1991-04-28".to_date, about_me: "Hello, I'm Camila. A Shakespeare enthusiast and an explorer of the charming British pubs. Join me for a cultural journey in London!", other_languages: "alemán", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1596815064285-45ed8a9c0463?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjMxfHxwZXJzb25hfGVufDB8fDB8fHww" },
+
+  { email: "student13@gmail.com", first_name: "Robert", last_name: "Santos", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1994-11-08".to_date, about_me: "Hey there! I'm Roberto, an avid fan of winter sports and a nature lover. Let's explore the breathtaking Canadian landscapes together.", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1614008516609-542a07c7b701?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM0fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student14@gmail.com", first_name: "Claudia", last_name: "Moreno", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1984-06-19".to_date, about_me: "G'day! I'm Claudia, an explorer of Australian wildlife and a passionate surfer. Join me for an adventure Down Under!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM5fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student15@gmail.com", first_name: "Javi", last_name: "Jiménez", country: "Alemania", city: "Berlíni", native_language: "alemán", date_of_birth: "1983-01-12".to_date, about_me: "Hello, I'm Javier. Passionate about the diverse culture of India and an avid collector of stories. Let's discover the wonders of New Delhi together!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1564974288343-7cce73c4b71a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQyfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student16@gmail.com", first_name: "Patric", last_name: "Castro", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1997-07-01".to_date, about_me: "Mis clases van más allá de la gramática y el vocabulario; te sumergirás en la cultura alemana a través de literatura.", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1512310604669-443f26c35f52?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQwfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  
+  { email: "student17@gmail.com", first_name: "Martí", last_name: "Leroy", country: "Bélgica", city: "Bruselas", native_language: "francés", date_of_birth: "1992-03-19".to_date, about_me: "Salut! Je suis Martín, passionné par la bande dessinée belge et amateur de chocolat. Rejoignez-moi pour une exploration culturelle à Bruxelles!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQzfHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student18@gmail.com", first_name: "Sophia", last_name: "Müller", country: "Alemania", city: "Berlín", native_language: "alemán", date_of_birth: "1989-08-14".to_date, about_me: "Hallo, ich bin Sophie. Ich liebe die deutsche Geschichte und erkunde gerne die künstlerische Szene in Berlin. Begleite mich auf eine kulturelle Reise!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQ2fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student19@gmail.com", first_name: "Giorgio", last_name: "Ricci", country: "Italia", city: "Roma", native_language: "italiano", date_of_birth: "1993-12-08".to_date, about_me: "Ciao, sono Giorgio. Appassionato di arte e storia italiana, esploro le strade di Roma in cerca di nuove scoperte. Unisciti a me in questo viaggio culturale!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1548280684-8c051518e195?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQ3fHxwZXJzb25hfGVufDB8fDB8fHww" },
+  { email: "student20@gmail.com", first_name: "Mirian", last_name: "Andersen", country: "Dinamarca", city: "Copenhague", native_language: "danés", date_of_birth: "1996-06-25".to_date, about_me: "Hej, jeg er Mia. Jeg elsker den danske hygge og udforsker gerne de historiske steder i København. Kom med på en kulturel rejse!", other_languages: "inglés", learning_languages: "español", file_teacher: "https://images.unsplash.com/photo-1601412436405-1f0c6b50921f?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjU1fHxwZXJzb25hfGVufDB8fDB8fHww" },
+]
+
+students_data.each do |student_info|
+  user_student = User.create!(
+    email: student_info[:email],
+    role: 0,
+    password: "123456",
+    first_name: student_info[:first_name],
+    last_name: student_info[:last_name],
+    country: student_info[:country],
+    city: student_info[:city],
+    date_of_birth: student_info[:date_of_birth],
+    about_me: student_info[:about_me],
+    native_language: student_info[:native_language],
+    other_languages: student_info[:other_languages],
+    learning_languages: student_info[:learning_languages],
+    objectives: "poliglota"
+  )
+
+  file_student = URI.open(student_info[:file_teacher])
+  user_student.photo.attach(io: file_student, filename: "#{student_info[:first_name].downcase}_image.png", content_type: "image/png")
+  user_student.save!
+
+  puts "creando bookings"
+
+  teaching_language_sessions = user_student.teaching_language_sessions
+
+  teaching_language_sessions.each do |teaching_language_session|
+    Booking.create!(
+      user: user_student,
+      teaching_language_session: teaching_language_session,
+      date: "2023-12-17".to_date, 
+      time_in: "19:00:00 -0300".to_time  
+    )
+  end
+end
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # # Adjuntar la bandera al usuario
+  # country_flag_url = country_flag_icon_url(user_student.country_code.downcase) rescue nil
+  # user_student.update(country_flag_url: country_flag_url) if country_flag_url
 
-#Usuario 2 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student2 = User.create!(
-  email: "marta.rodriguez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Marta",
-  last_name: "Rodríguez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-10-25".to_date,
-  about_me: "Amante de los idiomas y políglota en proceso de aprendizaje constante.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Portugués",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student2 = URI.open("https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZXN0dWRpYW50ZXN8ZW58MHx8MHx8fDA%3D")
-user_student2.photo.attach(io: file_student2, filename: "federica_image.png", content_type: "image/png")
-user_student2.save!
-
-# Usuario 3 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student3 = User.create!(
-  email: "luis.gonzalez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Luis",
-  last_name: "González",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2001-09-08".to_date,
-  about_me: "Estudiante entusiasta de idiomas extranjeros con un oído afinado.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student3 = URI.open("https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student3.photo.attach(io: file_student3, filename: "federica_image.png", content_type: "image/png")
-user_student3.save!
-
-# Usuario 4 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student4 = User.create!(
-  email: "sofia.lopez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Sofía",
-  last_name: "López",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Estudiante de lenguas clásicas, conectando con la raíz de la comunicación.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student4 = URI.open("https://plus.unsplash.com/premium_photo-1681248156422-c01a2c803588?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student4.photo.attach(io: file_student4, filename: "federica_image.png", content_type: "image/png")
-user_student4.save!
-
-# Usuario 5 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student5 = User.create!(
-  email: "juan.martinez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Juan",
-  last_name: "Martínez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Explorador de la gramática y vocabulario, siempre buscando desafíos nuevos.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student5 = URI.open("https://images.unsplash.com/photo-1492462543947-040389c4a66c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student5.photo.attach(io: file_student5, filename: "federica_image.png", content_type: "image/png")
-user_student5.save!
-
-# Usuario 6 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student6 = User.create!(
-  email: "valeria.garcia@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Valeria",
-  last_name: "García",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Embajador del intercambio cultural a través del aprendizaje de idiomas.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student6 = URI.open("https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student6.photo.attach(io: file_student6, filename: "federica_image.png", content_type: "image/png")
-user_student6.save!
-
-# Usuario 7 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student7 = User.create!(
-  email: "miguel.fernandez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Miguel",
-  last_name: "Fernández",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Amante de los proverbios y expresiones idiomáticas en diferentes idiomas.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student7 = URI.open("https://plus.unsplash.com/premium_photo-1680807869418-55f36574b53a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student7.photo.attach(io: file_student7, filename: "federica_image.png", content_type: "image/png")
-user_student7.save!
-
-# Usuario 8 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student8 = User.create!(
-  email: "ana.diaz@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Ana",
-  last_name: "Díaz",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Apasionado por la traducción y la interpretación como formas de arte.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student8 = URI.open("https://images.unsplash.com/photo-1507537417841-81e85feb9bd2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student8.photo.attach(io: file_student8, filename: "federica_image.png", content_type: "image/png")
-user_student8.save!
-
-# Usuario 9 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student9 = User.create!(
-  email: "ricardo.torres@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Ricardo",
-  last_name: "Torres",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Admirador de las culturas a través de las lenguas, derribando barreras.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student9 = URI.open("https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student9.photo.attach(io: file_student9, filename: "federica_image.png", content_type: "image/png")
-user_student9.save!
-
-# Usuario 10 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student10 = User.create!(
-  email: "carolina.herrera@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Carolina",
-  last_name: "Herrera",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Estudiante de fonética y pronunciación, perfeccionando acentos.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student10 = URI.open("https://images.unsplash.com/photo-1624727828618-ee42ef2ec5cf?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student10.photo.attach(io: file_student10, filename: "federica_image.png", content_type: "image/png")
-user_student10.save!
-
-# Usuario 11 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student11 = User.create!(
-  email: "daniel.sanchez@gmail.com",
-  role: 0,
-  password: "123456",
-first_name: "Daniel",
-  last_name: "Sánchez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Adicto a las lenguas en peligro de extinción, comprometido con su preservación.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student11 = URI.open("https://images.unsplash.com/photo-1584473457409-ae5c91d7d8b1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student11.photo.attach(io: file_student11, filename: "federica_image.png", content_type: "image/png")
-user_student11.save!
-
-# Usuario 12 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student12 = User.create!(
-  email: "laura.ramirez@gmail.com",
-  role: 0,
-  password: "123456",
-first_name: "Laura",
-  last_name: "Ramírez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Fanático de los dialectos y las variantes regionales, siempre atento a las diferencias.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student12 = URI.open("https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student12.photo.attach(io: file_student12, filename: "federica_image.png", content_type: "image/png")
-user_student12.save!
-
-# Usuario 13 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student13 = User.create!(
-  email: "antonio.medina@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Antonio",
-  last_name: "Medina",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Estudiante de lingüística, analizando la estructura y evolución de los idiomas.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student13 = URI.open("https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student13.photo.attach(io: file_student13, filename: "federica_image.png", content_type: "image/png")
-user_student13.save!
-
-# Usuario 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student14 = User.create!(
-  email: "elena.gutierrez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Elena",
-  last_name: "Gutiérrez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Me gusta enseñar inglés",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student14 = URI.open("https://images.unsplash.com/photo-1560439450-57df7ac6dbef?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student14.photo.attach(io: file_student14, filename: "federica_image.png", content_type: "image/png")
-user_student14.save!
-
-# Usuario 15 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student15 = User.create!(
-  email: "javier.ortiz@gmail.com",
-  role: 0,
-  password: "123456",
-first_name: "Javier",
-  last_name: "Ortiz",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Explorador de la literatura mundial, leyendo obras en su idioma original.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student15 = URI.open("https://images.unsplash.com/photo-1571193161738-deaba9b6cc26?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student15.photo.attach(io: file_student15, filename: "federica_image.png", content_type: "image/png")
-user_student15.save!
-
-# Usuario 16 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student16 = User.create!(
-  email: "maria.nunez@gmail.com",
-  role: 0,
-  password: "123456",
-first_name: "María",
-  last_name: "Núñez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Enamorado de la fonología y los sonidos únicos de cada lengua.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student16 = URI.open("https://images.unsplash.com/photo-1598257006303-031250badbdc?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student16.photo.attach(io: file_student16, filename: "federica_image.png", content_type: "image/png")
-user_student16.save!
-
-# Usuario 17 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student17 = User.create!(
-  email: "carlos.vargas@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Carlos",
-  last_name: "Vargas",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Estudiante de interpretación simultánea, desafiando los límites lingüísticos.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student17 = URI.open("https://images.unsplash.com/photo-1541178735493-479c1a27ed24?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student17.photo.attach(io: file_student17, filename: "federica_image.png", content_type: "image/png")
-user_student17.save!
-
-# Usuario 18 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student18 = User.create!(
-  email: "andrea.castro@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Andrea",
-  last_name: "Castro",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Aprendiz de la caligrafía de diferentes alfabetos, buscando la belleza en las palabras.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student18 = URI.open("https://images.unsplash.com/photo-1586448983330-d03f696c8271?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student18.photo.attach(io: file_student18, filename: "federica_image.png", content_type: "image/png")
-user_student18.save!
-
-# Usuario 19 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student19 = User.create!(
-  email: "roberto.jimenez@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Roberto",
-  last_name: "Jiménez",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Buscador de conexiones entre idiomas, descubriendo similitudes sorprendentes.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student19 = URI.open("https://plus.unsplash.com/premium_photo-1679547202334-176bdb75f652?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQxfHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_student19.photo.attach(io: file_student19, filename: "federica_image.png", content_type: "image/png")
-user_student19.save!
-
-# Usuario 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_student20 = User.create!(
-  email: "natalia.silva@gmail.com",
-  role: 0,
-  password: "123456",
-  first_name: "Natalia",
-  last_name: "Silva",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-11-28".to_date,
-  about_me: "Embajador del multilingüismo, promoviendo la comunicación intercultural.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Estados Unidos"
-)
-
-file_student20 = URI.open("https://images.unsplash.com/photo-1526781480235-d79b4866aa9c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fGVzdHVkaWFudGVzfGVufDB8fDB8fHww")
-user_student20.photo.attach(io: file_student20, filename: "federica_image.png", content_type: "image/png")
-user_student20.save!
-
-
-puts "creando teachers"
-# Teacher 1
-user_teacher1 = User.create!(
-  email: "juan.perez@gmail.com",
-  role: 1,
-  password: "123456",
-  first_name: "María",
-  last_name: "García",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-12-28".to_date,
-  about_me: "Descripción: Soy una profesora apasionada por la enseñanza del inglés. Con más de 10 años de experiencia, he ayudado a estudiantes de todas las edades a mejorar sus habilidades lingüísticas. Mi enfoque es interactivo y personalizado, adaptándome a las necesidades individuales de cada estudiante.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Japón"
-)
-
-# Imagen para el Teacher 1
-file_teacher1 = URI.open("https://images.unsplash.com/photo-1567168539593-59673ababaae?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAyfHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_teacher1.photo.attach(io: file_teacher1, filename: "federico_image.png", content_type: "image/png")
-user_teacher1.save!
-
-# Datos del Teacher 1
-teacher_data1 = DataTeacher.create!(
-  teaching_languages: "Español",
-  teacher_description: "Con una maestría en Lingüística Aplicada y más de 15 años de experiencia en la enseñanza, ofrezco un enfoque integral y personalizado para cada estudiante. Mis lecciones van más allá de la gramática y el vocabulario, incorporando elementos culturales, expresiones coloquiales y anécdotas históricas para proporcionar una experiencia de aprendizaje enriquecedora.",
-  usd_per_hour: 200,
-  user: user_teacher1
-)
-
-# Teacher 2 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_teacher2 = User.create!(
-  email: "ana.rodriguez@gmail.com",
-  role: 1,
-  password: "123456",
-  first_name: "Julien",
-  last_name: "Dubois",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-12-28".to_date,
-  about_me: "Descripción: Como nativo francés, estoy comprometido a compartir la belleza de mi lengua materna. Mi enfoque se centra en la inmersión cultural y la práctica constante. Mis clases son dinámicas y divertidas, con énfasis en la comunicación efectiva.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Japón"
-)
-
-# Imagen para el Teacher 2
-file_teacher2 = URI.open("https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE2fHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_teacher2.photo.attach(io: file_teacher2, filename: "federico_image.png", content_type: "image/png")
-user_teacher2.save!
-
-# Datos del Teacher 2
-teacher_data2 = DataTeacher.create!(
-  teaching_languages: "Español",
-  teacher_description: "Mis clases van más allá de la gramática y el vocabulario; te sumergirás en la cultura alemana a través de literatura, música y conversaciones auténticas. Mi enfoque se centra en crear un ambiente de aprendizaje dinámico y alentador, donde cada lección sea una oportunidad para crecer y mejorar.",
-  usd_per_hour: 200,
-  user: user_teacher2
-)
-
-# Teacher 3 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_teacher3 = User.create!(
-  email: "carlos.gutierrez@gmail.com",
-  role: 1,
-  password: "123456",
-first_name: "Gabriela",
-  last_name: "Morales",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-12-28".to_date,
-  about_me: "Descripción: Como hablante nativa de español, me dedico a hacer que el aprendizaje del idioma sea accesible y atractivo. Utilizo métodos interactivos que incluyen juegos, música y películas para hacer que las lecciones sean estimulantes y efectivas.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Japón"
-)
-
-# Imagen para el Teacher 3
-file_teacher3 = URI.open("https://images.unsplash.com/photo-1594077810908-9ffd89d704ac?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA0fHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_teacher3.photo.attach(io: file_teacher3, filename: "federico_image.png", content_type: "image/png")
-user_teacher3.save!
-
-# Datos del Teacher 3
-teacher_data3 = DataTeacher.create!(
-  teaching_languages: "Español",
-  teacher_description: "Mis lecciones son dinámicas, llenas de juegos, música y conversaciones reales. Me esfuerzo por crear un ambiente acogedor donde cada estudiante se sienta cómodo y motivado para hablar. Además de enseñar el idioma, te llevaré a explorar la riqueza cultural de los países de habla hispana.",
-  usd_per_hour: 200,
-  user: user_teacher3
-)
-
-# Teacher 4 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_teacher4 = User.create!(
-  email: "laura.martinez@gmail.com",
-  role: 1,
-  password: "123456",
-first_name: "Hans",
-  last_name: "Müller",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-12-28".to_date,
-  about_me: "Descripción: Con una sólida formación académica y años de experiencia en la enseñanza del alemán, me esfuerzo por hacer que el proceso de aprendizaje sea desafiante y gratificante. Mis lecciones incluyen tanto la gramática como la cultura alemana para una comprensión integral del idioma.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Japón"
-)
-
-# Imagen para el Teacher 4
-file_teacher4 = URI.open("https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE4fHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_teacher4.photo.attach(io: file_teacher4, filename: "federico_image.png", content_type: "image/png")
-user_teacher4.save!
-
-# Datos del Teacher 4
-teacher_data4 = DataTeacher.create!(
-  teaching_languages: "Español",
-  teacher_description: "Mis clases van más allá de la gramática y el vocabulario; te sumergirás en la cultura alemana a través de literatura, música y conversaciones auténticas. Mi enfoque se centra en crear un ambiente de aprendizaje dinámico y alentador, donde cada lección sea una oportunidad para crecer y mejorar.",
-  usd_per_hour: 200,
-  user: user_teacher4
-)
-
-# Teacher 5 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user_teacher5 = User.create!(
-  email: "alejandro.sanchez@gmail.com",
-  role: 1,
-  password: "123456",
-  first_name: "Li",
-  last_name: "Wei",
-  country: "Argentina",
-  city: "Buenos Aires",
-  date_of_birth: "2000-12-28".to_date,
-  about_me: "Descripción: Como hablante nativa de chino mandarín, me dedico a compartir la riqueza de mi idioma y cultura. Mis lecciones se centran en la escritura, la pronunciación y la comprensión oral. Utilizo materiales auténticos para una inmersión efectiva.",
-  native_language: "Inglés",
-  other_languages: "Japanese",
-  learning_languages: "Inglés",
-  objectives: "Viajar a Japón"
-)
-
-# Imagen para el Teacher 5
-file_teacher5 = URI.open("https://plus.unsplash.com/premium_photo-1679547202933-370797093cc9?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI5fHxlc3R1ZGlhbnRlc3xlbnwwfHwwfHx8MA%3D%3D")
-user_teacher5.photo.attach(io: file_teacher5, filename: "federico_image.png", content_type: "image/png")
-user_teacher5.save!
-
-# Datos del Teacher 5
-teacher_data5 = DataTeacher.create!(
-  teaching_languages: "Español",
-  teacher_description: "Mis lecciones son un viaje emocionante que abarca desde la caligrafía hasta la pronunciación, desde los caracteres hasta las expresiones cotidianas. Me encanta integrar la cultura china en mis clases, utilizando música, cuentos y tradiciones para ofrecer una inmersión auténtica. Mi enfoque es paciente y adaptativo, y siempre estoy dispuesta a ajustar mis métodos para satisfacer tus necesidades individuales de aprendizaje.",
-  usd_per_hour: 200,
-  user: user_teacher5
-)
-
-
-puts "creando teaching languages sessions"
-teaching_language_session_01 = TeachingLanguageSession.create!(
-  language: "Portugués",
-  user: user_teacher1
-)
-
-teaching_language_session_02 = TeachingLanguageSession.create!(
-  language: "Inglés",
-  user: user_teacher1
-)
-
-teaching_language_session_03 = TeachingLanguageSession.create!(
-  language: "Español",
-  user: user_teacher1
-)
-
-teaching_language_session_04 = TeachingLanguageSession.create!(
-  language: "Portugués",
-  user: user_teacher2
-)
-
-teaching_language_session_05 = TeachingLanguageSession.create!(
-  language: "Inglés",
-  user: user_teacher2
-)
-
-teaching_language_session_06 = TeachingLanguageSession.create!(
-  language: "Español",
-  user: user_teacher2
-)
-
-teaching_language_session_07 = TeachingLanguageSession.create!(
-  language: "Portugués",
-  user: user_teacher3
-)
-
-teaching_language_session_08 = TeachingLanguageSession.create!(
-  language: "Inglés",
-  user: user_teacher3
-)
-
-teaching_language_session_09 = TeachingLanguageSession.create!(
-  language: "Español",
-  user: user_teacher3
-)
-
-puts "creando bookings"
-booking01 = Booking.create!(
-  user: user_student1,
-  teaching_language_session: teaching_language_session_01,
-  date: "2023-12-17".to_date,
-  time_in: "19:00:00 -0300".to_time
-)
-
-booking02 = Booking.create!(
-  user: user_student1,
-  teaching_language_session: teaching_language_session_01,
-  date: "2023-12-18".to_date,
-  time_in: "19:00:00 -0300".to_time
-)
-booking03 = Booking.create!(
-  user: user_student1,
-  teaching_language_session: teaching_language_session_01,
-  date: "2023-12-19".to_date,
-  time_in: "19:00:00 -0300".to_time
-)
-booking04 = Booking.create!(
-  user: user_student1,
-  teaching_language_session: teaching_language_session_01,
-  date: "2023-12-20".to_date,
-  time_in: "19:00:00 -0300".to_time
-)

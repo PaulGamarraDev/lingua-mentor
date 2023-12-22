@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def teachers
-    @students = User.where(role: "teacher")
+    @teachers = User.where(role: "teacher")
   end
 
   def students

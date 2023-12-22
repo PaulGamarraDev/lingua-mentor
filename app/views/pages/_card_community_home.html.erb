@@ -1,206 +1,25 @@
 <div class="container" style="max-width: 1440px;">
-  <div class="row">
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
+  <div class="row" style="padding: 4px;">
+    <% @students.take(12).each do |student| %>
+      <div class="col-md-2" >
+        <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
+          <div class="card-community-home">
+            <div class="img">
+                <%= image_tag student.photo, class: "card-img-top", alt: "foto de perfil del estudiante" %>
+            </div>
+            <div class="infos">
+              <h2 class="name"><%= student.first_name %></h2>
+              <p class="abaut-me"><%= student.about_me %></p>
+            </div>
+            <div class="languague">
+              <p class="speaks">Nativo: <%= student.native_language %></p>
+              <p class="learns">Aprende: <%= student.learning_languages %></p>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
-
-        <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-2">
-      <div class="card-community-home">
-        <div class="img">
-          <img src="https://us.123rf.com/450wm/kho/kho1309/kho130900148/21923811-feliz-hermosa-mujer-joven-con-la-bicicleta-retro-verano-al-aire-libre.jpg" />
-        </div>
-        <div class="infos">
-          <h2 class="name">Carolina</h2>
-          <p class="abaut-me">Me gusta hablar sobre cultura, libros, peliculas, fotografia, animacion, videojuegos y viajes</p>
-        </div>
-        <div class="languague">
-          <p class="speaks">Ingles</p>
-          <p class="learns">Frances</p>
-        </div>
-      </div>
-    </div>
-
+    <% end %>
   </div>
 </div>
+
+
