@@ -1,0 +1,35 @@
+<div class="container" style="max-width: 1440px;">
+  <div class="row">
+  
+    <% @teachers.take(12).each do |teacher| %>
+      <div class="col-md-3">
+        <%= link_to user_path(teacher), style: "text-decoration: none; color: inherit;" do %>
+          <div class="card-community-home-2">
+            <div class="title">
+              <h2 class="name"><%= teacher.first_name %></h2>
+              <p class="learns">
+                <i class="fas fa-graduation-cap"></i> <%= teacher.data_teacher.teaching_languages %>
+              </p>
+            </div>
+            <div class="img">
+              <%= image_tag teacher.photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+            </div>
+            <div class="infos">
+              <p style=" color: green;">Verificado</p>
+              <span>$<%= teacher.data_teacher.usd_per_hour %>  Clases de 60 minutos</span>
+              <p><%= teacher.about_me %></p>
+              <p><%= teacher.data_teacher.teacher_description %></p>
+              <div class="language">
+                <p>Nativo: <%= teacher.native_language %></p>
+                <p>Enseña: <%= teacher.data_teacher.teaching_languages %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+

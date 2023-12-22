@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "home", class: "navbar-brand"  do %>
+    <%= link_to root_path, class: "navbar-brand"  do %>
       <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702746045/Property_1_Frame_566_qq1z9u.png" %>
     <% end %>
 
@@ -9,53 +9,66 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto" style="gap: 8px;">
         <% if user_signed_in? %>
-          <li class="nav-item ">
-            <%= link_to "Comunidad","#", class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to "Comunidad", students_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Encuentra un profesor","#",class: "nav-link" %>
+            <%= link_to "Encuentra un profesor", teachers_path, class: "nav-link" %>
           </li>
-           <li class="nav-item">
-            <%= link_to "Chat", "#",class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to "Chat", "#", class: "nav-link" %>
           </li>
-           <li class="nav-item">
-            <%= link_to "Mis clases","#",class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to "Mis clases", "#", class: "nav-link" %>
           </li>
-            <li class="nav-item">
-            <%= link_to "Blogs","#",class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to "Blogs", "#", class: "nav-link" %>
           </li>
-          <%# MENÚ DESPLEGABLE %>
+
+          <!-- MENÚ DESPLEGABLE -->
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.photo.attached? %>
-                <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-              <% else %>
-                <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702747734/WhatsApp_Image_2023-12-16_at_14.08.37_baunyp.jpg", class: "avatar", alt: "dropdown menu" %>
-              <% end %>
+              <div class="div-image">
+                <% if current_user.photo.attached? %>
+                  <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+                <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702747734/WhatsApp_Image_2023-12-16_at_14.08.37_baunyp.jpg", class: "avatar", alt: "Menú desplegable" %>
+                <% end %>
+              </div>
             </a>
-
             <div class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="navbarDropdown">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702746045/Property_1_Frame_566_qq1z9u.png"%>
+              <%= link_to root_path, class: "navbar-brand" do %>
+                <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702746045/Property_1_Frame_566_qq1z9u.png" %>
+              <% end %>
 
-              <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Idiomas", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Certificados", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Temas", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Siguiendo", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Clases", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Chats", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Blogs", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Ajustes", edit_user_registration_path, class: "dropdown-item"%>
-              <%= link_to "Visitantes", edit_user_registration_path, class: "dropdown-item"%>
+              <%# Agregar enlaces del menú desplegable %>
+              <% menu_items = [
+                ["Mi Perfil", edit_user_registration_path],
+                ["Idiomas", edit_user_registration_path],
+                ["Certificados", edit_user_registration_path],
+                ["Temas", edit_user_registration_path],
+                ["Siguiendo", edit_user_registration_path],
+                ["Clases", edit_user_registration_path],
+                ["Chats", edit_user_registration_path],
+                ["Blogs", edit_user_registration_path],
+                ["Ajustes", edit_user_registration_path],
+                ["Visitantes", edit_user_registration_path]
+              ] %>
+              <% menu_items.each do |item| %>
+                <%= link_to item[0], item[1], class: "dropdown-item" %>
+              <% end %>
+
               <br>
               <br>
               <button type="button" class="btn btn-custom">Cerrar</button>
 
-              <%# <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%# <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
+
+
 
         <% else %>
           <li class="nav-item">
@@ -66,4 +79,4 @@
     </div>
   </div>
 </div>
-<%# el ideal es hacer todo con bostrap %>
+<%# el ideal es hacer todo con Bootstrap %>

@@ -1,0 +1,92 @@
+.teacher-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  padding: 20px 12px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  h2 {
+    color: var(--Primario, #000);
+    font-family: 'Amazon Ember';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 18px;
+    align-items: center;
+    margin: 0px;
+  }
+
+  .link-ver-mas {
+    display: flex;
+    height: 12px;
+    gap: 4px;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover{
+      color: rgba(57, 181, 74, 1)
+    }
+  }
+}
+
+.card-teacher-home {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 150px;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .ranking {
+    color: var(--Primario, #000);
+    font-family: 'Amazon Ember';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .card-teacher-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1;
+    align-self: stretch;
+  }
+}
