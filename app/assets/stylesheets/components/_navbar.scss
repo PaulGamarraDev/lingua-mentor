@@ -7,8 +7,29 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-brand {
+  max-width: auto;
+  height: 68px;
+  padding: 12;
+  margin: 0;
+  background: white;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+
+  img {
+    width: 170px;
+    height: 60px;
+    padding: 4px;
+  }
+}
+
+.navbar-brand:hover {  
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand:active img {
+  width: 160px;
+  height: 56px;
 }
 
 .btn-custom {
@@ -29,3 +50,41 @@
 .dropdown-item {
   color: #225191;
 }
+
+.nav-item {
+  display: flex;
+  height: 68px;
+  width: auto;
+  padding: 12px 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #FFF;
+  .div-image {
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+}
+
+
+
+
+
+.nav-item:hover {  
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.avatar img {
+  border-radius: 50px;
+  max-height: 40;
+  max-width: 40;
+}
+

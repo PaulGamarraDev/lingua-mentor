@@ -1,2 +1,40 @@
+<div class="container" style="max-width: 1440px;">
+  <div class="row">
+    <% ["francés", "español", "inglés", "alemán"].each do |language| %>
+      <div class="col-md-3">
+        <div class="teacher-cards-container">
+          <div class="titulo">
+            <h2><%= language.capitalize %></h2>
+            <%= link_to "Ver más", teachers_path(native_language: language), class: "link-ver-mas" %>
+          </div>
+          <% ranking_counter = 1 %>
+          <% @teachers.where(native_language: language).take(3).each do |teacher| %>
+            <%= link_to user_path(teacher), style: "text-decoration: none; color: inherit;" do %>
+              <div class="card-teacher-home">
+                <h2 class="ranking">#<%= ranking_counter %></h2>
+                <%= image_tag teacher.photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+                <div class="card-teacher-infos">
+                  <h2><%= teacher.first_name %></h2>
+                  <p>
+                    <i class="fas fa-graduation-cap"></i> <%= teacher.data_teacher.teaching_languages %>
+                  </p>
+                  <p>
+                    <% description = teacher.data_teacher.teacher_description %>
+                    <% truncated_description = truncate(description, length: 50) %> <!-- Cambia el número según tu preferencia -->
+                    <%= truncated_description %>                 
+                  </p>
+                  <p style=" color: green;">Verificado</p>
+                </div>
+              </div>
+            <% end %>
+            <% ranking_counter += 1 %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
 
 

@@ -1,1 +1,129 @@
-// Specific CSS for your home-page
+.page-content {
+  background: rgba(34, 81, 145, 1);
+  margin: 0 auto;
+  overflow: hidden;
+
+  .body {
+    width: 1440px;
+    margin: 0 auto;
+    z-index: 1;
+    transform: translate(-0%, -14.5%);
+    margin-bottom: -28%;
+  }
+
+  .container-cards-teacher-home {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 48px;
+  }
+
+  .card-titles-home {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.20);
+    margin: 40px 0px;
+    
+
+    h2, p {
+      color: #FFF;
+      font-family: Roboto;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  .card-title{
+    display: flex;
+    width: 887px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    background: var(--negro-20, rgba(0, 0, 0, 0.10));
+    margin:  40px auto;
+
+    h2{
+      color: #FFF;
+      font-family: Roboto;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    p{
+      color: #FFF;
+      text-align: center;
+      font-family: Roboto;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: #FFF;
+      font-family: Roboto;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+}
+
+.carousel-item img {
+  filter: brightness(80%);
+}
+
+
+
+
+#carouselExampleAutoplaying .carousel-control-prev,
+#carouselExampleAutoplaying .carousel-control-next {
+  width: 5%;
+}
+
+
+
+@media (max-width: 1440px) {
+  .body, .container-cards-teacher-home, .card-titles-home, .card-title {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .col-md-2:nth-last-child(-n+4) {
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 1440px) {
+  .col-md-2 {
+    width: 25%;
+  }
+}
+
+
+
+
+
+
+.col-md-2 {
+  padding: 8px; /* Ajusta el valor según tus necesidades */
+}
+
+.col-md-3 {
+  padding: 8px;
+}
+
