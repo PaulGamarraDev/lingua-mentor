@@ -1,0 +1,159 @@
+/* Estilos para el contenedor principal */
+.body-community {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor padre */
+  max-width: 1440px; /* Establece un ancho máximo para evitar que el contenido se extienda demasiado en pantallas grandes */
+  margin: 0 auto; /* Centra el contenedor en la pantalla */
+  padding: 16px; /* Añade espacio adicional en los laterales para mejorar la apariencia en pantallas más pequeñas */
+}
+
+/* Estilos para las tarjetas */
+.card-community {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor padre */
+  padding: 12px; /* Añade un espacio interno a las tarjetas */
+  align-items: flex-start; /* Alinea los elementos hijos al inicio del eje transversal (eje Y) */
+  border-radius: 16px; /* Agrega bordes redondeados a las tarjetas */
+  background: #FFF; /* Fondo blanco */
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25); /* Sombra suave */
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  flex-direction: column; /* Organiza los elementos hijos en una columna */
+  gap: 16px; /* Ajusta el espacio entre las tarjetas según tus necesidades */
+
+  &:hover {    /* Estilos al pasar el ratón por encima de la tarjeta */
+    filter: brightness(90%); /* Oscurece la tarjeta al 90% */
+    transition: filter 0.1s ease; /* Transición suave para el efecto de oscurecimiento */
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75); /* Sombra suave */
+  }
+
+
+}
+
+/* Estilos para la imagen dentro de la tarjeta */
+.card-community .img-community {
+  width: 100%; /* Ocupa el 100% del ancho de su contenedor */
+  height: 200px; /* Ajusta la altura según tus necesidades */
+  border-radius: 16px; /* Bordes redondeados para la imagen */
+  background: url(<path-to-image>), lightgray 50% / cover no-repeat, #D9D9D9; /* Establece el fondo de la imagen */
+}
+
+.card-community .img-community img {
+  width: 100%; /* Ocupa el 100% del ancho de su contenedor */
+  height: 100%; /* Ocupa el 100% de la altura de su contenedor */
+  object-fit: cover; /* Ajusta la imagen para que cubra completamente su contenedor manteniendo la proporción */
+  border-radius: 16px; /* Bordes redondeados para la imagen */
+}
+
+/* Estilos para la información dentro de la tarjeta */
+.card-community .info {
+  flex-direction: column; /* Organiza los elementos hijos en una columna */
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  gap: 12px; /* Ajusta el espacio entre los elementos hijos según tus necesidades */
+}
+
+.card-community .info h2 {
+  align-self: stretch; /* Estira el título horizontalmente para ocupar todo el ancho del contenedor */
+  color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
+  font-family: Roboto; /* Tipo de fuente */
+  font-size: 18px; /* Tamaño de la fuente */
+  font-style: normal; /* Estilo de la fuente */
+  font-weight: 400; /* Peso de la fuente */
+  line-height: normal; /* Altura de línea normal */
+  margin: 0; /* Elimina los márgenes predeterminados del título */
+}
+
+.card-community .info p {
+  align-self: stretch; /* Estira el párrafo horizontalmente para ocupar todo el ancho del contenedor */
+  color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
+  font-family: Roboto; /* Tipo de fuente */
+  font-size: 14px; /* Tamaño de la fuente */
+  font-style: normal; /* Estilo de la fuente */
+  font-weight: 400; /* Peso de la fuente */
+  line-height: normal; /* Altura de línea normal */
+  margin: 8px 0; /* Márgenes superior e inferior del párrafo */
+  display: -webkit-box; /* Muestra el contenido como una caja flexible de una sola línea */
+  -webkit-line-clamp: 3; /* Limita el número de líneas a 3 */
+  -webkit-box-orient: vertical; /* Orientación vertical de la caja flexible */
+  overflow: hidden; /* Oculta el contenido que desborda */
+}
+
+/* Estilos para la sección de lenguaje dentro de la tarjeta */
+.card-community .languague-community {
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  align-items: flex-start; /* Alinea los elementos hijos al inicio del eje transversal (eje Y) */
+  gap: 12px; /* Ajusta el espacio entre los elementos hijos según tus necesidades */
+  align-self: stretch; /* Estira la sección de lenguaje horizontalmente para ocupar todo el ancho del contenedor */
+}
+
+.card-community .languague-community p {
+  color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
+  font-family: Roboto; /* Tipo de fuente */
+  font-size: 9px; /* Tamaño de la fuente */
+  font-style: normal; /* Estilo de la fuente */
+  line-height: 1; /* Altura de línea */
+  margin: 0; /* Elimina los márgenes predeterminados del párrafo */
+  max-height: 8px; /* Altura máxima del párrafo */
+  overflow: hidden; /* Oculta el contenido que desborda */
+}
+
+/* Consulta de medios para pantallas más grandes (768px) */
+@media (min-width: 768px) {
+  .card-community {
+    flex-direction: row; /* Cambia la dirección de los elementos hijos a una fila */
+  }
+
+  .card-community .img-community {
+    width: 120px; /* Ajusta el ancho de la imagen */
+    height: 120px; /* Ajusta la altura de la imagen */
+  }
+
+  .card-community .info {
+    flex: 1; /* El contenedor de información ocupa todo el espacio disponible */
+  }
+}
+
+/* Consulta de medios para pantallas más grandes (1200px) */
+@media (min-width: 1200px) {
+  .card-community .img-community {
+    height: 120px; /* Ajusta la altura de la imagen */
+  }
+
+  .card-community .info h2 {
+    font-size: 18px; /* Ajusta el tamaño de la fuente del título */
+  }
+
+  .card-community .info p {
+    font-size: 14px; /* Ajusta el tamaño de la fuente del párrafo */
+    -webkit-line-clamp: 3; /* Limita el número de líneas a 3 */
+  }
+
+  .card-community .languague-community p {
+    font-size: 9px; /* Ajusta el tamaño de la fuente del párrafo de lenguaje */
+  }
+
+  .card-community .languague-community {
+    gap: 8px; /* Ajusta el espacio entre los elementos hijos de la sección de lenguaje */
+  }
+}
+
+/* Consulta de medios para pantallas más grandes (1440px) */
+@media (min-width: 1440px) {
+  .card-community .img-community {
+    height: 120px; /* Ajusta la altura de la imagen */
+  }
+
+  .card-community .info h2 {
+    font-size: 18px; /* Ajusta el tamaño de la fuente del título */
+  }
+
+  .card-community .info p {
+    font-size: 14px; /* Ajusta el tamaño de la fuente del párrafo */
+    -webkit-line-clamp: 3; /* Limita el número de líneas a 3 */
+  }
+
+  .card-community .languague-community p {
+    font-size: 9px; /* Ajusta el tamaño de la fuente del párrafo de lenguaje */
+  }
+
+  .card-community .languague-community {
+    gap: 8px; /* Ajusta el espacio entre los elementos hijos de la sección de lenguaje */
+  }
+}

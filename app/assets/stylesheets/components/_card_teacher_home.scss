@@ -1,92 +1,104 @@
+/* Estilos para el contenedor de tarjetas de profesores */
 .teacher-cards-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  flex: 1;
-  padding: 20px 12px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  display: flex; /* Muestra los elementos en un contenedor flex */
+  flex-direction: column; /* Organiza los elementos en una columna */
+  align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+  gap: 12px; /* Espacio entre los elementos */
+  flex: 1; /* Ocupa el espacio disponible */
+  padding: 20px 12px; /* Añade relleno al contenedor */
+  border-radius: 16px; /* Bordes redondeados para el contenedor */
+  background: #fff; /* Fondo blanco */
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5); /* Sombra para el contenedor */
 }
 
+/* Estilos para el título del contenedor de tarjetas */
 .titulo {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  display: flex; /* Muestra los elementos en una fila */
+  gap: 12px; /* Espacio entre los elementos */
+  align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
 
+  /* Estilos para el título h2 */
   h2 {
-    color: var(--Primario, #000);
-    font-family: 'Amazon Ember';
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 18px;
-    align-items: center;
-    margin: 0px;
+    color: var(--Primario, #000); /* Color del texto principal */
+    font-family: 'Amazon Ember'; /* Tipo de fuente */
+    font-size: 20px; /* Tamaño de fuente para el título */
+    font-weight: 700; /* Peso de la fuente */
+    line-height: 18px; /* Altura de línea */
+    align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
+    margin: 0; /* Elimina el margen del título */
   }
 
+  /* Estilos para el enlace "ver más" */
   .link-ver-mas {
-    display: flex;
-    height: 12px;
-    gap: 4px;
-    align-items: center;
-    text-decoration: none;
+    display: flex; /* Muestra los elementos en una fila */
+    height: 12px; /* Altura del enlace "ver más" */
+    gap: 4px; /* Espacio entre los elementos */
+    align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
+    text-decoration: none; /* Elimina la decoración de texto por defecto */
 
-    &:hover{
-      color: rgba(57, 181, 74, 1)
+    /* Estilos para el estado de hover del enlace "ver más" */
+    &:hover {
+      color: rgba(57, 181, 74, 1); /* Cambia el color al pasar el ratón por encima */
     }
   }
 }
 
+/* Estilos para la tarjeta de profesor en la página de inicio */
 .card-teacher-home {
-  border-radius: 8px;
-  overflow: hidden;
-  height: 150px;
-  background: white;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
+  border-radius: 8px; /* Bordes redondeados para la tarjeta */
+  overflow: hidden; /* Oculta el contenido que desborde de la tarjeta */
+  height: 150px; /* Altura fija de la tarjeta */
+  background: white; /* Fondo blanco */
+  display: flex; /* Muestra los elementos en una fila */
+  align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
+  gap: 12px; /* Espacio entre los elementos */
+  width: 100%; /* Ancho completo de la tarjeta */
 
+  /* Estilos para el estado de hover de la tarjeta */
   &:hover {
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5); /* Sombra al pasar el ratón por encima */
   }
 
+  /* Estilos para el elemento de ranking en la tarjeta */
   .ranking {
-    color: var(--Primario, #000);
-    font-family: 'Amazon Ember';
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 18px;
+    color: var(--Primario, #000); /* Color del texto principal */
+    font-family: 'Amazon Ember'; /* Tipo de fuente */
+    font-size: 16px; /* Tamaño de fuente para el ranking */
+    font-weight: 700; /* Peso de la fuente */
+    line-height: 18px; /* Altura de línea */
   }
 
+  /* Estilos para la imagen dentro de la tarjeta */
   img {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 150px; /* Altura de la imagen */
+    width: 150px; /* Ancho de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
   }
 
+  /* Estilos para el título h2 dentro de la tarjeta */
   h2 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
+    font-size: 16px; /* Tamaño de fuente para el título */
+    font-weight: 500; /* Peso de la fuente */
+    margin: 0; /* Elimina el margen del título */
   }
 
+  /* Estilos para el párrafo dentro de la tarjeta */
   p {
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: 0.7;
-    margin: 0;
+    font-size: 12px; /* Tamaño de fuente para el párrafo */
+    line-height: 1.4; /* Altura de línea */
+    opacity: 0.7; /* Opacidad del párrafo */
+    margin: 0; /* Elimina el margen del párrafo */
   }
 
+  /* Estilos para la información dentro de la tarjeta */
   .card-teacher-infos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 4px;
-    flex: 1;
-    align-self: stretch;
+    display: flex; /* Muestra los elementos en una columna */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    justify-content: center; /* Alinea los elementos al centro verticalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+    gap: 4px; /* Espacio entre los elementos */
+    flex: 1; /* Ocupa el espacio disponible */
+    align-self: stretch; /* Ajusta la alineación al estirar la tarjeta */
   }
 }

@@ -1,129 +1,118 @@
+/* Estilos para el contenido de la página */
 .page-content {
-  background: rgba(34, 81, 145, 1);
-  margin: 0 auto;
-  overflow: hidden;
+  background: rgba(34, 81, 145, 1); /* Fondo de la página en un tono de azul */
+  margin: 0 auto; /* Centra el contenido en la pantalla */
+  overflow: hidden; /* Oculta cualquier contenido que desborde del contenedor */
 
+  /* Estilos para el cuerpo de la página */
   .body {
-    width: 1440px;
-    margin: 0 auto;
-    z-index: 1;
-    transform: translate(-0%, -14.5%);
-    margin-bottom: -28%;
+    width: 1440px; /* Ancho fijo del cuerpo de la página */
+    margin: 0 auto; /* Centra el cuerpo en la pantalla */
+    z-index: 1; /* Establece la posición z del cuerpo para gestionar la superposición de elementos */
+    transform: translate(-0%, -14.5%); /* Desplaza el cuerpo hacia arriba y hacia la izquierda */
+    margin-bottom: -400px; /* Ajusta el margen inferior negativo para superponer contenido */
   }
 
+  /* Estilos para el contenedor de tarjetas de profesores en la página de inicio */
   .container-cards-teacher-home {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin: 48px;
+    display: flex; /* Muestra las tarjetas de profesores en una fila */
+    align-items: flex-start; /* Alinea las tarjetas al inicio del eje transversal (eje Y) */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin: 48px; /* Márgenes alrededor del contenedor */
   }
 
+  /* Estilos para la tarjeta de títulos en la página de inicio */
   .card-titles-home {
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.20);
-    margin: 40px 0px;
-    
+    display: flex; /* Muestra los títulos en una fila */
+    padding: 20px; /* Añade espacio interno a la tarjeta de títulos */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+    border-radius: 16px; /* Bordes redondeados para la tarjeta */
+    background: rgba(0, 0, 0, 0.20); /* Fondo semi-transparente */
+    margin: 40px 0px; /* Márgenes superior e inferior de la tarjeta */
 
+    /* Estilos para el texto dentro de la tarjeta de títulos */
     h2, p {
-      color: #FFF;
-      font-family: Roboto;
-      font-weight: 700;
+      color: #FFF; /* Color del texto blanco */
+      font-family: Roboto; /* Tipo de fuente */
+      font-weight: 700; /* Peso de la fuente */
     }
 
     h2 {
-      font-size: 40px;
+      font-size: 40px; /* Tamaño de fuente para el título */
     }
 
     p {
-      font-size: 18px;
+      font-size: 18px; /* Tamaño de fuente para el párrafo */
     }
   }
 
-  .card-title{
-    display: flex;
-    width: 887px;
-    padding: 20px;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 16px;
-    background: var(--negro-20, rgba(0, 0, 0, 0.10));
-    margin:  40px auto;
+  /* Estilos para la tarjeta de título */
+  .card-title {
+    display: flex; /* Muestra el título en una fila */
+    width: 887px; /* Ancho fijo de la tarjeta */
+    padding: 20px; /* Añade espacio interno a la tarjeta */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
+    border-radius: 16px; /* Bordes redondeados para la tarjeta */
+    background: var(--negro-20, rgba(0, 0, 0, 0.10)); /* Fondo semi-transparente */
+    margin:  40px auto; /* Márgenes superior e inferior de la tarjeta */
 
-    h2{
-      color: #FFF;
-      font-family: Roboto;
-      font-size: 50px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+    /* Estilos para el texto dentro de la tarjeta de título */
+    h2 {
+      color: #FFF; /* Color del texto blanco */
+      font-family: Roboto; /* Tipo de fuente */
+      font-size: 50px; /* Tamaño de fuente para el título */
+      font-style: normal; /* Estilo de la fuente */
+      font-weight: 700; /* Peso de la fuente */
+      line-height: normal; /* Altura de línea normal */
     }
 
-    p{
-      color: #FFF;
-      text-align: center;
-      font-family: Roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      color: #FFF;
-      font-family: Roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+    p {
+      color: #FFF; /* Color del texto blanco */
+      text-align: center; /* Alinea el texto al centro */
+      font-family: Roboto; /* Tipo de fuente */
+      font-size: 24px; /* Tamaño de fuente para el párrafo */
+      font-style: normal; /* Estilo de la fuente */
+      font-weight: 400; /* Peso de la fuente */
+      line-height: normal; /* Altura de línea normal */
     }
   }
 }
 
+/* Estilos para las imágenes dentro del carrusel */
 .carousel-item img {
-  filter: brightness(80%);
+  filter: brightness(80%); /* Ajusta el brillo de las imágenes en el carrusel */
 }
 
-
-
-
+/* Estilos para los controles de navegación del carrusel */
 #carouselExampleAutoplaying .carousel-control-prev,
 #carouselExampleAutoplaying .carousel-control-next {
-  width: 5%;
+  width: 5%; /* Ancho de los controles de navegación del carrusel */
 }
 
-
-
+/* Consulta de medios para pantallas más pequeñas (max-width: 1440px) */
 @media (max-width: 1440px) {
   .body, .container-cards-teacher-home, .card-titles-home, .card-title {
-    max-width: 1200px;
+    max-width: 1200px; /* Ajusta el ancho máximo para pantallas más pequeñas */
   }
-}
 
-@media (max-width: 1440px) {
-  .col-md-2:nth-last-child(-n+4) {
+  /* Oculta las últimas 4 tarjetas de estudiantes en la página */
+  #card-student_comunity:nth-last-child(-n+4) {
     display: none;
   }
-}
 
-
-
-@media (max-width: 1440px) {
+  /* Ajusta el ancho de las columnas en la cuadrícula para pantallas más pequeñas */
   .col-md-2 {
     width: 25%;
   }
 }
 
-
-
-
-
-
+/* Estilos para las columnas de la cuadrícula */
 .col-md-2 {
-  padding: 8px; /* Ajusta el valor según tus necesidades */
+  padding: 8px; /* Ajusta el espacio interno de las columnas según tus necesidades */
 }
 
 .col-md-3 {
-  padding: 8px;
+  padding: 8px; /* Ajusta el espacio interno de las columnas según tus necesidades */
 }
-

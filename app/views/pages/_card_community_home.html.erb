@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 1440px;">
   <div class="row" style="padding: 4px;">
     <% @students.take(12).each do |student| %>
-      <div class="col-md-2" >
+      <div class="col-md-2" id="card-student_comunity" >
         <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
           <div class="card-community-home">
             <div class="img">
