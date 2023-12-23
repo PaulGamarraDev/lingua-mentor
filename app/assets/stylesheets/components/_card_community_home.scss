@@ -1,84 +1,91 @@
+/* Estilos para la tarjeta de la comunidad en la página principal */
 .card-community-home {
-  background: white;
-  border-radius: 16px;
-  flex-basis: calc(20% - 20px); /* 20% para 5 columnas con un espacio de 20px entre ellas */
-  height: auto;
-  overflow: hidden;
-  position: relative;
-  display: flex;
+  background: white; /* Fondo blanco para la tarjeta */
+  border-radius: 16px; /* Bordes redondeados para la tarjeta */
+  flex-basis: calc(20% - 20px); /* Tamaño base flexible del 20% con un espacio de 20px entre las columnas */
+  height: auto; /* Altura automática para adaptarse al contenido */
+  overflow: hidden; /* Oculta el contenido que sobresale */
+  position: relative; /* Posición relativa para posicionar elementos hijos de manera absoluta */
 
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  display: flex; /* Muestra los elementos en una fila */
+  flex-direction: column; /* Organiza los elementos en una columna */
+  align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+  flex-shrink: 0; /* No permite que la tarjeta se encoja más allá de su tamaño inicial */
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5); /* Sombra para la tarjeta */
+  
   /* Agrega espacio inferior entre las filas */
 
+  /* Estilos para la imagen de la tarjeta */
   .img {
-    width: 100%;
+    width: 100%; /* Ancho completo para la imagen */
 
-
+    /* Estilos para la imagen dentro de la tarjeta */
     img {
-      width: 100%;
-      border-radius: 16px;
-      object-fit: cover;
-      height: 360px;
-      align-self: stretch;
-      transition: transform 0.3s ease;
+      width: 100%; /* Ancho completo para la imagen */
+      border-radius: 16px; /* Bordes redondeados para la imagen */
+      object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
+      height: 360px; /* Altura fija de la imagen */
+      align-self: stretch; /* Ajusta la alineación al estirar la tarjeta */
+      transition: transform 0.3s ease; /* Transición suave de la transformación */
     }
-  
   }
 
+  /* Estilos para la información adicional en la tarjeta */
   .infos {
-    width: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    top: 241px;
-    padding: 4px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: rgba(0, 0, 0, 0.20);
+    width: auto; /* Ancho automático */
+    opacity: 0; /* Opacidad inicial */
+    transition: opacity 0.3s ease; /* Transición suave de la opacidad */
+    position: absolute; /* Posición absoluta con respecto al contenedor principal */
+    top: 241px; /* Distancia desde la parte superior */
+    padding: 4px 20px; /* Relleno interior */
+    display: flex; /* Muestra los elementos en una columna */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+    background: rgba(0, 0, 0, 0.20); /* Fondo semitransparente negro */
 
-    h2,
-    p {
-      overflow: hidden;
+    /* Estilos para el título h2 y el párrafo p dentro de la información adicional */
+    h2, p {
+      overflow: hidden; /* Oculta el contenido que sobresale */
       text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se corta */
-      color: white;
-      margin: 0;
-      font-family: Roboto;
-      line-height: normal;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      color: white; /* Color del texto en la información adicional */
+      margin: 0; /* Sin margen */
+      font-family: Roboto; /* Tipo de fuente */
+      line-height: normal; /* Altura de línea normal */
+      display: -webkit-box; /* Propiedad específica de WebKit para mostrar contenido en varias líneas */
+      -webkit-box-orient: vertical; /* Orientación vertical de las cajas secundarias */
+      -webkit-line-clamp: 3; /* Número de líneas a mostrar antes de cortar el texto */
     }
   }
 
+  /* Estilos para el contenedor de lenguajes en la tarjeta */
   .languague {
-    padding: 4px 20px;
-    position: absolute;
-    top: 340px;
+    padding: 4px 20px; /* Relleno interior */
+    position: absolute; /* Posición absoluta con respecto al contenedor principal */
+    top: 340px; /* Distancia desde la parte superior */
     left: 0; /* Ajuste para empezar desde el borde izquierdo */
     right: 0; /* Ajuste para llegar hasta el borde derecho */
-    border-radius: 0px 0px 16px 16px;
-    background: rgba(0, 0, 0, 0.20);
+    border-radius: 0px 0px 16px 16px; /* Bordes redondeados para la parte inferior */
+    background: rgba(0, 0, 0, 0.20); /* Fondo semitransparente negro */
     max-width: none; /* Elimina la restricción de ancho máximo */
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
+    display: flex; /* Muestra los elementos en una fila */
+    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
+    gap: 14px; /* Espacio entre los elementos */
+
+    /* Estilos para el párrafo p dentro del contenedor de lenguajes */
     p {
-      color: white;
-      font-family: Roboto;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      margin: 0;
+      color: white; /* Color del texto en el contenedor de lenguajes */
+      font-family: Roboto; /* Tipo de fuente */
+      font-size: 12px; /* Tamaño de fuente */
+      font-style: normal; /* Estilo de fuente normal */
+      font-weight: 400; /* Peso de fuente normal */
+      line-height: normal; /* Altura de línea normal */
+      margin: 0; /* Sin margen */
     }
   }
 
+  /* Estilos al pasar el ratón por encima de la tarjeta */
   &:hover .infos {
-    opacity: 1;
+    opacity: 1; /* Opacidad completa al pasar el ratón por encima */
   }
 
   &:hover img {
