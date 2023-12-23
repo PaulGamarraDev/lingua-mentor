@@ -1,4 +1,4 @@
-<h1>TeachingLanguageSessions#show</h1>
-<p>Find me in app/views/teaching_language_sessions/show.html.erb</p>
+<h1>TeachingLanguageSessions id# <%= @teaching_language_session.id %> </h1>
 
-<%= @teaching_language_session.language %>
+<p><%= @teaching_language_session.user.first_name %> <%= @teaching_language_session.user.last_name %></p>
+<p><%= @teaching_language_session.language %></p>
