@@ -7,11 +7,15 @@ Rails.application.routes.draw do
   get 'comunidad', to: "users#students", as: :students
   get 'perfil/:id', to: "users#show", as: :user
 
-  resources :teaching_language_sessions, only: %i[index show destroy]
-  scope "/perfil/:id" do
+  resources :teaching_language_sessions, only: %i[index new create show destroy]
+
+  #RECOMENDACIÓN Profe Segundo: Evitar rutas anidadas usar el current_user para llevarse el user_id al teaching_language_session
+  #solventado que solamente Teacher pueda crear la materia con if/else
+  #mejor solución usar lo visto en Lecture: Authorization & Pundit
+  #scope "/perfil/:id" do
     #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
-    resources :teaching_language_sessions, only: %i[new create]
-  end
+    #resources :teaching_language_sessions, only: %i[new create]
+  #end
 
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
