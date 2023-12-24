@@ -5,7 +5,11 @@
         <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
           <div class="card-community-home">
             <div class="img">
-                <%= image_tag student.photo, class: "card-img-top", alt: "foto de perfil del estudiante" %>
+              <% if student.photo.present? %>
+                <%= image_tag student.photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+              <% else %>
+                <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+              <% end %>
             </div>
             <div class="infos">
               <h2 class="name"><%= student.first_name %></h2>
@@ -21,5 +25,4 @@
     <% end %>
   </div>
 </div>
-
 
