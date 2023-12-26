@@ -3,6 +3,7 @@
   background: rgba(34, 81, 145, 1); /* Fondo de la página en un tono de azul */
   margin: 0 auto; /* Centra el contenido en la pantalla */
   overflow: hidden; /* Oculta cualquier contenido que desborde del contenedor */
+  justify-content: center;
 
   /* Estilos para el cuerpo de la página */
   .body {
@@ -114,5 +115,9 @@
 }
 
 .col-md-3 {
+  padding: 8px; /* Ajusta el espacio interno de las columnas según tus necesidades */
+}
+
+.col-md-4 {
   padding: 8px; /* Ajusta el espacio interno de las columnas según tus necesidades */
 }
