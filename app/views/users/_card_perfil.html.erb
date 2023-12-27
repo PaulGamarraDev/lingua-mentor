@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="primero">
+      <!-- Contenido de la primera sección -->
+      <h3>Sección 1</h3>
+      <p>Contenido de la sección 1</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="segundo">
+      <!-- Contenido de la segunda sección -->
+      <h3>Sección 2</h3>
+      <p>Contenido de la sección 2</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="tercero">
+      <div class="card-images">
+        <div class="titles-info">
+          <h4>Fotos</h4>
+          <p>Ver mas</p>
+        </div>
+
+        <div class="fotos-container">
+          <% if @user.photo_album.attached? && @user.photo_album.present? %>
+            <div class="row">
+              <% @user.photo_album.each do |foto| %>
+                <div class="col-md-4">
+                  <%= image_tag foto, class: "img-fluid" %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>No hay fotos disponibles</p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

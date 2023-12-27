@@ -21,7 +21,7 @@
             <%= link_to "Chat", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Mis clases", "#", class: "nav-link" %>
+            <%= link_to "Mis clases", teaching_language_sessions_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Blogs", "#", class: "nav-link" %>
@@ -31,8 +31,8 @@
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="div-image">
-                <% if current_user.photo.attached? %>
-                  <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+                <% if current_user.profile_photo.attached? %>
+                  <%= cl_image_tag current_user.profile_photo.key, class: "avatar" %>
                 <% else %>
                   <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1702747734/WhatsApp_Image_2023-12-16_at_14.08.37_baunyp.jpg", class: "avatar", alt: "Menú desplegable" %>
                 <% end %>

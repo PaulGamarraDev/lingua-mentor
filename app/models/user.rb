@@ -10,7 +10,10 @@ class User < ApplicationRecord
   has_one :data_teacher
 
   #CLOUDINARY
-  has_one_attached :photo
+  # has_one_attached :photo
+  has_one_attached :profile_photo
+  has_one_attached :banner_image
+  has_many_attached :photo_album
 
   #VALIDATIONS
   validates :email, :role, presence: true

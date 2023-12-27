@@ -5,8 +5,8 @@
         <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
           <div class="card-community-home">
             <div class="img">
-              <% if student.photo.present? %>
-                <%= image_tag student.photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+              <% if student.profile_photo.present? %>
+                <%= image_tag student.profile_photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
               <% else %>
                 <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
               <% end %>
