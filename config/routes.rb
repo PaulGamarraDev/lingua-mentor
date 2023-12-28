@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   resources :teaching_language_sessions, only: %i[index new create show destroy]
 
-  #RECOMENDACIÓN Profe Segundo: Evitar rutas anidadas usar el current_user para llevarse el user_id al teaching_language_session
-  #solventado que solamente Teacher pueda crear la materia con if/else
+  #RECOMENDACIÓN Profe Segundo: Evitar rutas anidadas, usar el current_user para llevarse el user_id al teaching_language_session
+  #solventando que solamente Teacher pueda crear la materia con if/else
   #mejor solución usar lo visto en Lecture: Authorization & Pundit
   #scope "/perfil/:id" do
     #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :bookings
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :blogs, only: %i[index show]
 end
