@@ -1,5 +1,58 @@
-<div class="container">
-  <h1>Users#teachers</h1>
-  <p>Find me in app/views/users/teachers.html.erb</p>
+<div class="pilar">
+ <div class="container-search">
+  <nav class="navbar primer-container">
+    <div class="container segundo-container">
+      <%= link_to "Encuentra tu profesor", "#", class: "teacher-name" %>
+      <%= form_tag("#", method: "get", class: "d-flex", role: "search") do %>
+        <div class="navbar-collapse caja-search" id="navbarCollapse">
+          <%= text_field_tag "search", nil, class: "form-control segunda-caja", placeholder: "🔎 encuentra personas", aria: { label: "Search" } %>
+        </div>
+      <% end %>
+      <%= button_tag(class: "navbar-toggler filtro-search", id: "navbar-toggler") do %>
+        <span class="navbar-toggler-icon"></span>
+      <% end %>
+    </div>
+  </nav>
+</div>
 
+<!-- cards profesores -->
+<div class="container-cards">
+  <div class="custom-container card-container">
+    <div class="custom-row d-flex">
+      <div class="custom-col-sm-6 custom-col-lg-8">
+        <p>Contenido para col-sm-6 y col-lg-8</p>
+        <div class="card mb-3 card-ancha" style="max-width: 540px;">
+          <div class="row g-0 ancho-uno">
+            <div class="col-md-4">
+              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1703036179/f76d7df8054762f3ad5033a847a343e8_hyoyww.jpg", alt: "..." %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="container-text">
+                  <h2 class="text-start">Eduado R</h2>
+                  <p class="text-start">🎓Enseña Portugués</p>
+                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
+                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
+                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
+                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
+                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="custom-col-6 custom-col-lg-4">
+        <p>Contenido para col-6 y col-lg-4</p>
+        <div class="card card-chica" style="width: 18rem;">
+          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1703036179/f76d7df8054762f3ad5033a847a343e8_hyoyww.jpg", class: "card-img-top", alt: "..." %>
+          <div class="card-body">
+            <%= link_to "Go somewhere", "#", class: "btn btn-primary" %>
+            <%= link_to "Go somewhere", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
