@@ -12,7 +12,11 @@
             <%= link_to user_path(teacher), style: "text-decoration: none; color: inherit;" do %>
               <div class="card-teacher-home">
                 <h2 class="ranking">#<%= ranking_counter %></h2>
-                <%= image_tag teacher.photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+                <% if teacher.profile_photo.present? %>
+                  <%= image_tag teacher.profile_photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
+                <% else %>
+                  <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+                <% end %>
                 <div class="card-teacher-infos">
                   <h2><%= teacher.first_name %></h2>
                   <p>
@@ -34,7 +38,4 @@
     <% end %>
   </div>
 </div>
-
-
-
 
