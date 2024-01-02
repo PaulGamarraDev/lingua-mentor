@@ -1,0 +1,25 @@
+.button{
+  background-color: rgba(34, 81, 145, 1);
+  color: white;
+}
+
+.classes {
+  display: flex;
+  width: 887px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--negro-20, white);
+  margin: 40px auto;
+
+  // Estilos para pantallas más pequeñas (ejemplo: dispositivos móviles)
+  @media (max-width: 767px) {
+    width: 100%; // Hacer que la tarjeta ocupe todo el ancho
+    margin: 20px auto; // Ajustar el margen para pantallas más pequeñas
+  }
+}
+
+.bookings {
+  border-bottom: 0.5px solid #BDC7D9;
+}
