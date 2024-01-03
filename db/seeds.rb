@@ -1,9 +1,11 @@
 require 'open-uri'
+require 'mini_magick'
 
 Booking.destroy_all
 TeachingLanguageSession.destroy_all
 DataTeacher.destroy_all
 User.destroy_all
+Blog.destroy_all
 
 
 # Crear teachers -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -344,7 +346,7 @@ blogs_data = [
   }
 ]
 
-blogs_data.each do |blog_data|
+blogs_data.each_with_index do |blog_data, index|
   blog = Blog.create!(
     tips: blog_data[:tips],
     title: blog_data[:title],
@@ -363,12 +365,26 @@ blogs_data.each do |blog_data|
   )
 
   banner_image = URI.open(blog_data[:banner_image])
-  blog.banner_image.attach(io: banner_image, filename: "#{blog.title.downcase}_banner_image.png", content_type: "image/png")
 
-  blog_data[:photo_album].each_with_index do |photo_url, index|
+  image = MiniMagick::Image.read(banner_image)
+  image.resize("1000x1000")
+
+  cloudinary_response = Cloudinary::Uploader.upload(image.path)
+
+  blog.banner_image.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_banner_image.png", content_type: "image/png")
+
+  blog_data[:photo_album].each_with_index do |photo_url, photo_index|
     photo = URI.open(photo_url)
-    blog.photo_album.attach(io: photo, filename: "#{blog.title.downcase}_photo_album_#{index}.png", content_type: "image/png")
+
+    image = MiniMagick::Image.read(photo)
+    image.resize("1000x1000")
+    cloudinary_response = Cloudinary::Uploader.upload(image.path)
+    blog.photo_album.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_photo_album_#{photo_index}.png", content_type: "image/png")
   end
 
   blog.save
+  sleep(3)
+  puts "Procesando blog con título: #{blog.title}"
 end
+
+

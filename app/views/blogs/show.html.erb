@@ -1,2 +1,54 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<div class="page-blog">
+  <div class="body-blog">
+
+    <div class="container-blog">
+      <div class="banner-blog">
+        <%= image_tag @blog.banner_image %>
+        <h2><%= @blog.title %></h2>
+      </div>
+
+      <p><%= @blog.description %></p>
+
+      <div class="card-blog">
+        <%= image_tag @blog.photo_album.first%>
+        <div class="info-blog">
+          <h3><%= @blog.first_subtitle %></h3>
+          <p><%= @blog.first_paragraph %></p>    
+        </div>
+      </div>
+
+      <div class="card-blog">
+        <div class="info-blog">
+          <h3><%= @blog.second_subtitle %></h3>
+          <p><%= @blog.second_paragraph %></p>    
+        </div>
+        <%= image_tag @blog.photo_album.second%>
+      </div>
+
+      <div class="card-blog">
+        <%= image_tag @blog.photo_album.third%>
+        <div class="info-blog">
+          <h3><%= @blog.third_subtitle %></h3>
+          <p><%= @blog.third_paragraph %></p>
+        </div>
+      </div>
+
+      <div class="card-blog">
+        <div class="info-blog">
+          <h3><%= @blog.fourth_subtitle %></h3>
+          <p><%= @blog.fourth_paragraph %></p>    
+        </div>
+        <%= image_tag @blog.photo_album.fourth%>
+      </div>
+
+      <div class="card-blog">
+        <%= image_tag @blog.photo_album.fifth%>
+        <div class="info-blog">
+          <h3><%= @blog.fifth_subtitle %></h3>
+          <p><%= @blog.fifth_paragraph %></p>    
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
