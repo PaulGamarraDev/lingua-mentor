@@ -1,0 +1,22 @@
+<div class="row">
+  <% @blogs.each do |blog| %>
+    <div class="col-md-4">
+      <%= link_to blog_path(blog), style: "text-decoration: none; color: inherit;" do %>
+        <div class="card-blogs">
+          <div class="image-blogs">
+            <%= image_tag blog.banner_image %>
+          </div>
+          <div class="info-blogs">
+            <p class="tips"><%= blog.tips %></p>
+            <h2><%= blog.title %></h2>
+            <p><%= blog.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

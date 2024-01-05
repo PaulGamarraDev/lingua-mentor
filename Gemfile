@@ -53,7 +53,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 
 gem "cloudinary"
-
+gem 'mini_magick'
 gem 'open-uri'
 
 gem 'country_select'
