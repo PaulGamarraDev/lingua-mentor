@@ -1,0 +1,56 @@
+<div class="styles-container" data-controller="profile">
+  <div class="styles-header">
+    <h2>Mi pefil</h2>
+    <p>Idiomas</p>
+  </div>
+
+  <div class="row styles-grid">
+    <aside class="col-md-2 styles-sidebar">
+      <button data-action="click->profile#showAcerca">Acerca de mí</button>
+      <button data-action="click->profile#showIdiomas">Idiomas</button>
+      <button>Certificados</button>
+      <button>Descripción</button>
+      <button>Siguiendo</button>
+      <button>Disponibilidad</button>
+      <button>Visitantes</button>
+      <button>Tarifas</button>
+      <button>Ajustes</button>
+      <button>Cerrar sesión</button>
+    </aside>
+
+    <div class="col-md-10 styles-section" data-profile-target="acerca">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <%= f.input :password, label: "Contraseña",hint: "déjalo en blanco si no quieres cambiarlo", required: false, input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation, label: "Comfirma tu contraseña", required: false, input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password, label: "Contraseña actual", hint: "Necesitamos su contraseña actual para confirmar sus cambios.", required: true, input_html: { autocomplete: "current-password" } %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div>
+      <% end %>
+
+      <h3>Cancelar mi cuenta</h3>
+
+      <div>
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      </div>
+
+      <%= link_to "Back", :back %>
+    </div>
+    <div class="col-md-10 styles-section" data-profile-target="idiomas"> idioma
+    </div>
+    <div class="col-md-10 styles-section" data-profile-target="idiomas"> idioma
+    </div>
+  </div>
+</div>
+
