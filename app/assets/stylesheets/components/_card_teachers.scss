@@ -1,11 +1,13 @@
 .primer-container {
   background: var(--Fondo-azul, #225191);
+  margin: 20px;
 }
 
 .segundo-container {
-  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-bottom: 10px;
 }
 
 .teacher-name {
@@ -21,11 +23,13 @@
   width: 90%;
   background-color: #f8f9fa;
   border-radius: 100px;
-  // height: 40%;
+  margin: 0;
+  margin-left: 150%;
 }
 
 .navbar-toggler{
   background-color:#f8f9fa;
+  margin-left: 5px;
 }
 
 .filtro-search {
@@ -47,12 +51,19 @@ border-radius: var(--bs-navbar-toggler-border-radius);
 /*cards  */
 .card-container {
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+
+}
+
+.card-container .col-md-8{
+  width: 50%;
+}
+.imag-grande{
+  max-width: 120%;
 }
 .card-ancha {
-  max-width: 50%;
-  border-radius: 10;
+  border-radius: 10px;
   display: flex;
   padding: 12px;
   flex-direction: column;
@@ -60,10 +71,37 @@ border-radius: var(--bs-navbar-toggler-border-radius);
   align-items: flex-start;
   gap: 12px;
   flex: 1 0 0;
+  background: #FFF;
 }
+
 .card-chica {
-  border-radius: 10;
+  border-radius: 10px;
   max-width:60%;
   margin: 20px;
   align-items: center;
+  background: #FFF;
+  max-width: 100%;
+  justify-content: space-between;
+}
+.imag-pequeña{
+  max-width: 90%;
+  border-radius: 10px;
+}
+
+.botones-pequeños{
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 90%;
+}
+.botones-pequeños .btn {
+  font-size: 16px;
+  color: #225191;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.botones-pequeños .btn:hover {
+  background-color: #03ffaf;
 }
