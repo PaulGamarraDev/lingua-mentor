@@ -1,6 +1,23 @@
 <div class="page-content">
   <div class="body-community">
-    <%= render "card_students" %>
+    <%# SEARCH BAR %>
+    <div class="row justify-content-center" data-controller="search-students">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: students_path, method: :get, html: {class: "d-flex", data: {search_students_target: "form"}} do |f| %>
+          <%= f.text_field :query,
+                           class: "form-control",
+                           placeholder: "Encuentra a personas...",
+                           value: params[:query],
+                           data: {search_students_target: "input"}
+          %>
+        <%#= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# STUDENTS CARDS %>
+    <div data-search-students-target="student-card">
+      <%= render "card_students" %>
+    </div>
   </div>
 </div>
-
