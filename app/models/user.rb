@@ -27,6 +27,14 @@ class User < ApplicationRecord
     teacher: 1
   }
 
+  #SEARCH FEATURE
+  include PgSearch::Model
+  pg_search_scope :search_by_name_location_and_languages,
+    against: [ :first_name, :last_name, :country, :city, :native_language, :other_languages, :learning_languages ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
+
   after_initialize :set_default_role, if: :new_record?
 
   #METHODS

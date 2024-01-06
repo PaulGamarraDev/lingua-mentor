@@ -1,0 +1,40 @@
+
+
+
+.styles-container{
+
+
+  .styles-header{
+    padding: auto;
+  }
+
+  .styles-grid{
+
+
+    .styles-sidebar{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      align-self: stretch;
+
+      button {
+        display: flex;
+        padding: 8px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        border-radius: 50px;
+        color: #FFF;
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        background-color: transparent;
+        border: none;
+        box-sizing: none;
+      }
+    }
+  }
+}
