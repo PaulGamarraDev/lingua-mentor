@@ -1,3 +1,5 @@
+<% require 'date' %>
+
 <ul class="nav nav-tabs mt-5 mx-auto" style="width: 550px; border-bottom: none;" id="myTab" role="tablist">
   <li class="nav-item button"  role="presentation">
     <button class="nav-link active" style="background-color: rgba(34, 81, 145, 1); color: white; border: none;" id="classes" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Clases programdas</button>
@@ -20,22 +22,33 @@
             <div class="bookings pt-5 pb-2 container text-center">
               <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= booking.teaching_language_session.user.first_name %>
+                  <%= image_tag booking.teaching_language_session.user.profile_photo, class: "card-img-top", alt: "foto de perfil del profesor" %>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= booking.teaching_language_session.user.last_name %>
+                  <%= booking.teaching_language_session.user.first_name %> <%= booking.teaching_language_session.user.last_name %> <br>
+                  <%= booking.teaching_language_session.language.to_s.capitalize %>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= booking.teaching_language_session.language %>
+                  <p class="">Duración de la clase</p> <br>
+                  <%= "Clase de 60 minutos" %> <br>
+                  <p class="">Recuerda estar conectado antes</p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= booking.time_in %>
+                  <p class="">Clase programada</p> <br>
+                  <%= booking.date.strftime("%A, %d %b %Y") %>
+                  <%= booking.time_in.strftime("%I:%M %p") %> <br>
+                  La hora indicada es local
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= booking.date %>
+                  <% def add_time_to_date(y, m, d, h, t)%>
+                  <% return datetime = DateTime.new(y, m, d, h, t) %>
+                  <% end %>
+                  <% estimated_time = Time.at((add_time_to_date(booking.date.year, booking.date.month, booking.date.day, booking.time_in.hour, booking.time_in.min) - DateTime.now).to_i) %>
+                  <%= "Tiempo estimado #{estimated_time.strftime("%H:%M:%S")}" %>
+                  <%= link_to "Ingresar", booking_path(booking), class: "btn btn-info btn-sm" %>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                  <%= link_to "Ver más", booking_path(booking), class: "btn btn-info btn-sm" %>
+                  <%= link_to "Posponer reserva" , booking_path(booking), class: "classic-btn" %>
                 </div>
               </div>
             </div>
