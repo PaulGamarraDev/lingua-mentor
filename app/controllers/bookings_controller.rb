@@ -47,6 +47,8 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to bookings_path, alert: 'La reserva no fue encontrada.'
   end
 
 end

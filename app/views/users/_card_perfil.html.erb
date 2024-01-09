@@ -1,23 +1,60 @@
 <div class="row">
+
   <div class="col-md-4">
-    <div class="primero">
-      <!-- Contenido de la primera sección -->
-      <h3>Sección 1</h3>
-      <p>Contenido de la sección 1</p>
+    <div class="card-container">
+      <div class="titles-info">
+        <h4>Idioma</h4>
+      </div>
+      <div class="infos">
+        <h4>Nativo</h4>
+        <P><%= @user.native_language %></P>      
+      </div>
+      <div class="infos">
+        <h4>Habla con fluidez</h4>
+        <p><%= @user.other_languages %></p>      
+      </div>
+      <div class="infos">
+        <h4>Aprendiendo</h4>
+        <p><%= @user.learning_languages %></p>     
+      </div>
+      <div class="infos">
+        <% if @user.teacher? %>
+          <h4>Enseña</h4>
+          <p><%= @user.data_teacher.teaching_languages %></p>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="segundo">
-      <!-- Contenido de la segunda sección -->
-      <h3>Sección 2</h3>
-      <p>Contenido de la sección 2</p>
+    <div class="card-container">
+      <div class="titles-info">
+        <h4>Sobre <%= @user.first_name %> </h4>
+      </div>
+      <div class="infos">
+        <h4></h4>
+        <P><%= @user.country %>, <%= @user.city %></P>      
+      </div>
+      <div class="infos">
+        <h4>¿Quieres conocer mas sobre mi?</h4>
+        <p><%= @user.about_me %></p>      
+      </div>
+      <div class="infos">
+        <h4>¿Cuáles son tus objetivos de aprendizaje de idiomas?</h4>
+        <p><%= @user.objectives %></p>
+      </div>
+      <div class="infos">
+        <% if @user.teacher? %>
+          <h4>¿Cuáles son tus objetivos al enseñar idiomas?</h4>
+          <p> <%= @user.data_teacher.teacher_description %></p>
+        <% end %>      
+      </div>
     </div>
   </div>
 
   <div class="col-md-4">
     <div class="tercero">
-      <div class="card-images">
+      <div class="card-container">
         <div class="titles-info">
           <h4>Fotos</h4>
           <p>Ver mas</p>

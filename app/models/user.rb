@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many_attached :photo_album
 
   #VALIDATIONS
-  validates :email, :role, presence: true
+  validates :email, :role,  presence: true
   #:first_name, :last_name, :country, :city,
   #:date_of_birth, :about_me, :native_language, :other_language, :learning_language, :objectives
   validates :email, uniqueness: true
@@ -26,6 +26,14 @@ class User < ApplicationRecord
     student: 0,
     teacher: 1
   }
+
+  #SEARCH FEATURE
+  include PgSearch::Model
+  pg_search_scope :search_by_name_location_and_languages,
+    against: [ :first_name, :last_name, :country, :city, :native_language, :other_languages, :learning_languages ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 
   after_initialize :set_default_role, if: :new_record?
 

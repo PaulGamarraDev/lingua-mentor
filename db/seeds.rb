@@ -1,9 +1,11 @@
 require 'open-uri'
+require 'mini_magick'
 
 Booking.destroy_all
 TeachingLanguageSession.destroy_all
 DataTeacher.destroy_all
 User.destroy_all
+Blog.destroy_all
 
 
 # Crear teachers -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -159,10 +161,231 @@ students_data.each do |student_info|
       time_in: "19:00:00 -0300".to_time  
     )
   end
+  puts "bookings creado"
 end
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  # # Adjuntar la bandera al usuario
-  # country_flag_url = country_flag_icon_url(user_student.country_code.downcase) rescue nil
-  # user_student.update(country_flag_url: country_flag_url) if country_flag_url
+puts "Creando blogs"
+
+blogs_data = [
+  {
+    tips: "Idioma",
+    title: "Las 5 mejores películas para aprender inglés",
+    description: "Descubre las mejores películas para aprender inglés fácilmente desde tu casa sin moverte del sofá.",
+    introduction: "Cuando queremos aprender un nuevo idioma, comenzamos a buscar distintas técnicas que nos ayuden a que este proceso se haga más fácil. Si tomamos el inglés, por ejemplo, nos daremos cuenta de que la gramática de este idioma es muchísimo más fácil en comparación al español. Aun así, eso no quiere decir que el proceso para aprender el inglés sea pan comido.",
+    first_paragraph: "Comenzando con un clásico que te traerá recuerdos de la infancia, esta película contiene un montón de frases fáciles, ya que está dirigida hacia un público infantil. En esta película, puedes concentrarte en las preguntas que le hacen al protagonista extraterrestre. Estas son explicadas a una velocidad que te permite entenderlas.",
+    second_paragraph: "No hay mejor manera de aprender inglés con una película que nos permite ver cómo un rey pasa a través de terapias de lenguaje para poder hablar con claridad. Esta película está basada en la historia real del rey Jorge VI de Inglaterra, quien tenía un impedimento del habla y fue sometido a distintas lecciones de pronunciación del inglés británico.",
+    third_paragraph: "Para aquellos que prefieren estudiar un acento estadounidense, tenemos esta película. Aquí podemos encontrar la ventaja de que los actores hablan con claridad, lo que nos permitirá distinguir las palabras con facilidad. Por otro lado, si te gustan las aventuras, el romance y la ciencia ficción, también te encantará esta película.",
+    fourth_paragraph: "Ahora, si estás buscando un vocabulario un poco más moderno, te recomendamos que veas esta película. Tendrás la facilidad de entender los diálogos, y te aseguramos que tendrás una mayor facilidad para entenderlos. Además, Will Smith te sacará unas buenas risas.",
+    fifth_paragraph: "Jurassic Park es otro de esos clásicos de nuestra infancia que nos abrió los ojos ante un mundo en el que los dinosaurios existen. El inglés que hay en esta película también es muy fácil de entender, además de que encontraremos más extenso.",
+    first_subtitle: "1. E.T., the Extra-Terrestrial",
+    second_subtitle: "2. The King’s Speech",
+    third_subtitle: "3. The Hunger Games",
+    fourth_subtitle: "4. Men in Black",
+    fifth_subtitle: "5. Jurassic Park",
+    banner_image: "https://batterseapowerstation.co.uk/content/uploads/2022/08/Cinema-in-the-Power-Station-image001hero-1600x869.jpg",
+    photo_album: [
+      "https://res.cloudinary.com/ybmedia/image/upload/c_crop,h_1200,w_1800,x_100,y_0/c_fill,f_auto,h_1200,q_auto,w_1200/v1/m/a/c/acd9c520c19769ec1459e9ed234261b0b7fdc578/20-facts-might-know-et-extraterrestrial.jpg",
+      "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/0464c0107867262f426a0bc6f493ddd94a59cfdfbc4adb035ebb7fb6ab48483b._RI_TTW_.jpg",
+      "https://m.media-amazon.com/images/M/MV5BMTcxNDI2NDAzNl5BMl5BanBnXkFtZTgwODM3MTc2MjE@._V1_FMjpg_UX1000_.jpg",
+      "https://cdn.sincroguia.tv/uploads/programs/m/e/n/men-in-black-3-poster-233153_SPA-61_V.jpg",
+      "https://cdn.sortiraparis.com/images/80/66131/1001198-jurassic-park-survival-le-jeu-video-qui-ressuscite-l-aventure-prehistorique-sur-pc-et-consoles.jpg"
+    ]
+  },
+
+  {
+    tips: "Idioma",
+    title: "Los 5 verbos más comunes en alemán",
+    description: "Descubre los 5 verbos más comunes en alemán, así como su uso en distintos contextos en Tandem.",
+    introduction: "El alemán es un idioma que a primera vista parece ser bastante difícil de aprender. Los hispanohablantes que se han puesto la meta de aprender a hablar el alemán con fluidez manifiestan que este no es muy difícil en cuanto a pronunciación. Por otro lado, cuando se trata de sus reglas gramáticas, estas suelen ser muy diferentes a las que conocemos en español.",
+    first_paragraph: "Ich habe Yo tengo, Du hast Tú tienes, Er/Sie/Es hat Él/Ella/Eso tiene, Wir haben Nosotros tenemos, Ihr habt Ustedes tienen, Sie haben Ellos/Ellas tienen",
+    second_paragraph: "Ich bin Yo soy/ estoy, Du bist Tú eres/ estás, Er/Sie/Es ist Él/Ella/Eso es/ está, Wir sind Nosotros somos/ estamos, Ihr seid Ustedes son/están, Sie sind Ellos/Ellas son/ están",
+    third_paragraph: "Ich werde Yo me pongo, Du wirst Tú te pones, Er/Sie/Es wird Él/Ella/Eso se pone, Wir werden Nosotros nos ponemos, Ihr werdet Ustedes se ponen, Sie werden Ellos/Ellas se ponen",
+    fourth_paragraph: "Ich soll Yo debo, Du sollst Tú debes, Er/Sie/Es soll Él/Ella/Eso debe, Wir sollen Nosotros debemos, Ihr sollt Ustedes deben, Sie sollen Ellos/Ellas deben",
+    fifth_paragraph: "Ich muss Yo tengo que, Du musst Tú tienes que, Er/Sie/Es muss Él/Ella/Eso tiene que, Wir müssen Nosotros tenemos que, Ihr müsst Ustedes tienen que, Sie müssen Ellos/Ellas tienen que",
+    first_subtitle: "Haben (tener)",
+    second_subtitle: "Sein (ser/estar)",
+    third_subtitle: "Werden (ponerse)",
+    fourth_subtitle: "Sollen (deber)",
+    fifth_subtitle: "Müssen (tener que)",
+    banner_image: "https://humanidades.com/wp-content/uploads/2023/11/Alemania-berlin-portada.jpg",
+    photo_album: [
+      "https://media.istockphoto.com/id/619762776/es/foto/banderas-alemanas-en-el-reichstag-berl%C3%ADn-alemania.jpg?s=612x612&w=0&k=20&c=v8e3G8rZVKfG_Szdevwpyht-9kFBdwjx0nYPWjH5inc=",
+      "https://hablemosdeculturas.com/wp-content/uploads/2017/12/Cultura-Alemana-06.jpg",
+      "https://tradicioness.com/wp-content/webp-express/webp-images/uploads/2019/07/tradiciones-de-Alemania-1_opt.jpg.webp",
+      "https://tradicioness.com/wp-content/webp-express/webp-images/uploads/2019/07/tradiciones-de-Alemania-2_opt.jpg.webp",
+      "https://tradicioness.com/wp-content/webp-express/webp-images/uploads/2019/07/tradiciones-de-Alemania-3_opt.jpg.webp",
+      "https://tradicioness.com/wp-content/webp-express/webp-images/uploads/2019/07/tradiciones-de-Alemania-4_opt.jpg.webp"
+    ]
+  },
+
+  {
+    tips: "Idioma",
+    title: "Las 5 expresiones españolas más comunes",
+    description: "Descubre las 5 expresiones españolas más utilizadas por los habladores de este idioma presente en 21 países del mundo.",
+    introduction: "El español es el idioma oficial de al menos 21 países en el mundo, lo que ha llevado a su evolución según las características de cada país. Por eso, no es lo mismo hablar español en Colombia o en Panamá que en España. En este último, existen expresiones que pueden resultar desconcertantes para un extranjero.",
+    first_paragraph: "Esta es una expresión que utilizan mucho los españoles para manifestar que han hecho algo que ha provocado un __lío o un caos__ muy difícil de resolver.",
+    second_paragraph: "Ya sea que algún precio sea muy elevado o que necesites aplicar más esfuerzo del pensado para realizar una acción, __“costar mogollón”__ es la expresión correcta para esta situación.",
+    third_paragraph: "Esta es una expresión usada para manifestar que estás __atento__ y proviene de los tiempos de la Guerra Civil Española, cuando los italianos decían “sono loro”, que significa “son ellos”. Lo usaban cuando veían que venía un avión del bando republicano y debían estar alerta.",
+    fourth_paragraph: "En este caso, utilizamos la frase __“pasarse tres pueblos”__ para manifestar que una persona se excede de los límites que serían políticamente correctos. Es decir, una persona que no tiene vergüenza de lo que hace.",
+    fifth_paragraph: "Esta expresión se utiliza para describir a personas que tienen un comportamiento malicioso o __intenciones dañinas__ hacia otra persona.",
+    first_subtitle: "1. Liarla parda",
+    second_subtitle: "2. Costar mogollón",
+    third_subtitle: "3. Estar al loro",
+    fourth_subtitle: "4. Pasarse tres pueblos",
+    fifth_subtitle: "5. Tener mala leche",
+    banner_image: "https://www.semana.com/resizer/ezUjcIeGRwieGomLy133PXwrq0Q=/1280x720/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/VQKYDMOU7NF6RDUVPMDFPDM6HY.jpg",
+    photo_album: [
+      "https://images.mnstatic.com/4a/dc/4adc1b69118465c6f34b7ca073950060.jpg",
+      "https://www.viajandoporelmundomundial.com/wp-content/uploads/2019/01/plaza-de-espana3.jpg.webp",
+      "https://fotos.perfil.com/2022/11/08/trim/987/555/estudiar-y-vivir-en-espana-20221108-1450145.jpg",
+      "https://www.guruwalk.com/blog/wp-content/uploads/2020/01/que-ver-espana.jpg",
+      "https://www.guruwalk.com/blog/wp-content/uploads/2020/01/madrid-espana.jpg",
+      "https://www.guruwalk.com/blog/wp-content/uploads/2019/12/que-ver-valencia-espana.jpg"
+    ]
+  },
+
+  {
+    tips: "Idioma",
+    title: "Los 5 idiomas más hablados del mundo",
+    description: "Descubre los 5 idiomas que más personas hablan en todo el mundo con el número de hablantes y el total de idiomas en el mundo.",
+    introduction: "Conforme a la evolución de la historia humana, el lenguaje nos ha ayudado a comunicar nuestras ideas, pensamientos y sentimientos. Aunque no hay una cifra exacta, se estima que existen más de 7000 lenguas en el planeta Tierra. Obviamente, hay idiomas que son más conocidos y hablados por un mayor número de personas en el mundo que otros.",
+    first_paragraph: "Como probablemente ya lo habías intuido, el inglés es el idioma más hablado en todo el mundo. Se estima que más de 1.268 millones de personas alrededor del mundo hablan esta lengua. Además, actualmente se considera como un idioma oficial en 58 países del mundo, convirtiéndolo en el idioma más popular de todos los que mencionaremos en esta lista.",
+    second_paragraph: "En comparación con el inglés, el chino mandarín es oficial solamente en 3 países. Aun así, esto le basta para alcanzar el número de 1.119 millones de hablantes. Pareciera ser un número desproporcionado hasta que consideramos que China es un país que posee una población de más de 1.490 millones de habitantes. Esto, además, le permite encabezar las listas de los países más poblados del mundo.",
+    third_paragraph: "Al igual que China, el hindú, también conocido como hindi, es el idioma oficial de solamente 3 países. Sucede lo mismo que en el caso anterior; estos son países con un alto número de población, por lo que el idioma en este caso es hablado por aproximadamente 637 millones de personas. Además, comparte el lugar con al menos otros 22 idiomas cooficiales solamente en la India.",
+    fourth_paragraph: "Hablado por al menos 543 millones de personas, el español, también conocido como castellano, toma el cuarto lugar de esta lista. Además, es considerado como idioma oficial en 22 países, donde la mayoría de estos se encuentran en el continente americano. Si la lista se considerara a partir de los hablantes nativos, entonces el español tomaría el segundo lugar, luego del chino mandarín.",
+    fifth_paragraph: "En el caso del idioma francés, tenemos que es hablado como mínimo por 276 millones de personas en el mundo. Este es un idioma oficial en 35 países del mundo, además de ser la segunda lengua de más de 199 millones de personas. Por otra parte, es la lengua nativa de solamente 77 millones de personas.",
+    first_subtitle: "1. Inglés",
+    second_subtitle: "2. Chino mandarín",
+    third_subtitle: "3. Hindi",
+    fourth_subtitle: "4. Español",
+    fifth_subtitle: "5. Francés",
+    banner_image: "https://c8.alamy.com/compes/w27hdy/idiomas-libros-con-globo-de-la-tierra-geografica-3d-rendering-aislado-sobre-fondo-blanco-w27hdy.jpg",
+    photo_album: [
+      "https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2020/01/10/15786670546994.jpg",
+      "https://miro.medium.com/v2/resize:fit:10670/1*0DLP1bcAkc7LFq-PO--8kg.jpeg",
+      "https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/jfbvqsmyoeyzk7kjlygt",
+      "https://sanluispotosi.quadratin.com.mx/www/wp-content/uploads/2023/06/peru-reci62023-1.webp",
+      "https://co.ambafrance.org/IMG/jpg/5af8fbe3-1c69-4f0b-8e22-6e156208a52e.jpg?17779/307fc07ddf7b8e65ef44de5b7ba62c510ac68a72"
+    ]
+  },
+
+  {
+    tips: "Aplicación Lingua",
+    title: "Principios de la Comunidad de Lingua",
+    description: "Al ser una comunidad global de aprendizaje de idiomas, nos guiamos por tres principios.",
+    introduction: "¿Qué idioma quieres practicar?",
+    first_paragraph: "En Lingua nos encontramos para aprender idiomas juntos, para ayudarnos y apoyarnos mutuamente en nuestras travesías de aprendizaje de idiomas. Lingua no es una aplicación para encontrar pareja. Aunque algunos de nosotros se convierten en amigos en el proceso, les pedimos a los que sólo quieren conocer personas y no tienen ningún interés por aprender, que busquen en otro lugar.",
+    second_paragraph: "Venimos de todas partes del mundo y valoramos nuestras culturas y nuestros orígenes. Nos aproximamos unos a otros con amabilidad, respeto y curiosidad. ¡Hay mucho que aprender de los demás! Cualquier discriminación por raza, etnia, religión, discapacidad, origen nacional, orientación sexual, identidad de género o edad no tiene cabida en nuestra comunidad.",
+    third_paragraph: "Somos generosos con nuestros conocimientos y agradecemos la generosidad de los demás. Para preservar este espíritu, no está permitido hacer ofertas comerciales a otros miembros de Lingua mediante la promoción de un producto, servicio o canal de medios sociales, a menos que seas un miembro oficial de Lingua. Cuidamos los unos de los otros y estamos listos para proteger a nuestra comunidad de aquellos que no actúan de acuerdo con nuestros principios. Si entras en contacto con un miembro que se comporta de una forma que no está en línea con nuestros principios, por favor, repórtalo. ¡Muchas gracias por tu ayuda!",
+    fourth_paragraph: "Por normas de convivencia",
+    fifth_paragraph: ".",
+    first_subtitle: "1. Estamos aquí para aprender",
+    second_subtitle: "2. Celebramos nuestra diversidad",
+    third_subtitle: "3. Compartimos con generosidad",
+    fourth_subtitle: "4. Nos cuidamos los unos a los otros",
+    fifth_subtitle: ".",
+    banner_image: "https://cache-graphicslib.viator.com/graphicslib/media/f9/brandenburg-gate-photo_14342393-1536tall.jpg",
+    photo_album: [
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Bamberg-2.jpg",
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Augsburg-3.jpg",
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Augsburg-1.jpg",
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Augsburg-4.jpg",
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Blois_2.jpg"
+    ]
+  },
+  
+  {
+    tips: "Cultura",
+    title: "5 Palabras bonitas en japonés para el tiempo de cerezos en flor",
+    description: "La temporada de cerezos en flor: un tiempo espectacular en que los árboles se llenan de vida con preciosos colores. ¡Descubre todo lo que hay por saber acerca de este impresionante festival!",
+    introduction: "¡Es temporada de sakura en Japón! Este es el momento del año en que la primavera llega a Japón y otros países de Asia y las personas salen a celebrar el fin del invierno y maravillarse ante las hermosas flores de cerezo. Aquí está todo lo que necesitas saber acerca de esta temporada espectacular y las festividades que la acompañan.",
+    first_paragraph: "Sakura significa flor de cerezo y viene de saku 咲, que significa florecer o, alternativamente, de sonreír/reír. El 口 en 咲 indica una boca abierta. Las flores de cerezo son la flor simbólica de la primavera, del tiempo de renovación y de la naturaleza pasajera de la vida.",
+    second_paragraph: "Este es un gracioso proverbio que se burla del hecho de que algunas personas que asisten a las celebraciones de hanami están más interesadas en la comida y la bebida que en ver las flores. La traducción literal es algo parecido a “bocadillos antes que flores”.",
+    third_paragraph: "Esta es la palabra japonesa para describir una escena con muchas flores - se traduce literalmente como “nube de flores”",
+    fourth_paragraph: "Esta palabra significa “tormenta de nieve de flores de cerezo”. Muchas veces los pétalos de flores de cerezo bailan en el viento primaveral, lo que a la distancia puede verse como una tormenta de pétalos rosas.",
+    fifth_paragraph: "Lluvia de flores. Esta es la frase japonesa especialmente para cuando la lluvia cae sobre los pétalos de cereza - una vista increíblemente hermosa.",
+    first_subtitle: "Sakura (桜)",
+    second_subtitle: "Hana-yori-dango (花より団子)",
+    third_subtitle: "Hanagasumi (花霞)",
+    fourth_subtitle: "Sakura-fubuki (桜吹雪)",
+    fifth_subtitle: "Hana-no-ami (花の雨)",
+    banner_image: "https://imagenes.elpais.com/resizer/ahovWy9gTj809rCrQheDxrtE2oI=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/BV3DMDSJCZAVHE2L7DCJ46LG74.jpg",
+    photo_album: [
+      "https://thumbs.dreamstime.com/b/venado-en-el-parque-nara-jap%C3%B3n-flor-de-cerezo-abril-salvaje-jugando-con-un-turista-park-japan-durante-d%C3%ADa-soleado-la-temporada-164796481.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Cerisier_du_Japon_Prunus_serrulata.jpg",
+      "https://mymodernmet.com/wp/wp-content/uploads/2020/03/virtual-hanami-cherry-blossoms-1.jpg",
+      "https://unapausaagradable.es/wp-content/uploads/2021/03/florecimiento-cerezo-1160x710.webp",
+      "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2021/04/cerezos-2287785.jpg?tf=3840x",
+      "https://ecologismos.com/wp-content/2017/04/Cerezos-en-flor-Japon.jpg"
+    ]
+  },
+  
+  {
+    tips: "Cultura",
+    title: "5 Palabras bonitas en alemán que necesitas en tu vida",
+    description: "¡El alemán tiene la mala fama de sonar como si estuvieras enojado, pero en realidad es un idioma lleno de palabras bonitas! ¡Aquí hay 11 que te harán cambiar de opinión!",
+    introduction: "Todos los idiomas (como todas las culturas) pueden ser víctimas de estereotipos y el alemán no es la excepción. Sobran chistes acerca del idioma y la mayoría gira alrededor del mismo tema: que el alemán suena agresivo hasta cuando se usa para describir conceptos tiernos. Este meme resume el problema de maravilla:",
+    first_paragraph: "Hey, el alemán es tan increíble que otros idiomas, como el inglés, hasta les robaron esta palabra. Se usa para describir el espíritu prevalente de una era. Esta hermosa palabra en alemán es bella porque explica algo en una sola palabra para lo que de otra manera hay que usar una frase completa.",
+    second_paragraph: "Esta palabra es el opuesto de cuando extrañas tu casa: es el sentimiento de anhelar un lugar en el que nunca has estado. ¡Es perfecta para describir cuando quieres alejarte y tratar algo nuevo!",
+    third_paragraph: "Wanderlust es otra palabra que ha sido adoptada por otros idiomas, como el inglés. Es parecida a Fernweh pero con algunas diferencias: es el deseo de viajar por muchos lugares, ver cosas nuevas y no quedarte en el mismo lugar.",
+    fourth_paragraph: "Esta palabra no sólo suena muy bien, sino que expresa el sentimiento de cercanía entre dos (zwei) personas. Es el opuesto de Einsamkeit o soledad.",
+    fifth_paragraph: "Esta es una palabra fantástica que se usa para describir la emoción causada por el buen clima en la primavera, justo cuando empieza a salir el sol, los árboles empiezan a reverdecer y florecen las flores.",
+    first_subtitle: "1. Zeitgeist",
+    second_subtitle: "2. Fernweh",
+    third_subtitle: "3. Wanderlust",
+    fourth_subtitle: "4. Zweisamkeit",
+    fifth_subtitle: "5. Frühlingsgefühle",
+    banner_image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/60/c6/f3/the-light-cinema-screen.jpg?w=1000&h=-1&s=1",
+    photo_album: [
+      "https://humanidades.com/wp-content/uploads/2023/11/Alemania-berlin-portada.jpg",
+      "https://www.momondo.es/discover/wp-content/uploads/sites/242/2015/12/dest_germany_berlin_brandenburger-tor-courtyard_gettyimages-471063626_universal_within-usage-period_59386-1500x1312.jpg",
+      "https://fotografias.antena3.com/clipping/cmsimages01/2023/02/14/4F97ECD7-0792-40DC-B275-0FAECBAFDBF6/imagen-bandera-alemana_98.jpg?crop=3507,1973,x0,y124&width=1900&height=1069&optimize=low&format=webply",
+      "https://www.arpem.com/wp-content/uploads/2023/07/alemania.jpg",
+      "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Germany_5.jpg"
+    ]
+  }
+]
+
+blogs_data.each_with_index do |blog_data, index|
+  blog = Blog.create!(
+    tips: blog_data[:tips],
+    title: blog_data[:title],
+    description: blog_data[:description],
+    introduction: blog_data[:introduction],
+    first_paragraph: blog_data[:first_paragraph],
+    second_paragraph: blog_data[:second_paragraph],
+    third_paragraph: blog_data[:third_paragraph],
+    fourth_paragraph: blog_data[:fourth_paragraph],
+    fifth_paragraph: blog_data[:fifth_paragraph],
+    first_subtitle: blog_data[:first_subtitle],
+    second_subtitle: blog_data[:second_subtitle],
+    third_subtitle: blog_data[:third_subtitle],
+    fourth_subtitle: blog_data[:fourth_subtitle],
+    fifth_subtitle: blog_data[:fifth_subtitle]
+  )
+
+  banner_image = URI.open(blog_data[:banner_image])
+
+  image = MiniMagick::Image.read(banner_image)
+  image.resize("1000x1000")
+
+  cloudinary_response = Cloudinary::Uploader.upload(image.path)
+
+  blog.banner_image.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_banner_image.png", content_type: "image/png")
+
+  blog_data[:photo_album].each_with_index do |photo_url, photo_index|
+    photo = URI.open(photo_url)
+
+    image = MiniMagick::Image.read(photo)
+    image.resize("1000x1000")
+    cloudinary_response = Cloudinary::Uploader.upload(image.path)
+    blog.photo_album.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_photo_album_#{photo_index}.png", content_type: "image/png")
+  end
+
+  blog.save
+  sleep(4)
+  puts "Procesando blog con título: #{blog.title}"
+end
+
 
