@@ -52,15 +52,20 @@ border-radius: var(--bs-navbar-toggler-border-radius);
 .card-container {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
-
+  padding: 4px;
+  margin-right: 130px;
+  margin-left: 130px;
+  margin-top: 10px;
+   margin-bottom: -27px;
 }
 
 .card-container .col-md-8{
   width: 50%;
 }
 .imag-grande{
-  max-width: 120%;
+  width: 220px;
+  height: 220px;
+  border-radius: 16px;
 }
 .card-ancha {
   border-radius: 10px;
@@ -70,22 +75,51 @@ border-radius: var(--bs-navbar-toggler-border-radius);
   justify-content: center;
   align-items: flex-start;
   gap: 12px;
-  flex: 1 0 0;
   background: #FFF;
 }
+.ancho-uno{
+  height: 280px;
+}
+.body-card{
+  border-top: 0;
+  width: 137%;
+  color: #1C1C1E;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+   padding-right: 10px;
 
+}
+.text-container{
+  height: 20px;
+  margin-right: 10px;
+  padding-right: 10%;
+}
+.titulo-principal{
+  color: var(--Fondo-azul, #225191);
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
 .card-chica {
   border-radius: 10px;
   max-width:60%;
-  margin: 20px;
+  margin: 7px;
   align-items: center;
   background: #FFF;
-  max-width: 100%;
+  max-width: 83%;
   justify-content: space-between;
 }
 .imag-pequeña{
   max-width: 90%;
   border-radius: 10px;
+  width: 338px;
+  flex: 1 0 0;
+  margin: 10px;
 }
 
 .botones-pequeños{
@@ -104,4 +138,27 @@ border-radius: var(--bs-navbar-toggler-border-radius);
 }
 .botones-pequeños .btn:hover {
   background-color: #03ffaf;
+}
+.card-chica-grande{
+  margin-right: 10px;
+  margin-top: -8px;
+}
+.pequeño-container{
+  display: flex;
+  color: #FFF;
+  margin-bottom: 10px 10px 10px;
+  text-decoration: none;
+  margin-top: -40px;
+  position: relative;
+  padding: 2px;
+  // align-items: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  color: #1C1C1E;
+  text-decoration: none;
+}
+.links-dashboard{
+  color: #1C1C1E;
+  text-decoration: none;
 }
