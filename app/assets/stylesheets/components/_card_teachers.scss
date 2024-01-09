@@ -56,7 +56,7 @@ border-radius: var(--bs-navbar-toggler-border-radius);
   margin-right: 130px;
   margin-left: 130px;
   margin-top: 10px;
-   margin-bottom: -27px;
+   margin-bottom: 10px;
 }
 
 .card-container .col-md-8{
@@ -144,9 +144,10 @@ border-radius: var(--bs-navbar-toggler-border-radius);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  border-radius: 26%;
 }
 .botones-pequeños .btn:hover {
-  background-color: #03ffaf;
+  background-color: #f8f9fa;
 }
 .card-chica-grande{
   margin-right: 10px;
