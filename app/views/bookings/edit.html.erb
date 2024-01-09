@@ -2,11 +2,11 @@
   <h2 class="card-title">Editar reserva</h2>
   <br>
   <%= simple_form_for(@booking, url: booking_path(@booking), method: :patch) do |f| %>
-    <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all, label_method: :full_name, value_method: :id, prompt: 'Selecciona un profesor' %>
+    <%#= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all, label_method: :full_name, value_method: :id, prompt: 'Selecciona un profesor' %>
     <%= f.input :time_in, label: "Hora de inicio", as: :time %>
     <%= f.input :date, label: "Fecha", as: :date %>
 
     <%= f.submit "Guardar reserva", class: 'btn btn-primary' %>
-    
+
   <% end %>
 </div>
