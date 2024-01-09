@@ -161,6 +161,7 @@ students_data.each do |student_info|
       time_in: "19:00:00 -0300".to_time  
     )
   end
+  puts "bookings creado"
 end
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -207,7 +208,7 @@ blogs_data = [
     third_subtitle: "Werden (ponerse)",
     fourth_subtitle: "Sollen (deber)",
     fifth_subtitle: "Müssen (tener que)",
-    banner_image: "https://scontent.faep25-1.fna.fbcdn.net/v/t39.30808-6/347816435_263414296149767_6553545507495158178_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=783fdb&_nc_ohc=sUi-nWJsTRMAX_a5dDN&_nc_ht=scontent.faep25-1.fna&oh=00_AfAsr-crqAn4HooA5vM5x3gJ1RMJedNf_1ofbn6ilDQHkw&oe=65987AF1",
+    banner_image: "https://humanidades.com/wp-content/uploads/2023/11/Alemania-berlin-portada.jpg",
     photo_album: [
       "https://media.istockphoto.com/id/619762776/es/foto/banderas-alemanas-en-el-reichstag-berl%C3%ADn-alemania.jpg?s=612x612&w=0&k=20&c=v8e3G8rZVKfG_Szdevwpyht-9kFBdwjx0nYPWjH5inc=",
       "https://hablemosdeculturas.com/wp-content/uploads/2017/12/Cultura-Alemana-06.jpg",
@@ -335,7 +336,7 @@ blogs_data = [
     third_subtitle: "3. Wanderlust",
     fourth_subtitle: "4. Zweisamkeit",
     fifth_subtitle: "5. Frühlingsgefühle",
-    banner_image: "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/Bamberg-3.jpg",
+    banner_image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/60/c6/f3/the-light-cinema-screen.jpg?w=1000&h=-1&s=1",
     photo_album: [
       "https://humanidades.com/wp-content/uploads/2023/11/Alemania-berlin-portada.jpg",
       "https://www.momondo.es/discover/wp-content/uploads/sites/242/2015/12/dest_germany_berlin_brandenburger-tor-courtyard_gettyimages-471063626_universal_within-usage-period_59386-1500x1312.jpg",
@@ -383,7 +384,7 @@ blogs_data.each_with_index do |blog_data, index|
   end
 
   blog.save
-  sleep(3)
+  sleep(4)
   puts "Procesando blog con título: #{blog.title}"
 end
 

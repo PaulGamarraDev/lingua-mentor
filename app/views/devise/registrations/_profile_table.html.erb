@@ -1,56 +1,173 @@
 <div class="styles-container" data-controller="profile">
   <div class="styles-header">
     <h2>Mi pefil</h2>
-    <p>Idiomas</p>
   </div>
 
-  <div class="row styles-grid">
+  <div class="row">
     <aside class="col-md-2 styles-sidebar">
       <button data-action="click->profile#showAcerca">Acerca de mí</button>
       <button data-action="click->profile#showIdiomas">Idiomas</button>
-      <button>Certificados</button>
-      <button>Descripción</button>
-      <button>Siguiendo</button>
-      <button>Disponibilidad</button>
-      <button>Visitantes</button>
-      <button>Tarifas</button>
-      <button>Ajustes</button>
+      <button data-action="click->profile#showCertificados">Certificados</button>
+      <button data-action="click->profile#showDescripcion">Descripción</button>
+      <button data-action="click->profile#showSiguiendo">Siguiendo</button>
+      <button data-action="click->profile#showDisponibilidad">Disponibilidad</button>
+      <button data-action="click->profile#showVisitantes">Visitantes</button>
+      <button data-action="click->profile#showTarifas">Tarifas</button>
+      <button data-action="click->profile#showAjustes">Ajustes</button>
       <button>Cerrar sesión</button>
     </aside>
+    <div class="col-md-10">
 
-    <div class="col-md-10 styles-section" data-profile-target="acerca">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= f.error_notification %>
+      <div class="styles-section" data-profile-target="acerca">
+        <h2 class="descripcion-edit">Acerca de mí</h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :profile_photo, as: :file, label: "Foto de perfil", input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :banner_image, as: :file, label: "Imagen de banner", input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :photo_album, as: :file, input_html: { multiple: true }, label: "Álbum de fotos", input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :first_name, label: "Nombre", required: true, input_html: { value: resource.first_name}, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :last_name, label: "Apellido", required: true, input_html: { value: resource.last_name}, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %> <!-- Agregado: Apellido -->
+            <%= f.input :country, label: "País", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :city, label: "Ciudad", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :date_of_birth, label: "Fecha de nacimiento", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white; display: inline-block; width: 80%;' } %>
 
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
-          <% end %>
-
-          <%= f.input :password, label: "Contraseña",hint: "déjalo en blanco si no quieres cambiarlo", required: false, input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, label: "Comfirma tu contraseña", required: false, input_html: { autocomplete: "new-password" } %>
-          <%= f.input :current_password, label: "Contraseña actual", hint: "Necesitamos su contraseña actual para confirmar sus cambios.", required: true, input_html: { autocomplete: "current-password" } %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Update" %>
-        </div>
-      <% end %>
-
-      <h3>Cancelar mi cuenta</h3>
-
-      <div>
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Actualizar" %>
+          </div>
+        <% end %>
       </div>
 
-      <%= link_to "Back", :back %>
-    </div>
-    <div class="col-md-10 styles-section" data-profile-target="idiomas"> idioma
-    </div>
-    <div class="col-md-10 styles-section" data-profile-target="idiomas"> idioma
+      <div class="styles-section" data-profile-target="idiomas">
+        <h2 class="descripcion-edit">Idiomas</h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
+          <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :native_language, label: "Idioma nativo", required: true, as: :select, collection: [
+                ['Chino (mandarín)', 'zh'],
+                ['Español', 'es'],
+                ['Inglés', 'en'],
+                ['Hindi', 'hi'],
+                ['Árabe', 'ar'],
+                ['Portugués', 'pt'],
+                ['Bengalí', 'bn'],
+                ['Ruso', 'ru'],
+                ['Francés', 'fr'],
+                ['Alemán', 'de']
+              ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+
+              <%= f.input :other_languages, label: "También hablo", required: true, as: :select, collection: [
+                ['Chino (mandarín)', 'zh'],
+                ['Español', 'es'],
+                ['Inglés', 'en'],
+                ['Hindi', 'hi'],
+                ['Árabe', 'ar'],
+                ['Portugués', 'pt'],
+                ['Bengalí', 'bn'],
+                ['Ruso', 'ru'],
+                ['Francés', 'fr'],
+                ['Alemán', 'de']
+              ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+
+              <%= f.input :learning_languages, label: "Estoy aprendiendo", required: true, as: :select, collection: [
+                ['Chino (mandarín)', 'zh'],
+                ['Español', 'es'],
+                ['Inglés', 'en'],
+                ['Hindi', 'hi'],
+                ['Árabe', 'ar'],
+                ['Portugués', 'pt'],
+                ['Bengalí', 'bn'],
+                ['Ruso', 'ru'],
+                ['Francés', 'fr'],
+                ['Alemán', 'de']
+              ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+
+              <% if resource.teacher? %>
+                <%= f.fields_for :DataTeacher do |teacher_fields| %>
+                  <%= teacher_fields.input :learning_languages, label: "Enseña", required: true, as: :select, collection: [
+                    ['Chino (mandarín)', 'zh'],
+                    ['Español', 'es'],
+                    ['Inglés', 'en'],
+                    ['Hindi', 'hi'],
+                    ['Árabe', 'ar'],
+                    ['Portugués', 'pt'],
+                    ['Bengalí', 'bn'],
+                    ['Ruso', 'ru'],
+                    ['Francés', 'fr'],
+                    ['Alemán', 'de']
+                  ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+                <% end %>
+              <% end %>
+
+            </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Actualizar" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="styles-section" data-profile-target="certificados">
+        <h2 class="descripcion-edit">Certificados</h2>
+      </div>
+
+      <div class="styles-section" data-profile-target="descripcion"> 
+        <h2 class="descripcion-edit">Descripción</h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :about_me, label: "Acerca de mí", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' }  %>
+            <%= f.input :objectives, label: "Objetivos", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' }  %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Actualizar" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="styles-section" data-profile-target="siguiendo">
+        <h2 class="descripcion-edit">Siguiendo</h2>
+      </div>
+
+      <div class="styles-section" data-profile-target="disponibilidad"> 
+        <h2 class="descripcion-edit">Disponibilidad</h2>
+      </div>
+
+      <div class="styles-section" data-profile-target="visitantes">
+        <h2 class="descripcion-edit">Visitantes</h2>
+      </div>
+
+      <div class="styles-section" data-profile-target="tarifas"> 
+        <h2 class="descripcion-edit">Tarifas</h2>
+      </div>
+
+      <div class="styles-section" data-profile-target="ajustes">
+        <h2 class="descripcion-edit">Ajustes</h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :email, required: true, autofocus: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
+            <% end %>
+            <%= f.input :password, label: "Contraseña", hint: "Déjalo en blanco si no quieres cambiarlo", required: false, input_html: { autocomplete: "new-password" }, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :password_confirmation, label: "Confirma tu contraseña", required: false, input_html: { autocomplete: "new-password" }, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :current_password, label: "Contraseña actual", hint: "Necesitamos tu contraseña actual para confirmar los cambios.", required: true, input_html: { autocomplete: "current-password" }, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <%= f.input :role, as: :select, collection: User.roles.keys.map { |role| [role.humanize, role] }, label: 'Quieres ser un profesor?', input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Actualizar" %>
+          </div>
+        <% end %>
+        <h3>Cancelar mi cuenta</h3>
+        <div>
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+        </div>
+        <%= link_to "Back", :back %>   
+      </div>
+
+
     </div>
   </div>
 </div>
-

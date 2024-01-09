@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many_attached :photo_album
 
   #VALIDATIONS
-  validates :email, :role, presence: true
+  validates :email, :role,  presence: true
   #:first_name, :last_name, :country, :city,
   #:date_of_birth, :about_me, :native_language, :other_language, :learning_language, :objectives
   validates :email, uniqueness: true
