@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-12">
+    <% if @user.role == "teacher" %>
+      <p>💲<%= @user.data_teacher.usd_per_hour %>  Clases de 60 minutos</p>
+      <p> Enseño <%= @user.data_teacher.teaching_languages %> </p>
+      <p> <%= @user.data_teacher.teacher_description %> </p>
+    <% end %>
+  </div>
+</div>
