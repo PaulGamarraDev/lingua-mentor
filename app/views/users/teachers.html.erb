@@ -1,5 +1,5 @@
 <div class="pilar">
- <div class="container-search">
+  <div class="container-search">
   <nav class="navbar primer-container">
     <div class="container segundo-container">
       <%= link_to "Encuentra tu profesor", "#", class: "teacher-name" %>
@@ -14,404 +14,60 @@
     </div>
   </nav>
 </div>
-
-<!-- primera cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1703036179/f76d7df8054762f3ad5033a847a343e8_hyoyww.jpg", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Eduado R</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
+<% @teachers.each do |teacher| %>
+  <div class="container-cards">
+    <div class="custom-container card-containers">
+      <div class="custom-row d-flex">
+        <div class="custom-col-sm-6 custom-col-lg-8">
+          <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
+          <%= link_to bookings_path do %>
+            <div class="card mb-3 card-ancha">
+              <div class="row g-0 ancho-uno">
+                <div class="col-md-4">
+                  <% if teacher.profile_photo.present? %>
+                    <%= image_tag teacher.profile_photo, class: "card-img-top image-ancha", alt: "foto de perfil del teacher" %>
+                  <% else %>
+                    <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+                  <% end %>
+                </div>
+                <div class="col-md-8 text-card-ancha">
+                  <div class="card-body body-card">
+                    <div class="container-text text-container">
+                      <h2 class="text-start titulo-principal"> <%= teacher.first_name %></h2>
+                      <p class="text-start"><%= teacher.data_teacher.teaching_languages%></p>
+                      <p class="text-start">ℹ️ Certificado TEFL/TESOL</p>
+                      <p class="text-start">ℹ️<%= teacher.data_teacher.teacher_description%></p>
+                      <p class="text-start">💲<%= teacher.data_teacher.usd_per_hour  %> Clases de 60 minutos</p>
+                      <p class="text-start"><%= teacher.about_me %></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          <% end %>
+          <div class="pequeño-container">
+            <p><%= teacher.native_language %></p>
+            <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
+            <p><%= link_to "estudiantes activos", "#", class: "links-dashboard" %></p>
+            <p><%= link_to "clases impartidas", "#", class: "links-dashboard" %></p>
+            <p><%= link_to "Reseña", "#", class: "links-dashboard" %></p>
           </div>
         </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1703036179/f76d7df8054762f3ad5033a847a343e8_hyoyww.jpg", class: "card-img-top", class:"imag-pequeña-uno", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reserva", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
+        <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
+          <%# <p>Contenido para col-6 y col-lg-4</p> %>
+          <div class="card card-chica"">
+            <% if teacher.profile_photo.present? %>
+              <%= image_tag teacher.profile_photo, class: "card-img-top", alt: "foto de perfil del teacher" %>
+            <% else %>
+              <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+            <% end %>
+            <div class="card-body botones-pequeños">
+              <%= link_to "Reserva", "/bookings", class: "btn btn-light" %>
+              <%= link_to "Mensaje", "#", class: "btn btn-light" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!--  segunda cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_bukoox.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Victorino Mora</h2>
-                  <p class="text-start">🎓Enseña ingles</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_bukoox.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- tercera cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755524/Rectangle_3_1_vxckxc.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Clemente Escudero</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755524/Rectangle_3_1_vxckxc.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- cuarta cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_2_urmdzm.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Anabel Borrego</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_2_urmdzm.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- quinta cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_3_pend0b.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Teresa Jesus Molina</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_3_pend0b.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--  sexta cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_4_rxz1f2.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Malika Sánchez</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_4_rxz1f2.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_5_u7o6sw.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Sheila Trujillo</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class:"links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_5_u7o6sw.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--  8va cards profesores -->
-<div class="container-cards">
-  <div class="custom-container card-container">
-    <div class="custom-row d-flex">
-      <div class="custom-col-sm-6 custom-col-lg-8">
-        <%# <p>Contenido para col-sm-6 y col-lg-8</p> %>
-        <div class="card mb-3 card-ancha">
-          <div class="row g-0 ancho-uno">
-            <div class="col-md-4">
-              <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_6_nw0429.png", class:"imag-grande", alt: "..." %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body body-card">
-                <div class="container-text text-container">
-                  <h2 class="text-start titulo-principal">Jimena Tortosa</h2>
-                  <p class="text-start">🎓Enseña Portugués</p>
-                  <p class="text-start">ℹ️Tener experiencia viviendo en el extranjero.</p>
-                  <p class="text-start">ℹ️Certificado TEFL/TESOL</p>
-                  <p class="text-start">ℹ️Experto en inglés conversacional, preparación TOEFL, preparación de inglés FCE.</p>
-                  <p class="text-start">💲5.178 Clases de 60 minutos</p>
-                  <p class="text-start">Profesora de ESL certificada por TESOL con 2 años y medio de experiencia en la enseñanza. ¿Quieres convertirte en un comunicador en inglés seguro y eficaz? Entonces estás en el lugar correcto...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pequeño-container">
-          <p><%= link_to "Nativo", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "experiencia", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "intermedio", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "👩‍💻estudiantes activos", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "📹clases impartidas", "#", class: "links-dashboard" %></p>
-          <p><%= link_to "⭐⭐⭐⭐⭐Reseña", "#", class: "links-dashboard" %></p>
-        </div>
-
-      </div>
-      <div class="custom-col-6 custom-col-lg-4 card-chica-grande">
-        <%# <p>Contenido para col-6 y col-lg-4</p> %>
-        <div class="card card-chica" style="width: 17rem;">
-          <%= image_tag "https://res.cloudinary.com/dinso4to6/image/upload/v1704755523/Rectangle_3_6_nw0429.png", class: "card-img-top", class:"imag-pequeña", alt: "..." %>
-          <div class="card-body botones-pequeños">
-            <%= link_to "Reservar", "#", class: "btn btn-light" %>
-            <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+<% end  %>
