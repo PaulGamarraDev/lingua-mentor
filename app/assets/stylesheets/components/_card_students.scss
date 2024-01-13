@@ -157,3 +157,15 @@
     gap: 8px; /* Ajusta el espacio entre los elementos hijos de la sección de lenguaje */
   }
 }
+
+
+.buscador{
+  margin: 16px 8px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  p{
+    margin: 0;
+  }
+}

@@ -1,16 +1,18 @@
 <div class="page-content">
   <div class="body-community">
-    <%# SEARCH BAR %>
-    <div class="row justify-content-center" data-controller="search-students">
-      <div class="col-sm-8 my-3">
-        <%= form_with url: students_path, method: :get, html: {class: "d-flex", data: {search_students_target: "form"}} do |f| %>
+
+      <%# SEARCH BAR %>
+    <div class="buscador" data-controller="search-students">
+      <p class="teacher-name">Comunidad</p>
+      <div class="buscar">
+        <%= form_with url: students_path, method: :get, html: {class: "d-flex", data: {search_students_target: "form"}, style: "background-color: white; border-radius: 16px;"} do |f| %>
           <%= f.text_field :query,
-                           class: "form-control",
-                           placeholder: "Encuentra a personas...",
-                           value: params[:query],
-                           data: {search_students_target: "input"}
+                          class: "form-control",
+                          placeholder: "Encuentra a personas...",
+                          value: params[:query],
+                          style: "background-color: white; border-radius: 16px;",
+                          data: {search_students_target: "input"}
           %>
-        <%#= submit_tag "Search", name: "", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
@@ -21,3 +23,4 @@
     </div>
   </div>
 </div>
+<%= link_to "Idiomas",edit_user_registration_path, data: { action: "click->profile#showIdiomas" }, class: "btn btn-primary" %>
