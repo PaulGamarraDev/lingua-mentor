@@ -31,7 +31,7 @@
             <%= f.input :country, label: "País", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
             <%= f.input :city, label: "Ciudad", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
             <%= f.input :date_of_birth, label: "Fecha de nacimiento", required: true, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white; display: inline-block; width: 80%;' } %>
-
+            <%= f.input :current_password, label: "Contraseña actual", hint: "Necesitamos tu contraseña actual para confirmar los cambios.", required: true, input_html: { autocomplete: "current-password" }, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
           </div>
           <div class="form-actions">
             <%= f.button :submit, "Actualizar" %>
@@ -42,65 +42,69 @@
       <div class="styles-section" data-profile-target="idiomas">
         <h2 class="descripcion-edit">Idiomas</h2>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
+        <%#= simple_form_for(current_user, as: :user, method: :post, url: user_registration_path) do |f| %>
           <%= f.error_notification %>
-            <div class="form-inputs">
-              <%= f.input :native_language, label: "Idioma nativo", required: true, as: :select, collection: [
-                ['Chino (mandarín)', 'zh'],
-                ['Español', 'es'],
-                ['Inglés', 'en'],
-                ['Hindi', 'hi'],
-                ['Árabe', 'ar'],
-                ['Portugués', 'pt'],
-                ['Bengalí', 'bn'],
-                ['Ruso', 'ru'],
-                ['Francés', 'fr'],
-                ['Alemán', 'de']
+          <div class="form-inputs">
+            <%= f.input :native_language, label: "Idioma nativo", required: true, input_html: { value: resource.native_language}, as: :select, collection: [
+                  ['Chino (mandarín)', 'zh'],
+                  ['Español', 'es'],
+                  ['Inglés', 'en'],
+                  ['Hindi', 'hi'],
+                  ['Árabe', 'ar'],
+                  ['Portugués', 'pt'],
+                  ['Bengalí', 'bn'],
+                  ['Ruso', 'ru'],
+                  ['Francés', 'fr'],
+                  ['Alemán', 'de']
               ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
 
-              <%= f.input :other_languages, label: "También hablo", required: true, as: :select, collection: [
-                ['Chino (mandarín)', 'zh'],
-                ['Español', 'es'],
-                ['Inglés', 'en'],
-                ['Hindi', 'hi'],
-                ['Árabe', 'ar'],
-                ['Portugués', 'pt'],
-                ['Bengalí', 'bn'],
-                ['Ruso', 'ru'],
-                ['Francés', 'fr'],
-                ['Alemán', 'de']
+            <%= f.input :other_languages, label: "También hablo", required: true, input_html: { value: resource.other_languages}, as: :select, collection: [
+                  ['Chino (mandarín)', 'zh'],
+                  ['Español', 'es'],
+                  ['Inglés', 'en'],
+                  ['Hindi', 'hi'],
+                  ['Árabe', 'ar'],
+                  ['Portugués', 'pt'],
+                  ['Bengalí', 'bn'],
+                  ['Ruso', 'ru'],
+                  ['Francés', 'fr'],
+                  ['Alemán', 'de']
               ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
 
-              <%= f.input :learning_languages, label: "Estoy aprendiendo", required: true, as: :select, collection: [
-                ['Chino (mandarín)', 'zh'],
-                ['Español', 'es'],
-                ['Inglés', 'en'],
-                ['Hindi', 'hi'],
-                ['Árabe', 'ar'],
-                ['Portugués', 'pt'],
-                ['Bengalí', 'bn'],
-                ['Ruso', 'ru'],
-                ['Francés', 'fr'],
-                ['Alemán', 'de']
+            <%= f.input :learning_languages, label: "Estoy aprendiendo", required: true, input_html: { value: resource.learning_languages}, as: :select, collection: [
+                  ['Chino (mandarín)', 'zh'],
+                  ['Español', 'es'],
+                  ['Inglés', 'en'],
+                  ['Hindi', 'hi'],
+                  ['Árabe', 'ar'],
+                  ['Portugués', 'pt'],
+                  ['Bengalí', 'bn'],
+                  ['Ruso', 'ru'],
+                  ['Francés', 'fr'],
+                  ['Alemán', 'de']
               ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
 
-              <% if resource.teacher? %>
-                <%= f.fields_for :DataTeacher do |teacher_fields| %>
-                  <%= teacher_fields.input :learning_languages, label: "Enseña", required: true, as: :select, collection: [
-                    ['Chino (mandarín)', 'zh'],
-                    ['Español', 'es'],
-                    ['Inglés', 'en'],
-                    ['Hindi', 'hi'],
-                    ['Árabe', 'ar'],
-                    ['Portugués', 'pt'],
-                    ['Bengalí', 'bn'],
-                    ['Ruso', 'ru'],
-                    ['Francés', 'fr'],
-                    ['Alemán', 'de']
-                  ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
-                <% end %>
-              <% end %>
+            <% if current_user.role == "teacher" %>
+              <%#= f.association :data_teacher.:teaching_languages ***SOLAMENTE SI ESTÁ EN UNA TABLA***%>
 
-            </div>
+              <%#= f.input :teaching_languages, label: "Enseña", required: true, input_html: { value: current_user.data_teacher.teaching_languages}, as: :select, collection: [
+                  ['Chino (mandarín)', 'zh'],
+                  ['Español', 'es'],
+                  ['Inglés', 'en'],
+                  ['Hindi', 'hi'],
+                  ['Árabe', 'ar'],
+                  ['Portugués', 'pt'],
+                  ['Bengalí', 'bn'],
+                  ['Ruso', 'ru'],
+                  ['Francés', 'fr'],
+                  ['Alemán', 'de']
+                ], input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+            <% end %>
+
+            <%= f.input :current_password, label: "Contraseña actual", hint: "Necesitamos tu contraseña actual para confirmar los cambios.", required: true, input_html: { autocomplete: "current-password" }, input_html: { style: 'border: none; border-bottom: 1px solid white; color: white;' } %>
+
+          </div>
+
           <div class="form-actions">
             <%= f.button :submit, "Actualizar" %>
           </div>
@@ -111,7 +115,7 @@
         <h2 class="descripcion-edit">Certificados</h2>
       </div>
 
-      <div class="styles-section" data-profile-target="descripcion"> 
+      <div class="styles-section" data-profile-target="descripcion">
         <h2 class="descripcion-edit">Descripción</h2>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
@@ -129,7 +133,7 @@
         <h2 class="descripcion-edit">Siguiendo</h2>
       </div>
 
-      <div class="styles-section" data-profile-target="disponibilidad"> 
+      <div class="styles-section" data-profile-target="disponibilidad">
         <h2 class="descripcion-edit">Disponibilidad</h2>
       </div>
 
@@ -137,7 +141,7 @@
         <h2 class="descripcion-edit">Visitantes</h2>
       </div>
 
-      <div class="styles-section" data-profile-target="tarifas"> 
+      <div class="styles-section" data-profile-target="tarifas">
         <h2 class="descripcion-edit">Tarifas</h2>
       </div>
 
@@ -164,7 +168,7 @@
         <div>
           <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
         </div>
-        <%= link_to "Back", :back %>   
+        <%= link_to "Back", :back %>
       </div>
 
 
