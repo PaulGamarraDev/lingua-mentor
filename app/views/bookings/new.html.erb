@@ -1,10 +1,10 @@
-<div class="container mt-5">
-  <h2 class="card-title">Nueva reserva</h2>
+<div class="forms">
+  <h2 class="forms-title">Nueva reserva</h2>
   <br>
-  <%= simple_form_for(@booking) do |f| %>
-    <%= f.association :teaching_language_session, label: "Idioma", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma' %>
-    <%= f.input :time_in, label: "Hora de inicio", as: :time %>
-    <%= f.input :date, label: "Fecha", as: :date %>
+  <%= simple_form_for @booking, data: { controller: 'flatpickr' } do |f| %>
+    <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma'  %>
+    <%= f.input :time_in, label: "Hora de inicio", as: :string, input_html: { data: { flatpickr_target: "timeInput" } } %>
+    <%= f.input :date, label: "Fecha", as: :string, input_html: { data: { flatpickr_target: "dateInput" } } %>
     <%= f.submit "Crear reserva", class: 'btn btn-primary' %> <%= link_to "Regresar al inicio", bookings_path %>
   <% end %>
 </div>
