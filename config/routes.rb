@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   #solventando que solamente Teacher pueda crear la materia con if/else
   #mejor solución usar lo visto en Lecture: Authorization & Pundit
   #scope "/perfil/:id" do
-    #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
-    #resources :teaching_language_sessions, only: %i[new create]
+  #resources :users, only: %i[teachers], path: '/profesores', as: :teachers
+  #resources :teaching_language_sessions, only: %i[new create]
   #end
 
 
@@ -27,4 +27,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :blogs, only: %i[index show]
+
+  resources :chatrooms do
+    resources :messages, only: :create
+  end
 end
