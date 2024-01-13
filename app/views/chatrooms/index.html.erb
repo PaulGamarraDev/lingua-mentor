@@ -1,7 +1,43 @@
-<div class="chatroom-container">
-  <h5><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
-  <h4> Users </h4>
-  <%= render "users/users_chatroom" %>
-  <h4> Chatrooms </h4>
-  <%= render "chatrooms" %>
+<div class="styles-container" data-controller="chats">
+  <div class="styles-header">
+    <h5><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
+  </div>
+
+  <div class="row">
+    <%# SIDEBAR %>
+    <aside class="col-md-2 styles-sidebar">
+      <button data-action="click->chats#showUsers">Todos los Usuarios</button>
+      <button data-action="click->chats#showChatrooms">Conversaciones</button>
+    </aside>
+
+    <%# SELECTED SECTION FROM THE SIDEBAR %>
+    <div class="col-md-10">
+      <div class="styles-section" data-chats-target="users">
+        <%= render "users/users_chatroom" %>
+      </div>
+
+      <div class="styles-section" data-chats-target="chatrooms">
+        <%= render "chatrooms" %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%# raise %>
+
+<div class="container chatroom">
+  <h1><%#= @chatroom.name %></h1>
+
+  <div class="messages">
+    <%# @chatroom.messages.each do |message| %>
+      <div id="message-<%#= message.id %>">
+        <small>
+          <strong><%#= message.user.nickname %></strong>
+          <i><%#= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+        <p><%#= message.content %></p>
+      </div>
+    <%# end %>
+  </div>
 </div>

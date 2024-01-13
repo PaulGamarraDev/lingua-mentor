@@ -28,5 +28,7 @@ Rails.application.routes.draw do
 
   resources :blogs, only: %i[index show]
 
-  resources :chatrooms
+  resources :chatrooms do
+    resources :messages, only: :create
+  end
 end
