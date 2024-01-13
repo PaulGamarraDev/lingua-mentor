@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :teaching_language_sessions
   has_one :data_teacher
+  has_many :chatrooms, :foreign_key => :sender_id
 
   #CLOUDINARY
   # has_one_attached :photo
