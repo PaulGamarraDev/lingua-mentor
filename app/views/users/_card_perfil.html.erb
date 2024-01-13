@@ -1,8 +1,6 @@
-
+<%= link_to "Mensaje", "#", class: "booking-button" %>
 <% if @user.teacher? %>
-  <%= link_to new_booking_path, class: "booking-button" do %>
-  Realizar una reserva
-  <% end %>
+  <%= link_to "Reserva tu clase", new_booking_path, class: "booking-button" %>
 <% end %>
 
 <div class="row">
@@ -14,15 +12,15 @@
       </div>
       <div class="infos">
         <h4>Nativo</h4>
-        <P><%= @user.native_language %></P>      
+        <P><%= @user.native_language %></P>
       </div>
       <div class="infos">
         <h4>Habla con fluidez</h4>
-        <p><%= @user.other_languages %></p>      
+        <p><%= @user.other_languages %></p>
       </div>
       <div class="infos">
         <h4>Aprendiendo</h4>
-        <p><%= @user.learning_languages %></p>     
+        <p><%= @user.learning_languages %></p>
       </div>
       <div class="infos">
         <% if @user.teacher? %>
@@ -40,11 +38,11 @@
       </div>
       <div class="infos">
         <h4></h4>
-        <P><%= @user.country %>, <%= @user.city %></P>      
+        <P><%= @user.country %>, <%= @user.city %></P>
       </div>
       <div class="infos">
         <h4>¿Quieres conocer mas sobre mi?</h4>
-        <p><%= @user.about_me %></p>      
+        <p><%= @user.about_me %></p>
       </div>
       <div class="infos">
         <h4>¿Cuáles son tus objetivos de aprendizaje de idiomas?</h4>
@@ -54,7 +52,7 @@
         <% if @user.teacher? %>
           <h4>¿Cuáles son tus objetivos al enseñar idiomas?</h4>
           <p> <%= @user.data_teacher.teacher_description %></p>
-        <% end %>      
+        <% end %>
       </div>
     </div>
   </div>
