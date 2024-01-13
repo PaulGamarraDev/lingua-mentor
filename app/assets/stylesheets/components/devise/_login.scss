@@ -1,0 +1,63 @@
+.container-login{
+  height: 100%;
+  margin-left: 44%;
+  margin-top: 20%;
+}
+.login-principal{
+  color: white;
+  font-size: 39px;
+  font-family:'Montserrat', sans-serif;
+  // margin-left: 34%;
+  margin-top: 20%;
+  font-weight: 1000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-left: 13%;
+}
+.links-de-redes{
+  max-width: 39%;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 35px;
+  margin-bottom: 41px;
+  margin-left: 7%;
+}
+.social-link{
+  text-decoration: none;
+  color: black;
+  font-size: 13px;
+  margin-left: 31%;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+.social-link i {
+  margin-left: -20px;
+}
+.login-edit{
+  max-width: 50%;
+  border-radius:10px ;
+  font-size: 20px;
+  font-family:'Montserrat', sans-serif;
+  // color: red !important;
+  color: white;
+
+  .preguntas{
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+.preguntas input[type="email"],
+.preguntas input[type="password"] {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 6px;
+  border-radius: 10px;
+}
+.form-actions{
+  margin-left: 262px;
+  background-color:#39B54A;
+  width: 172px;
+  border-radius: 10px;
+  font-size: 10px;
+  color:white;
+}
