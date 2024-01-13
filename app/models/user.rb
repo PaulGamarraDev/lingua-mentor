@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  scope :all_except, -> (user) { where.not(id:user) }
+
   #ASSOCIATIONS
   has_many :bookings
   has_many :teaching_language_sessions
