@@ -6,18 +6,13 @@
   <div class="row">
     <%# SIDEBAR %>
     <aside class="col-md-2 styles-sidebar">
-      <button data-action="click->chats#showUsers">Todos los Usuarios</button>
-      <button data-action="click->chats#showChatrooms">Conversaciones</button>
+      <%= render "chatrooms" %>
     </aside>
 
     <%# SELECTED SECTION FROM THE SIDEBAR %>
     <div class="col-md-10">
       <div class="styles-section" data-chats-target="users">
         <%= render "users/users_chatroom" %>
-      </div>
-
-      <div class="styles-section" data-chats-target="chatrooms">
-        <%= render "chatrooms" %>
       </div>
     </div>
 
