@@ -1,0 +1,6 @@
+<div>
+  <p>card _users_chatroom</p>
+  <% @users.each do |user| %>
+    <%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %>
+  <% end %>
+</div>
