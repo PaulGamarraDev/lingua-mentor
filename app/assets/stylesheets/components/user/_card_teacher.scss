@@ -11,36 +11,116 @@
     background: transparent;
     margin:0px;
     .card{
-      gap:12px;
+      border: #225191 1px solid;
+      gap: 12px;
+      display: flex;
       padding: 12px;
       width: 70%;
       background: white;
       border-radius: 16px;
       margin:10px;
       box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+      &:hover{
+        border: white 1px solid;
+      }
       .card-body{
         padding: 0px;
         display: flex;
         gap: 12px;
+
         .card-image{
           width: 240px;
-          height: 240px;
+          height: 248px;
           img{
             border-radius: 16px;
             width: 240px;
-            height: 240px;
+            height: 248px;
+            object-fit: cover;
           }
         }
+
         .card-info{
+          h2{
+            color: var(--Fondo-azul, #225191);
+            font-family: Amazon Ember;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            .fa-solid{
+              color: #39B54A;
+              font-size: 12px;
+              margin: 0px
+            }
+          }
           p{
-            margin: 0px;
+            color: var(--Texto-tandem, #575966);
+            font-family: Amazon Ember;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 8px 0px;
+          }
+        }
+
+        .card-botton{
+          
+          .price-section{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 48px;
+
+            .price{
+              display: flex;
+              justify-content: space-between;
+              p{
+                color: var(--Texto-tandem, #575966);
+                font-size: 24px;
+                margin: 0px;
+              }
+              .fa-regular{
+                margin-right: 8px;
+                color: #225191;
+              }
+
+            }
+            p{
+              font-size: 16px;
+            }
+          }
+          .dual-boton{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            .reserva-boton{
+              font-family: Amazon Ember;
+              font-size: 16px;
+              color: #225191;
+              margin-top: auto;
+              text-align: center;
+              border-radius: 8px;
+              padding: 8px 24px;
+              box-shadow: 0px 0px 2px 0px rgba(34, 81, 145, 1);
+              text-decoration: none;
+              white-space: nowrap;
+              transition: color 0.3s, background-color 0.3s;
+              &:hover{
+                background: #225191;
+                color: white;
+              }
+              &:active{
+                font-size: 14px;
+                padding: 9.5px 32.4px;
+              }
+            }
           }
         }
       }
 
       .card-futer{
         display: flex;
-        gap: 12px;
+        gap: 32px;
         padding: 0px;
         p{
           margin: 0px;
@@ -57,11 +137,45 @@
       padding: 12px;
       .video{
         border-radius: 16px;
-        height: 240px;
+        height: 236px;
+        margin-bottom: 8px;
+      }
+      .botton-video{
+        display: flex;
+        padding: 8px;
+        justify-content: center;
+        box-shadow: 0px 0px 2px 0px rgba(34, 81, 145, 1);
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        a{
+          text-decoration: none;
+          color: #225191;
+          font-family: Amazon Ember;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          transition: color 0.3s;
+        }
+        &:hover{
+          background: #225191;
+          a{
+            color: white;
+          }
+        }
+        &:active{
+          padding: 9px;
+          a{
+            font-size: 16px;
+          }
+          
+        }
+        
       }
     }
     
   }
 }
+
 
 

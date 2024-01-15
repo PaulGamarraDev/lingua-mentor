@@ -1,66 +1,24 @@
+
 <div class="page-content">
   <div class="body-community">
-    <div class="pilar">
-      <div class="container-search">
-        <nav class="navbar primer-container">
-          <div class="container segundo-container">
-            <%= link_to "Encuentra tu profesor", "#", class: "teacher-name" %>
-            <%= form_tag("#", method: "get", class: "d-flex", role: "search") do %>
-              <div class="navbar-collapse caja-search" id="navbarCollapse">
-                <%= text_field_tag "search", nil, class: "form-control segunda-caja", placeholder: "🔎 encuentra personas", aria: { label: "Search" } %>
-              </div>
-            <% end %>
-            <%= button_tag(class: "navbar-toggler filtro-search", id: "navbar-toggler") do %>
-              <span class="navbar-toggler-icon"></span>
-            <% end %>
+    <div class="buscador" data-controller="search-students">
+      <h2 class="teacher-name">Profesores</h2>
+      <div class="buscar">
+        <%= form_with url: teachers_path, method: :get, html: {class: "d-flex", data: {search_students_target: "form"}, style: "background-color: white; border-radius: 16px;"} do |f| %>
+          <div class="input-group">
+            <%= f.text_field :query, class: "form-control", placeholder: "Encuentra a personas...", value: params[:query], style: "background-color: white; border-radius: 16px 0px 0px 16px;", data: {search_students_target: "input"} %>
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
           </div>
-        </nav>
+        <% end %>
       </div>
-
-      <% @teachers.each do |teacher| %>
-        <div class="card-containerss">
-          <div class="card-teacher">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-image">
-                  <% if teacher.profile_photo.present? %>
-                    <%= image_tag teacher.profile_photo, class: "card-img-top", alt: "foto de perfil del teacher" %>
-                  <% else %>
-                    <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
-                  <% end %>
-                </div>
-                <div class="card-info">
-                  <h2><%= teacher.first_name %></h2>
-                  <p><%= teacher.data_teacher.teaching_languages %></p>
-                  <p>ℹ️Certificado TEFL/TESOL</p>
-                  <p><%= teacher.data_teacher.teacher_description %></p>
-                  <p>💲<%= teacher.data_teacher.usd_per_hour %> Clases de 60 minutos</p>
-                  <p><%= teacher.about_me %></p>
-                </div>
-              </div>
-
-              <div class="card-futer">
-                <p><%= teacher.native_language %></p>
-                <p>intermediosssss</p>
-                <p>👩‍💻estudiantes activos</p>
-                <p>📹clases impartidas</p>
-                <p>⭐⭐⭐⭐⭐Reseña"</p>
-              </div>
-            </div>
-
-            <div class="col-md-4 container-video">
-              <div class="card-video">
-                <!-- Reemplaza el enlace del video con tu propio enlace de YouTube -->
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/kVpv8-5XWOI" frameborder="0" allowfullscreen class="video"></iframe>
-              </div>
-              <div class="botton-seccion">
-                <%= link_to "Reserva", "#", class: "btn btn-light" %>
-                <%= link_to "Mensaje", "#", class: "btn btn-light" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
     </div>
+
+    <%= render "card_teachers" %> 
+
   </div>
 </div>
+

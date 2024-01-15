@@ -3,16 +3,17 @@
 
       <%# SEARCH BAR %>
     <div class="buscador" data-controller="search-students">
-      <p class="teacher-name">Comunidad</p>
+      <h2 class="teacher-name">Comunidad</h2>
       <div class="buscar">
         <%= form_with url: students_path, method: :get, html: {class: "d-flex", data: {search_students_target: "form"}, style: "background-color: white; border-radius: 16px;"} do |f| %>
-          <%= f.text_field :query,
-                          class: "form-control",
-                          placeholder: "Encuentra a personas...",
-                          value: params[:query],
-                          style: "background-color: white; border-radius: 16px;",
-                          data: {search_students_target: "input"}
-          %>
+          <div class="input-group">
+            <%= f.text_field :query, class: "form-control", placeholder: "Encuentra a personas...", value: params[:query], style: "background-color: white; border-radius: 16px 0px 0px 16px;", data: {search_students_target: "input"} %>
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>

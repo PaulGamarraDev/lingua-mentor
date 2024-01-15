@@ -165,7 +165,50 @@
   justify-content: space-between;
   align-items: center;
   
-  p{
-    margin: 0;
+  h2{
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0px;
+  }
+  .buscar{
+    width: 400px;
+    border-radius: 8px;
+    .d-flex{
+
+      border-radius: 8px;
+      .input-group{
+        placeholder{
+          border-radius: 8px;
+          background: rgb(107, 13, 13);
+        }
+        .form-control {
+          color: #ffffff; /* Cambia el color del texto según sea necesario */
+        }
+        .form-control::placeholder {
+          background: #ffffff;
+        }
+        .form-control:focus {
+          color: #333;
+        }      
+        .input-group-append{
+          border-radius: 0px 16px;
+          span{
+            height: 100%;
+            border-radius: 0px 16px 16px 0px;
+            i{
+              height: auto;
+            }
+          }
+        }
+      }
+    }
   }
 }
+
+
+
+
