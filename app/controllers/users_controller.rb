@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+
   def teachers
     @teachers = User.where(role: "teacher")
     if params[:query].present?
       @teachers = @teachers.search_by_name_location_and_languages(params[:query])
     end
+    
   end
 
   def students

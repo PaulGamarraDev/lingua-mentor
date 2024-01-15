@@ -36,7 +36,7 @@
     opacity: 0; /* Opacidad inicial */
     transition: opacity 0.3s ease; /* Transición suave de la opacidad */
     position: absolute; /* Posición absoluta con respecto al contenedor principal */
-    top: 241px; /* Distancia desde la parte superior */
+    top: 238px; /* Distancia desde la parte superior */
     padding: 4px 20px; /* Relleno interior */
     display: flex; /* Muestra los elementos en una columna */
     flex-direction: column; /* Organiza los elementos en una columna */
@@ -44,12 +44,12 @@
     background: rgba(0, 0, 0, 0.20); /* Fondo semitransparente negro */
 
     /* Estilos para el título h2 y el párrafo p dentro de la información adicional */
-    h2, p {
+    h4, p {
       overflow: hidden; /* Oculta el contenido que sobresale */
       text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se corta */
       color: white; /* Color del texto en la información adicional */
       margin: 0; /* Sin margen */
-      font-family: Roboto; /* Tipo de fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       line-height: normal; /* Altura de línea normal */
       display: -webkit-box; /* Propiedad específica de WebKit para mostrar contenido en varias líneas */
       -webkit-box-orient: vertical; /* Orientación vertical de las cajas secundarias */
@@ -61,7 +61,7 @@
   .languague {
     padding: 4px 20px; /* Relleno interior */
     position: absolute; /* Posición absoluta con respecto al contenedor principal */
-    top: 340px; /* Distancia desde la parte superior */
+    top: 336px; /* Distancia desde la parte superior */
     left: 0; /* Ajuste para empezar desde el borde izquierdo */
     right: 0; /* Ajuste para llegar hasta el borde derecho */
     border-radius: 0px 0px 16px 16px; /* Bordes redondeados para la parte inferior */
@@ -74,7 +74,7 @@
     /* Estilos para el párrafo p dentro del contenedor de lenguajes */
     p {
       color: white; /* Color del texto en el contenedor de lenguajes */
-      font-family: Roboto; /* Tipo de fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-size: 12px; /* Tamaño de fuente */
       font-style: normal; /* Estilo de fuente normal */
       font-weight: 400; /* Peso de fuente normal */
