@@ -52,7 +52,7 @@
 .card-community .info h2 {
   align-self: stretch; /* Estira el título horizontalmente para ocupar todo el ancho del contenedor */
   color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
-  font-family: Roboto; /* Tipo de fuente */
+  font-family: Amazon Ember; /* Tipo de fuente */
   font-size: 18px; /* Tamaño de la fuente */
   font-style: normal; /* Estilo de la fuente */
   font-weight: 400; /* Peso de la fuente */
@@ -63,7 +63,7 @@
 .card-community .info p {
   align-self: stretch; /* Estira el párrafo horizontalmente para ocupar todo el ancho del contenedor */
   color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
-  font-family: Roboto; /* Tipo de fuente */
+  font-family: Amazon Ember; /* Tipo de fuente */
   font-size: 14px; /* Tamaño de la fuente */
   font-style: normal; /* Estilo de la fuente */
   font-weight: 400; /* Peso de la fuente */
@@ -85,7 +85,7 @@
 
 .card-community .languague-community p {
   color: var(--Texto-tandem, #575966); /* Color del texto con fallback */
-  font-family: Roboto; /* Tipo de fuente */
+  font-family: Amazon Ember; /* Tipo de fuente */
   font-size: 9px; /* Tamaño de la fuente */
   font-style: normal; /* Estilo de la fuente */
   line-height: 1; /* Altura de línea */
@@ -157,3 +157,58 @@
     gap: 8px; /* Ajusta el espacio entre los elementos hijos de la sección de lenguaje */
   }
 }
+
+
+.buscador{
+  margin: 16px 8px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  h2{
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0px;
+  }
+  .buscar{
+    width: 400px;
+    border-radius: 8px;
+    .d-flex{
+
+      border-radius: 8px;
+      .input-group{
+        placeholder{
+          border-radius: 8px;
+          background: rgb(107, 13, 13);
+        }
+        .form-control {
+          color: #ffffff; /* Cambia el color del texto según sea necesario */
+        }
+        .form-control::placeholder {
+          background: #ffffff;
+        }
+        .form-control:focus {
+          color: #333;
+        }      
+        .input-group-append{
+          border-radius: 0px 16px;
+          span{
+            height: 100%;
+            border-radius: 0px 16px 16px 0px;
+            i{
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+

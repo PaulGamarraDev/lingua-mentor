@@ -1,0 +1,6 @@
+<div>
+  <p>card _chatrooms</p>
+  <% @chatrooms.each do |chatroom|  %>
+    <%= link_to "#{chatroom.name}", chatroom_path(chatroom) %>
+  <% end %>
+</div>

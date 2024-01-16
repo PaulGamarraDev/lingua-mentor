@@ -139,14 +139,14 @@ students_data.each do |student_info|
   user_student.profile_photo.attach(io: profile_photo, filename: "#{student_info[:first_name].downcase}_profile_image.png", content_type: "image/png")
   user_student.save!
 
-  banner_image = URI.open(student_info[:banner_image])
-  user_student.banner_image.attach(io: banner_image, filename: "#{student_info[:first_name].downcase}_banner_image.png", content_type: "image/png")
-  user_student.save!
+  # banner_image = URI.open(student_info[:banner_image])
+  # user_student.banner_image.attach(io: banner_image, filename: "#{student_info[:first_name].downcase}_banner_image.png", content_type: "image/png")
+  # user_student.save!
 
-  student_info[:photo_album].split(',').each do |photo_url|
-    photo = URI.open(photo_url.strip)
-    user_student.photo_album.attach(io: photo, filename: "#{student_info[:first_name].downcase}_photo_album_#{Time.now.to_i}.png", content_type: "image/png")
-  end
+  # student_info[:photo_album].split(',').each do |photo_url|
+  #   photo = URI.open(photo_url.strip)
+  #   user_student.photo_album.attach(io: photo, filename: "#{student_info[:first_name].downcase}_photo_album_#{Time.now.to_i}.png", content_type: "image/png")
+  # end
   user_student.save!
 
   # puts "creando bookings"

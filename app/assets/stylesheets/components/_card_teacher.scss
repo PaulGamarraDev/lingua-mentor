@@ -57,44 +57,37 @@ border-radius: var(--bs-navbar-toggler-border-radius);
   margin-left: 130px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
 
-.card-container .col-md-8{
-  width: 59%;
-}
-.imag-grande{
-  width: 220px;
-  height: 220px;
-  border-radius: 16px;
-}
-.card-ancha {
-  border-radius: 10px;
-  display: flex;
-  padding: 0px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background: #FFF;
-}
-.ancho-uno{
-  height: 280px;
-}
-.body-card{
-  border-top: 0;
-  width: 112%;
-  color: #1C1C1E;
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-right: 10px;
+  .card-ancha {
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: #FFF;
+    width: 990px;
 
-}
-.text-container{
-  height: 20px;
-  margin-right: 10px;
-  padding-right: 10%;
+    .ancho-uno {
+      height: 280px;
+
+      .body-card {
+        border-top: 0;
+        width: 100%;
+        color: #1C1C1E;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-right: 3px;
+
+        .text-container {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }
 .titulo-principal{
   color: var(--Fondo-azul, #225191);
@@ -106,27 +99,31 @@ border-radius: var(--bs-navbar-toggler-border-radius);
 }
 .card-chica {
   border-radius: 10px;
-  max-width:60%;
   margin: 7px;
   align-items: center;
   background: #FFF;
-  max-width: 81%;
+  max-width: 69%;
   justify-content: space-between;
-}
-.imag-pequeña{
-  max-width: 90%;
+  height: 302px;
+  background-size: cover;
+  width: 253px;
+
+  .card-img-top{
+    border-radius: 10px;
+    width: 165px;
+    height: 213px;
+    background-size: cover;
+    margin: 10px;
+    }
+  }
+
+.image-ancha{
+  max-width: 87%;
   border-radius: 10px;
-  width: 338px;
-  flex: 1 0 0;
-  margin: 10px;
-}
-.imag-pequeña-uno{
-  max-width: 95%;
-  width: 245px;;
-  border-radius: 10px;
-  flex: 1 0 0;
-  margin: 14px;
-}
+  height: 253px;
+  width: 303px;
+  }
+
 .botones-pequeños{
   justify-content: space-between;
   border-radius: 60px;
