@@ -34,12 +34,13 @@
     /* Estilos para el texto dentro de la tarjeta de títulos */
     h2, p {
       color: #FFF; /* Color del texto blanco */
-      font-family: Roboto; /* Tipo de fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-weight: 700; /* Peso de la fuente */
+      margin: 4px;
     }
 
     h2 {
-      font-size: 40px; /* Tamaño de fuente para el título */
+      font-size: 32px; /* Tamaño de fuente para el título */
     }
 
     p {
@@ -55,14 +56,14 @@
     flex-direction: column; /* Organiza los elementos en una columna */
     align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
     border-radius: 16px; /* Bordes redondeados para la tarjeta */
-    background: var(--negro-20, rgba(0, 0, 0, 0.10)); /* Fondo semi-transparente */
+    background: var(--negro-20, rgba(0, 0, 0, 0.20)); /* Fondo semi-transparente */
     margin:  40px auto; /* Márgenes superior e inferior de la tarjeta */
 
     /* Estilos para el texto dentro de la tarjeta de título */
     h2 {
       color: #FFF; /* Color del texto blanco */
-      font-family: Roboto; /* Tipo de fuente */
-      font-size: 50px; /* Tamaño de fuente para el título */
+      font-family: Amazon Ember; /* Tipo de fuente */
+      font-size: 40px; /* Tamaño de fuente para el título */
       font-style: normal; /* Estilo de la fuente */
       font-weight: 700; /* Peso de la fuente */
       line-height: normal; /* Altura de línea normal */
@@ -71,7 +72,7 @@
     p {
       color: #FFF; /* Color del texto blanco */
       text-align: center; /* Alinea el texto al centro */
-      font-family: Roboto; /* Tipo de fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-size: 24px; /* Tamaño de fuente para el párrafo */
       font-style: normal; /* Estilo de la fuente */
       font-weight: 400; /* Peso de la fuente */

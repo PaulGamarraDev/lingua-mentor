@@ -2,7 +2,7 @@
 .card-community-home-2 {
   display: flex; /* Muestra los elementos en una fila */
   width: auto; /* Ancho automático según el contenido */
-  height: 406px; /* Altura fija de la tarjeta */
+  height: 412px; /* Altura fija de la tarjeta */
   padding: 12px; /* Relleno interior de la tarjeta */
   flex-direction: column; /* Organiza los elementos en una columna */
   justify-content: space-between; /* Distribuye el espacio entre los elementos */
@@ -15,16 +15,17 @@
 
   /* Estilos para el título y la descripción de la tarjeta */
   .title {
+    padding: 0px 0px 8px 0px;
     display: flex; /* Muestra los elementos en una fila */
     justify-content: space-between; /* Distribuye el espacio entre los elementos */
     align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
     align-self: stretch; /* Ajusta la alineación al estirar la tarjeta */
 
-    /* Estilos para el título h2 */
+    /* Estilos para el título h2 */ 
     h2 {
       flex: 1 0 0; /* Ocupa el espacio disponible y no se encoge más allá de su contenido */
-      color: var(--Primario, #000); /* Color del texto principal */
-      font-family: Roboto; /* Tipo de fuente */
+      color: #575966; /* Color del texto principal */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-size: 20px; /* Tamaño de fuente para el título */
       font-weight: 700; /* Peso de la fuente */
       line-height: 18px; /* Altura de línea */
@@ -33,8 +34,8 @@
 
     /* Estilos para el párrafo de descripción */
     p {
-      color: #1C1C1E; /* Color del texto secundario */
-      font-family: Roboto; /* Tipo de fuente */
+      color: #575966; /* Color del texto secundario */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-size: 14px; /* Tamaño de fuente para el párrafo */
       font-weight: 400; /* Peso de la fuente */
       line-height: normal; /* Altura de línea normal */
@@ -48,6 +49,7 @@
     
     /* Estilos para la imagen dentro de la tarjeta */
     img {
+      height: 100%;
       width: 100%; /* Ancho completo de la imagen */
       border-radius: 16px; /* Bordes redondeados para la imagen */
       object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
@@ -71,13 +73,13 @@
     flex-shrink: 0; /* No permite que la información adicional se encoja más allá de su tamaño inicial */
     align-self: stretch; /* Ajusta la alineación al estirar la tarjeta */
     border-radius: 16px; /* Bordes redondeados para la información adicional */
-    background: rgba(0, 0, 0, 0.50); /* Fondo semitransparente negro */
+    background: rgba(0, 0, 0, 0.20); /* Fondo semitransparente negro */
 
     /* Estilos para el párrafo dentro de la información adicional */
     p {
       color: #FFF; /* Color del texto en la información adicional */
       text-align: center; /* Alinea el texto al centro */
-      font-family: Roboto; /* Tipo de fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       font-size: 14px; /* Tamaño de fuente para el párrafo */
       font-weight: 400; /* Peso de la fuente */
       line-height: normal; /* Altura de línea normal */
@@ -86,19 +88,14 @@
 
     /* Estilos para el span dentro de la información adicional */
     span {
+      width: auto;
       color: #FFF; /* Color del texto en la información adicional */
-      font-family: Roboto; /* Tipo de fuente */
-      font-size: 14px; /* Tamaño de fuente para el span */
-      font-weight: 400; /* Peso de la fuente */
+      font-family: Amazon Ember; /* Tipo de fuente */
       line-height: normal; /* Altura de línea normal */
-
-      /* Duplicación de propiedades (error) */
-      color: #FFF; /* Color del texto en la información adicional */
-      text-align: center; /* Alinea el texto al centro */
-      font-family: Roboto; /* Tipo de fuente */
+      margin-top: 24px;
       font-size: 18px; /* Tamaño de fuente para el span */
       font-weight: 700; /* Peso de la fuente */
-      line-height: normal; /* Altura de línea normal */
+
     }
 
     /* Estilos para el contenedor de lenguajes en la información adicional */

@@ -13,13 +13,14 @@
 
 /* Estilos para el título del contenedor de tarjetas */
 .titulo {
+  justify-content: space-between;
+  width: 100%; /* Ancho completo del título */
   display: flex; /* Muestra los elementos en una fila */
   gap: 12px; /* Espacio entre los elementos */
   align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
-
   /* Estilos para el título h2 */
   h2 {
-    color: var(--Primario, #000); /* Color del texto principal */
+    color: #575966; /* Color del texto principal */
     font-family: 'Amazon Ember'; /* Tipo de fuente */
     font-size: 20px; /* Tamaño de fuente para el título */
     font-weight: 700; /* Peso de la fuente */
@@ -27,15 +28,14 @@
     align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
     margin: 0; /* Elimina el margen del título */
   }
-
   /* Estilos para el enlace "ver más" */
   .link-ver-mas {
+    font-size: 14px;
     display: flex; /* Muestra los elementos en una fila */
     height: 12px; /* Altura del enlace "ver más" */
     gap: 4px; /* Espacio entre los elementos */
     align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
     text-decoration: none; /* Elimina la decoración de texto por defecto */
-
     /* Estilos para el estado de hover del enlace "ver más" */
     &:hover {
       color: rgba(57, 181, 74, 1); /* Cambia el color al pasar el ratón por encima */
@@ -53,7 +53,6 @@
   align-items: center; /* Alinea los elementos al centro del eje transversal (eje Y) */
   gap: 12px; /* Espacio entre los elementos */
   width: 100%; /* Ancho completo de la tarjeta */
-
   /* Estilos para el estado de hover de la tarjeta */
   &:hover {
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5); /* Sombra al pasar el ratón por encima */
@@ -61,7 +60,7 @@
 
   /* Estilos para el elemento de ranking en la tarjeta */
   .ranking {
-    color: var(--Primario, #000); /* Color del texto principal */
+    color: #575966; /* Color del texto principal */
     font-family: 'Amazon Ember'; /* Tipo de fuente */
     font-size: 16px; /* Tamaño de fuente para el ranking */
     font-weight: 700; /* Peso de la fuente */
@@ -71,7 +70,7 @@
   /* Estilos para la imagen dentro de la tarjeta */
   img {
     height: 150px; /* Altura de la imagen */
-    width: 150px; /* Ancho de la imagen */
+    width: 140px; /* Ancho de la imagen */
     object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
     border-radius: 8px; /* Bordes redondeados para la imagen */
   }
@@ -94,8 +93,7 @@
   /* Estilos para la información dentro de la tarjeta */
   .card-teacher-infos {
     display: flex; /* Muestra los elementos en una columna */
-    flex-direction: column; /* Organiza los elementos en una columna */
-    justify-content: center; /* Alinea los elementos al centro verticalmente */
+    flex-direction: column; /* Organiza los elementos en una columna */ /* Alinea los elementos al centro verticalmente */
     align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (eje Y) */
     gap: 4px; /* Espacio entre los elementos */
     flex: 1; /* Ocupa el espacio disponible */
