@@ -10,11 +10,15 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @teacher_name = params[:teacher_name]
+    puts "Teacher Name: #{@teacher_name}"
   end
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.teacher_name = params[:teacher_name]
     @booking.user_id = current_user.id
+
     if @booking.save
       redirect_to bookings_path
     else
@@ -42,7 +46,7 @@ class BookingsController < ApplicationController
 
 
   def booking_params
-    params.require(:booking).permit(:date, :time_in, :teaching_language_session_id, :user_id)
+    params.require(:booking).permit(:date, :time_in, :teaching_language_session_id, :user_id, :teacher_name)
   end
 
   def set_booking
