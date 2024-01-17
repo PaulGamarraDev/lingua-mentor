@@ -1,4 +1,4 @@
-<div class="styles-container" data-controller="chats">
+<div class="container" data-controller="chats">
   <div class="styles-header">
     <h5><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
   </div>
@@ -20,19 +20,3 @@
 </div>
 
 <%# raise %>
-
-<div class="container chatroom">
-  <h1><%#= @chatroom.name %></h1>
-
-  <div class="messages">
-    <%# @chatroom.messages.each do |message| %>
-      <div id="message-<%#= message.id %>">
-        <small>
-          <strong><%#= message.user.nickname %></strong>
-          <i><%#= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-        </small>
-        <p><%#= message.content %></p>
-      </div>
-    <%# end %>
-  </div>
-</div>
