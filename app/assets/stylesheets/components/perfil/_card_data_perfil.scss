@@ -1,0 +1,99 @@
+.your-button-class{
+  background: none;
+  color: white;
+  border: none;
+  width: 18px;
+  height: 18px;
+
+  font-size: 18px;
+
+
+}
+
+.card-data-perfil{
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  margin: auto;
+  margin-bottom: 24px;
+
+  .info-name {
+    margin-bottom: 20px;
+    gap: 20px;
+    color: #FFF;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    h2, p {
+      font-family: Amazon Ember;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin: 0;
+    }
+  }
+
+  .info-data{
+    text-align: center;
+    color: white;
+    font-family: Amazon Ember;
+    .info-price{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      h2{
+        font-family: Amazon Ember;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0;
+      }
+      p{
+        font-family: Amazon Ember;
+        margin: 0px;
+        font-size: 18px;
+      }
+    }
+    p{
+      font-family: Amazon Ember;
+      margin-bottom: 12px;
+    }
+    .info-buttons{
+      display: flex;
+      gap: 20px;
+      padding: 20px 0px;
+      a{
+        align-items: center;
+        display: flex;
+        border-radius: 50px;
+        background: var(--fondo-verde, #39B54A);
+        text-decoration: none;
+        color: white;
+        line-height: normal;
+        margin: auto;
+        padding: 10px 16px;
+        width: 100%;
+        border: #225191 solid 1px;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+          border: #FFF solid 1px;
+        }
+        i{
+          width: 0%;
+        }
+        p{
+          width: 100%;
+          font-family: 'Amazon Ember', sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
+

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  
   def teachers
     @teachers = User.where(role: "teacher")
     if params[:query].present?
@@ -18,4 +18,5 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
 end

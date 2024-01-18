@@ -70,20 +70,19 @@
       .info-blog{
         margin: 32px;
       }
-    
-
-
-
     }
-  
   }
+}
 
-
-
-
-
-
-
-
-
+.back-white{
+  padding: 0px 48px;
+  background: white;
+  .your-button-class{
+    background: none;
+    color:#575966;
+    border: none;
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+  }
 }
