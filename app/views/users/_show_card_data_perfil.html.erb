@@ -1,0 +1,44 @@
+<%= button_to raw('<i class="fa-solid fa-arrow-left"></i>'.html_safe), :back, method: :get, class: 'your-button-class' %>
+
+<div class="card-data-perfil">
+  <div class="info-name">
+    <h2><%= @user.first_name %>, <%= @user.last_name %></h2>
+    <% if @user.date_of_birth.present? %>
+      <% age = (Time.zone.now - @user.date_of_birth.to_time) / 1.year.seconds %>
+      <p><%= age.to_i %></p>
+    <% end %>
+  </div>
+
+  <div class="info-data">
+    <% if @user.role == "teacher" %>
+      <div class="info-price">
+        <h2><strong><i class="fa-solid fa-dollar-sign"></i> <%= @user.data_teacher.usd_per_hour %></strong></h2>
+        <p>Clases de 60 minutos</p>
+      </div>
+      <p><i class="fas fa-graduation-cap"></i > <%= @user.data_teacher.teaching_languages.titleize %></p>
+      <p> <%= @user.data_teacher.teacher_description %> </p>
+    <% end %>
+    <div class="info-buttons">
+
+      <%= link_to("#") do %>
+        <i class="fa-solid fa-thumbs-up"></i>
+        <p>Seguir</p>
+      <% end %>
+
+      <%= link_to("#") do %>
+        <i class="fa-solid fa-comment-dots"></i>
+        <p>Mensaje</p>
+      <% end %>
+
+      <% if @user.teacher? %>
+        <%= link_to new_booking_path do %>
+          <i class="fa-solid fa-book"></i>
+          <p>Reserva</p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

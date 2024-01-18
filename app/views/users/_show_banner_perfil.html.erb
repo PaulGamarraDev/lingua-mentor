@@ -13,12 +13,3 @@
       <%= image_tag 'paisaje.avif', class: "card-img-top", alt: "Foto por defecto" %>
     <% end %>
   </div>
-
-<div class="info-users">
-  <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-
-  <% if @user.date_of_birth.present? %>
-    <% age = (Time.zone.now - @user.date_of_birth.to_time) / 1.year.seconds %>
-    <p><%= age.to_i %></p>
-  <% end %>
-</div>

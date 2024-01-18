@@ -4,4 +4,4 @@ import "controllers"
 import "flatpickr";
 import "@popperjs/core"
 import "bootstrap"
-import "@rails/actioncable"
+// import "@rails/actioncable"

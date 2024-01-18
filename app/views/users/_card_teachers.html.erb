@@ -1,60 +1,59 @@
 <div class="pilar">
   <% @teachers.each do |teacher| %>
-    <%#= link_to user_path(teacher), style: "text-decoration: none; color: inherit; display: flex; gap: 12px;"  do %>
-      <div class="card-containerss">
-        <div class="card-teacher">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-image">
-                  <% if teacher.profile_photo.present? %>
-                    <%= image_tag teacher.profile_photo, class: "card-img-top", alt: "foto de perfil del teacher" %>
-                  <% else %>
-                    <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
-                  <% end %>
-                </div>
-                <div class="card-info">
-                  <h2><%= teacher.first_name %>.<%= teacher.last_name.first %> <i class="fa-solid fa-check"></i></h2>
-                  <p><i class="fas fa-graduation-cap"></i > <%= teacher.data_teacher.teaching_languages.titleize %></p>
-                  <p><i class="fa-solid fa-user-tie"></i> Clases impartidas: <%= teacher.bookings.count %></p>
-                  <p><i class="fa-solid fa-language"></i> Habla: <%= teacher.native_language %> (Nativo), <%= teacher.other_languages %> (Experto)</p>
-                  <p><strong><%= teacher.data_teacher.teacher_description %></strong></p>
-                  <p><strong><%= teacher.about_me %></strong></p>
-                </div>
-                <div class="card-botton">
-                  <div class="price-section">
-                    <div class="price">
-                      <p><strong><i class="fa-solid fa-dollar-sign"></i> <%= teacher.data_teacher.usd_per_hour %></strong></p>
-                      <p><i class="fa-regular fa-heart"></i></p>
-                    </div>
-                    <p>Clases de 60 minutos</p>
+    <div class="card-containerss">
+      <div class="card-teacher">
+        <%= link_to user_path(teacher), style: "text-decoration: none; color: inherit; display: flex; gap: 12px;" do %>
+          <div class="card">
+            <div class="card-body">
+              <div class="card-image">
+                <% if teacher.profile_photo.present? %>
+                  <%= image_tag teacher.profile_photo, class: "card-img-top", alt: "foto de perfil del teacher" %>
+                <% else %>
+                  <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+                <% end %>
+              </div>
+              <div class="card-info">
+                <h2><%= teacher.first_name %>.<%= teacher.last_name.first %> <i class="fa-solid fa-check"></i></h2>
+                <p><i class="fas fa-graduation-cap"></i > <%= teacher.data_teacher.teaching_languages.titleize %></p>
+                <p><i class="fa-solid fa-user-tie"></i> Clases impartidas: <%= teacher.bookings.count %></p>
+                <p><i class="fa-solid fa-language"></i> Habla: <%= teacher.native_language %> (Nativo), <%= teacher.other_languages %> (Experto)</p>
+                <p><strong><%= teacher.data_teacher.teacher_description %></strong></p>
+                <p><strong><%= teacher.about_me %></strong></p>
+              </div>
+              <div class="card-botton">
+                <div class="price-section">
+                  <div class="price">
+                    <p><strong><i class="fa-solid fa-dollar-sign"></i> <%= teacher.data_teacher.usd_per_hour %></strong></p>
+                    <p><i class="fa-regular fa-heart"></i></p>
                   </div>
-                  <div class="dual-boton">
-                    <%= link_to "Reservar una clase", new_booking_path, class: "reserva-boton" %>
-                    <%= link_to "Envia un mensaje", "#", class: "reserva-boton"%>
-                  </div>
+                  <p>Clases de 60 minutos</p>
+                </div>
+                <div class="dual-boton">
+                  <%= link_to "Reservar una clase", new_booking_path, class: "reserva-boton" %>
+                  <%= link_to "Envia un mensaje", "#", class: "reserva-boton"%>
                 </div>
               </div>
-              <div class="card-futer">
-                <p>Nativo: <%= teacher.native_language %></p>
-                <p>Tambien habla: <%= teacher.other_languages %></p>
-                <p>Enseña: <%= teacher.data_teacher.teaching_languages.titleize %></p>
-              </div>
             </div>
-          
+            <div class="card-futer">
+              <p>Nativo: <%= teacher.native_language %></p>
+              <p>Tambien habla: <%= teacher.other_languages %></p>
+              <p>Enseña: <%= teacher.data_teacher.teaching_languages.titleize %></p>
+            </div>
+          </div>
+        <% end %>
 
 
-          <div class="col-md-4 container-video">
-            <div class="card-video">
-              <!-- Reemplaza el enlace del video con tu propio enlace de YouTube -->
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/kVpv8-5XWOI" frameborder="0" allowfullscreen class="video"></iframe>
-            </div>
-            <div class="botton-video">
-              <%= link_to "Ver horarios disponibles", bookings_path %>
-            </div>
+        <div class="col-md-4 container-video">
+          <div class="card-video">
+            <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=n7D29uDhqjs" frameborder="0" allowfullscreen class="video"></iframe>
+          </div>
+          <div class="botton-video">
+            <%= link_to "Ver horarios disponibles", bookings_path %>
           </div>
         </div>
       </div>
-    <%# end %>
+    </div>
+    
   <% end %>
 </div>
 
