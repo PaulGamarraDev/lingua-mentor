@@ -1,6 +1,6 @@
 <h2>Add a Comment</h2>
 
-<%= form_with(model: Comment.new, local: true) do |form| %>
+<%= form_with(model: [@recipient, @review], local: true) do |form| %>
   <p>
     <%= form.label :rating %>
     <div class="rating">

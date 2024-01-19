@@ -1,22 +1,32 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+      @recipient = Recipient.find(params[:id])
+      @review = Review.new
+    end
+
   def create
-    @recipe = Recipe.find(pararms[:recipe_id])
-    @recipe = @recipe.reviews.build(review_params)
-    @reviews.user =current_user
+    @recipient = Recipient.find(pararms[:recipient_id])
+    @review = @recipient.reviews.build(review_params)
+    @reviews.user = current_user
 
     if @review.save
-      redirect_to @recipe, notice: '¡Comentario creado correctamente!'
+      redirect_to @recipient, notice: '¡Comentario creado correctamente!'
     else
-      render 'recipe/show'
+      render 'new'
     end
   end
 
-  def new
-    @recipe = Recipe.find(params[:recipe_id])
-    @review = Review.new
+  def show
+    @review = Review.find(params[:id])
+end
   end
+
+  def index
+    
+  end
+
 
   private
 

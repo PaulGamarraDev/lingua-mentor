@@ -30,8 +30,12 @@ Rails.application.routes.draw do
 
   resources :chatrooms do
     resources :messages, only: :create
+  end
+  resources :recipients do
+    resources :reviews, except: [:new, :create, :edit]
 
-  resources :recipe do
-    resources :comment, only: [:new]
+    get 'reviews/new', to: 'reviews#new', as: 'new_reviews'
+    post 'reviews', to: 'reviews#create', as: 'create_reviews'
+
   end
 end
