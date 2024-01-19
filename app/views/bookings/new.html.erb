@@ -1,10 +1,18 @@
 <div class="forms">
   <h2 class="forms-title">Nueva reserva</h2>
   <br>
+  <%= puts @teacher_name %>
+  <%= puts @teacher_language%>
+  <%= puts "Hola" %>
   <%= simple_form_for @booking, data: { controller: 'flatpickr' } do |f| %>
-    <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma'  %>
+    <%= f.input :teacher_name, label: "Profesor", input_html: { value: "#{@teacher_name}", disabled: true }%>
+    <%# <%= f.input :teaching_language_session_id, input_html: { value: @teaching_language_session_id } %>
+    <input name="booking[teaching_language_session_id]" type="hidden" value="<%= @teaching_language_session_id%>">
     <%= f.input :time_in, label: "Hora de inicio", as: :string, input_html: { data: { flatpickr_target: "timeInput" } } %>
     <%= f.input :date, label: "Fecha", as: :string, input_html: { data: { flatpickr_target: "dateInput" } } %>
     <%= f.submit "Crear reserva", class: 'btn btn-primary' %> <%= link_to "Regresar al inicio", bookings_path %>
   <% end %>
 </div>
+
+
+    <%# <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma'  %>
