@@ -30,5 +30,8 @@ Rails.application.routes.draw do
 
   resources :chatrooms do
     resources :messages, only: :create
+
+  resources :recipe do
+    resources :comment, only: [:new]
   end
 end
