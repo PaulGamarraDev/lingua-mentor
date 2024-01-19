@@ -11,15 +11,17 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @teacher_name = params[:teacher_name]
+    @teaching_language_session_id = params[:teaching_language_session_id]
     puts "Teacher Name: #{@teacher_name}"
   end
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.teacher_name = params[:teacher_name]
     @booking.user_id = current_user.id
+    @booking.teaching_language_session = TeachingLanguageSession.find((params[:booking][:teaching_language_session_id]).to_i)
+    puts params[:booking][:teaching_language_session_id]
 
-    if @booking.save
+    if @booking.save!
       redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
@@ -46,7 +48,7 @@ class BookingsController < ApplicationController
 
 
   def booking_params
-    params.require(:booking).permit(:date, :time_in, :teaching_language_session_id, :user_id, :teacher_name)
+    params.require(:booking).permit(:date, :time_in, :teaching_language_session_id, :user_id, :teacher_name, :teacher_language)
   end
 
   def set_booking
