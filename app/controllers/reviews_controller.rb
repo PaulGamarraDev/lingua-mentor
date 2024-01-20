@@ -2,12 +2,12 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-      @recipient = Recipient.find(params[:id])
+    @recipient = User.find(params[:perfil_id])
       @review = Review.new
     end
 
   def create
-    @recipient = Recipient.find(pararms[:recipient_id])
+    @recipient = User.find(pararms[:recipient_id])
     @review = @recipient.reviews.build(review_params)
     @reviews.user = current_user
 
@@ -20,11 +20,10 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-end
   end
 
   def index
-    
+
   end
 
 
