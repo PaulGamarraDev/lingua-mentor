@@ -13,8 +13,19 @@ class ChatroomsController < ApplicationController
     #@message = Message.new
   end
 
+  def create
+    if Chatroom.between(params[:sender_id],params[:recipient_id]).present?
+      @chatroom = Chatroom.between(params[:sender_id],params[:recipient_id]).first
+      redirect_to chatroom_path(@chatroom)
+    else
+      @chatroom = Chatroom.create(sender_id: params[:sender_id], recipient_id: params[:recipient_id]) #método de instancia .save!
+      redirect_to chatroom_path(@chatroom)
+    end
+  end
+
   def show
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
   end
+
 end

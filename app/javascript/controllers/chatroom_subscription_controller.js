@@ -4,7 +4,9 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="chatroom-subscription"
 export default class extends Controller {
   static values = { chatroomId: Number }
-  static targets = ["messages"]
+  static targets = ["messages", "input","button"]
+
+
 
   connect() {
     this.channel = createConsumer().subscriptions.create(
@@ -20,6 +22,19 @@ export default class extends Controller {
   resetForm(event) {
     event.target.reset()
   }
+
+  // enterKey(event) {
+  //   event.keyCode == "Enter"
+  //   console.log("diste enter")
+  // }
+
+//   document.getElementById("pw")
+//     .addEventListener("keyup", function(event) {
+//     event.preventDefault();
+//     if (event.keyCode === 13) {
+//         document.getElementById("myButton").click();
+//     }
+// });
 
   #insertMessageAndScrollDown(data) {
     this.messagesTarget.insertAdjacentHTML("beforeend", data)

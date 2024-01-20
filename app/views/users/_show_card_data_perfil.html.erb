@@ -25,10 +25,16 @@
         <p>Seguir</p>
       <% end %>
 
-      <%= link_to("#") do %>
-        <i class="fa-solid fa-comment-dots"></i>
-        <p>Mensaje</p>
-      <% end %>
+      <%= button_to "Mensaje", chatrooms_path(sender_id: current_user.id, recipient_id: @user.id), data: { turbo_frame: "_top" } %>
+      <%#= button_to chatrooms_path, :chatroom_params => {:sender_id => current_user.id, :recipient_id => @user.id} do %>
+      <%#= simple_form_for [@user, @chatroom] do |f| %>
+        <%# <i class="fa-solid fa-comment-dots"></i> %>
+        <%# <p>Mensaje</p> %>
+
+        <%#= f.submit "Mensaje" %>
+        <%#= hidden_field_tag :chatroom_users, :chatroom_params => {:sender_id => current_user.id, :recipient_id => @user.id} %>
+
+      <%# end %>
 
       <% if @user.teacher? %>
         <%= link_to new_booking_path do %>
@@ -40,5 +46,4 @@
   </div>
 </div>
 
-
-
+<%= console %>
