@@ -139,14 +139,14 @@ students_data.each do |student_info|
   user_student.profile_photo.attach(io: profile_photo, filename: "#{student_info[:first_name].downcase}_profile_image.png", content_type: "image/png")
   user_student.save!
 
-  # banner_image = URI.open(student_info[:banner_image])
-  # user_student.banner_image.attach(io: banner_image, filename: "#{student_info[:first_name].downcase}_banner_image.png", content_type: "image/png")
-  # user_student.save!
+  banner_image = URI.open(student_info[:banner_image])
+  user_student.banner_image.attach(io: banner_image, filename: "#{student_info[:first_name].downcase}_banner_image.png", content_type: "image/png")
+  user_student.save!
 
-  # student_info[:photo_album].split(',').each do |photo_url|
-  #   photo = URI.open(photo_url.strip)
-  #   user_student.photo_album.attach(io: photo, filename: "#{student_info[:first_name].downcase}_photo_album_#{Time.now.to_i}.png", content_type: "image/png")
-  # end
+  student_info[:photo_album].split(',').each do |photo_url|
+    photo = URI.open(photo_url.strip)
+    user_student.photo_album.attach(io: photo, filename: "#{student_info[:first_name].downcase}_photo_album_#{Time.now.to_i}.png", content_type: "image/png")
+  end
   user_student.save!
 
   # puts "creando bookings"
@@ -396,20 +396,38 @@ blogs_data.each_with_index do |blog_data, index|
   image = MiniMagick::Image.read(banner_image)
   image.resize("1000x1000")
 
-  cloudinary_response = Cloudinary::Uploader.upload(image.path)
+  begin
+    cloudinary_response = Cloudinary::Uploader.upload(image.path)
+  rescue OpenURI::HTTPError => e
+    if e.message.include?('429 Too Many Requests')
+      sleep(2)
+      retry
+    else
+      raise
+    end
+  end
 
   blog.banner_image.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_banner_image.png", content_type: "image/png")
-
   blog_data[:photo_album].each_with_index do |photo_url, photo_index|
     photo = URI.open(photo_url)
-
     image = MiniMagick::Image.read(photo)
     image.resize("1000x1000")
-    cloudinary_response = Cloudinary::Uploader.upload(image.path)
+
+    begin
+      cloudinary_response = Cloudinary::Uploader.upload(image.path)
+    rescue OpenURI::HTTPError => e
+      if e.message.include?('429 Too Many Requests')
+        sleep(2)
+        retry
+      else
+        raise
+      end
+    end
     blog.photo_album.attach(io: URI.open(cloudinary_response['url']), filename: "#{blog.title.downcase}_photo_album_#{photo_index}.png", content_type: "image/png")
   end
 
   blog.save
-  sleep(4)
+  sleep(4) 
   puts "Procesando blog con título: #{blog.title}"
 end
+

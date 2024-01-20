@@ -93,6 +93,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_133421) do
     t.index ["user_id"], name: "index_data_teachers_on_user_id"
   end
 
+  create_table "favorite_teachers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_favorite_teachers_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -101,6 +109,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_133421) do
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "teaching_language_sessions", force: :cascade do |t|
@@ -139,7 +157,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_133421) do
   add_foreign_key "bookings", "teaching_language_sessions"
   add_foreign_key "bookings", "users"
   add_foreign_key "data_teachers", "users"
+  add_foreign_key "favorite_teachers", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "teaching_language_sessions", "users"
 end
