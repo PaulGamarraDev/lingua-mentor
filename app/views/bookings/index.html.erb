@@ -9,15 +9,16 @@
       </aside>
 
       <%# Pendientes ---------------------------------------------------------------------------------------------------- %>
+      <% if @current_user.teacher? %>
+        <div class="section-bookings" data-booking-target="pendientes">
+          <h2>Clases pendientes</h2>
+          <div class="section-bookings-body">
+            <p>Próximas clases</p>
+            
 
-      <div class="section-bookings" data-booking-target="pendientes">
-        <h2>Clases pendientes</h2>
-        <div class="section-bookings-body">
-          <p>Escribe aqui abajo tu cod de clases pendientes</p> 
-
+          </div>
         </div>
-      </div>
-
+      <%end%>
       <%# Programadas ---------------------------------------------------------------------------------------------------- %>
 
       <div class="section-bookings" data-booking-target="programadas">
@@ -109,16 +110,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
