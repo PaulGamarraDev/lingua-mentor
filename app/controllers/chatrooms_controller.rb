@@ -8,9 +8,9 @@ class ChatroomsController < ApplicationController
       .group("chatrooms.id")
       .order("last_message_created_at DESC")
 
-    #@chatroom = Chatroom.find(params[:id])
+    # @chatroom = Chatroom.find(params[:id])
+    # @message = Message.new
 
-    #@message = Message.new
   end
 
   def create
@@ -26,6 +26,14 @@ class ChatroomsController < ApplicationController
   def show
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
+
+    @users = User.all_except(current_user)
+
+    @chatrooms = Chatroom.involving(current_user)
+      .joins(:messages)
+      .select("chatrooms.*, MAX(messages.created_at) as last_message_created_at")
+      .group("chatrooms.id")
+      .order("last_message_created_at DESC")
   end
 
 end

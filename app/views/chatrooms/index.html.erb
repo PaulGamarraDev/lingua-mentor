@@ -1,4 +1,4 @@
-<div class="container" data-controller="chats">
+<div class="container">
   <div class="styles-header">
     <h5><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
   </div>
@@ -11,14 +11,14 @@
 
     <%# SELECTED SECTION FROM THE SIDEBAR %>
     <div class="col-md-10">
-      <div class="styles-section" data-chats-target="users">
+      <div class="text-secondary">
         <%= turbo_frame_tag "chat" %>
       </div>
     </div>
 
   </div>
 
-  <%= console %>
 </div>
 
+<%#= console %>
 <%# raise %>
