@@ -1,3 +1,12 @@
+<%= link_to "Mensaje", "#", class: "booking-button" %>
+<% if @user.teacher? %>
+  <%#= link_to "Reserva tu clase", new_booking_path, class: "booking-button" %>
+  <%= link_to "Reserva tu clase", new_booking_path(teacher_name: "#{@user.first_name} #{@user.last_name}", teaching_language_session_id: @user.teaching_language_sessions.first.id), class: "booking-button", disable: true %>
+
+    <%= link_to "Add a Comment", new_perfil_review_path(params[:id]) %>
+
+<% end %>
+
 <div class="row">
   <div class="col-md-4">
     <div class="card-container">
