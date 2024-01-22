@@ -1,0 +1,76 @@
+.new-container{
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  .new-form{
+    width: 720px;
+    border-radius: 8px;
+    padding: 48px;
+    background: white;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5)  ;
+
+    .forms-title{
+      border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+      padding: 12px 0px;
+      margin-bottom: 24px;
+      h2{
+        margin: 0px;
+        color: var(--Texto-tandem, #575966);
+        font-family: "Amazon Ember",Arial,sans-serif;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+    a{
+      color: #575966;
+      font-family: "Amazon Ember",Arial,sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+      &:hover{
+        background-color: #369c43;
+      }
+    }
+    .botton-aceptar {
+      background: var(--fondo-verde, #39B54A);
+      border-radius: 50px;
+      border: #39B54A solid 2px;
+      color: white;
+      font-family: "Amazon Ember",Arial,sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      padding: 12px 24px;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      width: 100%;
+      margin-bottom: 24px;
+      &:hover{
+        background-color: #369c43;
+      }
+    }
+  }
+}
+
+.custom-flatpickr-style{
+  background: white;
+  &:active{
+    background: white;
+  }
+  &:focus{
+    background: white;
+  }
+  &:hover{
+    background: white;
+  }
+}

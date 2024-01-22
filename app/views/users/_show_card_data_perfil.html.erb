@@ -19,14 +19,13 @@
       <p> <%= @user.data_teacher.teacher_description %> </p>
     <% end %>
     <div class="info-buttons">
-
       <%= link_to("#") do %>
         <i class="fa-solid fa-thumbs-up"></i>
         <p>Seguir</p>
       <% end %>
 
-      <%= button_to chatrooms_path(sender_id: current_user.id, recipient_id: @user.id) do %>
-        <i class="fa-solid fa-comment-dots"></i>
+      <%= button_to chatrooms_path(sender_id: current_user.id, recipient_id: @user.id), class: "custom-button", method: :post do %>
+        <i class="fa-solid fa-comment-dots"></i> 
         <p>Mensaje</p>
       <% end %>
 

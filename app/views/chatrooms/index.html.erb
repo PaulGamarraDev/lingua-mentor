@@ -1,24 +1,6 @@
-<div class="container">
-  <div class="styles-header">
-    <h5><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
-  </div>
-
-  <div class="row">
-    <%# SIDEBAR %>
-    <aside class="col-md-2 styles-sidebar">
-      <%= render "chatrooms" %>
-    </aside>
-
-    <%# SELECTED SECTION FROM THE SIDEBAR %>
-    <div class="col-md-10">
-      <div class="text-secondary">
-        <%= turbo_frame_tag "chat" %>
-      </div>
-    </div>
-
-  </div>
-
+<div class="index-chatroom-container">
+  <%= render "chatrooms" %>
+  <%= turbo_frame_tag "chat" %>
 </div>
 
-<%#= console %>
-<%# raise %>
+

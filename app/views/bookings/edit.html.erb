@@ -8,3 +8,7 @@
     <%= f.submit "Guardar reserva", class: 'btn btn-primary' %> <%= link_to "Regresar al inicio", bookings_path %>
   <% end %>
 </div>
+
+<% content_for :footer do %>
+  <%= render 'shared/footer' %>
+<% end %>
