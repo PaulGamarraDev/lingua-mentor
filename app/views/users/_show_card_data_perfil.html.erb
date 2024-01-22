@@ -30,7 +30,7 @@
       <% end %>
 
       <% if @user.teacher? %>
-        <%= link_to new_booking_path do %>
+        <%= link_to new_booking_path(teacher_name: "#{@user.first_name} #{@user.last_name}", teaching_language_session_id: @user.teaching_language_sessions.first.id), class: "booking-button", disable: true do %>
           <i class="fa-solid fa-book"></i>
           <p>Reserva</p>
         <% end %>
@@ -39,4 +39,6 @@
   </div>
 </div>
 
-<%#= console %>
+<% if @user.teacher? %>
+  <%= link_to "Add a Comment", new_perfil_review_path(params[:id]) %>
+<% end %>
