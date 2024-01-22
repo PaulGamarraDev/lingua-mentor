@@ -25,3 +25,6 @@
 
 
     <%# <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma'  %>
+<% content_for :footer do %>
+  <%= render 'shared/footer' %>
+<% end %>

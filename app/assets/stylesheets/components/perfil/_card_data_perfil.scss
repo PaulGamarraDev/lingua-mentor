@@ -4,10 +4,7 @@
   border: none;
   width: 18px;
   height: 18px;
-
   font-size: 18px;
-
-
 }
 
 .card-data-perfil{
@@ -66,6 +63,34 @@
       gap: 20px;
       padding: 20px 0px;
       a{
+        align-items: center;
+        display: flex;
+        border-radius: 50px;
+        background: var(--fondo-verde, #39B54A);
+        text-decoration: none;
+        color: white;
+        line-height: normal;
+        margin: auto;
+        padding: 10px 16px;
+        width: 100%;
+        border: #225191 solid 1px;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+          border: #FFF solid 1px;
+        }
+        i{
+          width: 0%;
+        }
+        p{
+          width: 100%;
+          font-family: 'Amazon Ember', sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          margin: 0px;
+        }
+      }
+      .custom-button{
         align-items: center;
         display: flex;
         border-radius: 50px;
