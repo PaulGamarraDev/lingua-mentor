@@ -2,14 +2,15 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @recipient = User.find(params[:perfil_id])
-      @review = Review.new
+    @teacher = User.find(params[:id])
+    @review = Review.new
     end
 
   def create
-    @recipient = User.find(pararms[:recipient_id])
-    @review = @recipient.reviews.build(review_params)
-    @reviews.user = current_user
+    @recipient = User.find(params[:user_id])
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.recipient = @recipient
 
     if @review.save
       redirect_to @recipient, notice: '¡Comentario creado correctamente!'
@@ -30,6 +31,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    pararms.require(:review).permit(:rating, :comment)
+    params.require(:review).permit(:rating, :comment)
   end
 end
