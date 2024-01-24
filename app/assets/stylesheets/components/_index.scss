@@ -15,8 +15,14 @@
 @import "devise/devise_edit";
 @import "booking/booking-button";
 @import "user/card_teacher";
-@import "chatroom";
+@import "chatroom/chatroom-index";
+@import "chatroom/chatroom-show";
+@import "chatroom/chatroom-partial";
 @import "devise/login";
 @import "booking/bookings";
 @import "booking/bookings_index";
+<<<<<<< HEAD
 @import "reviews/new_review";
+=======
+@import "booking/bookings_new";
+>>>>>>> master

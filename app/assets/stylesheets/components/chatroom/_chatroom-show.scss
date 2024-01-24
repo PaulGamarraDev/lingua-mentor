@@ -1,0 +1,182 @@
+.show-chatroom-container{
+  background: white;
+  height: calc(100vh - 84.5px);
+  overflow: hidden;
+  display: flex;
+}
+#chat{
+  display: flex;
+  flex-direction: column;
+  border-top: rgba(0, 0, 0, 0.1) 1px solid;
+  border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+  border-right : rgba(0, 0, 0, 0.1) 1px solid;
+  width: 75%;
+  .container-body-chat{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #095f942e;
+    
+    .title-body-chat{
+      display: flex;
+      height:80px;
+      align-items: center;
+      padding: 0px 12px;
+      border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+      background: #f0f2f5;
+      h2{
+        color: #575966;
+        font-family: "Amazon Ember",Arial,sans-serif;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 26px 0px;
+      }
+    }
+    .messages-body-chat{
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 0px 48px;
+      margin-top: auto;
+      max-width: 100%;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 50px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #ffffff; 
+      }
+
+      .current-user {
+        display: flex;
+        border-radius: 100px;
+        justify-content: flex-end;
+        word-wrap: wrap;
+        .dates-messages{
+          display: flex;
+          padding: 4px; 
+          .text-enviado{
+            display: flex;
+            background-color: #62B242;
+            border-radius: 1.5rem;
+            word-wrap: break-word;
+            .message-chat-enviado{
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+              color: white;
+              font-family: "Amazon Ember",Arial,sans-serif;
+              font-style: normal;
+              margin: 0px;
+              padding: 8px 16px;
+              word-break: break-all; 
+              max-width: 400px;
+            }
+            .time-chat{
+              font-size: 9px;
+              padding: 18px 8px 0px 0px;
+              margin: 0px;
+              color: white;
+              font-family: "Amazon Ember",Arial,sans-serif;
+            }
+          }
+        }
+      }
+
+      .other-user {
+        .dates-messages{
+          display: flex;
+          padding: 4px; 
+          .profile-photo {
+            width: 24px; 
+            height: 24px; 
+            border-radius: 50%; 
+            margin-right: 8px;
+            margin-top: auto;
+          }
+          .text-enviado{
+            display: flex;
+            background-color: #ffffff;
+            border-radius: 100px;
+            .message-chat-enviado{
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+              color: #575966;
+              font-family: "Amazon Ember",Arial,sans-serif;
+              font-style: normal;
+              margin: 0px;
+              padding: 8px 16px;
+              word-break: break-all; 
+              max-width: 400px;
+            }
+            .time-chat{
+              font-size: 9px;
+              padding: 18px 8px 0px 0px;
+              margin: 0px;
+            }
+          }
+        }
+      }
+    }
+    .form-body-chat{
+      display: flex;
+      align-items: center;
+      height: 80px;
+      border-top: rgba(0, 0, 0, 0.1) 1px solid;
+      border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+      padding: 16px 16px;
+      background: #f0f2f5;
+      i{
+        font-size: 20px;
+        color: #225191;
+        margin-right: 24px;
+      }
+      .simple_form{
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+
+        .mb-3{
+          background: transparent;
+          border: none;
+          margin: 0px 0px 0px 0px;
+          margin-bottom: 0px !important;
+          padding: 22px  0px;
+          .form-control{
+            background: white;
+            border-radius: 1.25rem;
+            margin: 0px;
+            width: 100%; 
+            border: rgba(0, 0, 0, 0.1) 1px solid;
+            
+            &:focus{
+              border: rgba(0, 0, 0, 0.1) 1px solid;
+              box-shadow: none;
+            }
+          }
+        }
+        button{
+          margin: 0px;
+          border: none;
+          width: 36px;
+          height: 36px;
+          background: transparent;
+          margin-left: 12px;
+          i{
+            font-size: 36px;
+            color: #225191;
+          }
+        }
+      }
+    }
+  }
+}

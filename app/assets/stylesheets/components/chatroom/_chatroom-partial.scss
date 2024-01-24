@@ -1,0 +1,87 @@
+.container-partial{
+  display: flex;
+  flex-direction: column;
+  height: 100vh -80px;
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+  width: 25%;
+  
+  .title-chat{
+    background: #f0f2f5;
+    display: flex;
+    height: 100px;
+    align-items: center;
+    padding: 0px 12px;
+    border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+    h2{
+      color: #575966;
+      font-family: "Amazon Ember",Arial,sans-serif;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      margin: 21px 0px;
+    }
+  }
+  .list-chat{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #ffffff; 
+    }
+    .users-chat{
+      display: flex;
+      height: 90px;
+      align-items: center;
+      border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+      padding: 0px 12px;
+      a{
+        display: flex;
+        text-decoration: none;
+        .image-user-chat{
+          img{
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+        .data-user-chat{
+          padding-left: 16px;
+          color: #575966;
+          font-family: "Amazon Ember",Arial,sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          p{
+            color: var(--Texto-tandem, #575966);
+            font-family: "Amazon Ember",Arial,sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 0px;
+          }
+          .flech{
+            color: var(--Texto-tandem, #575966);
+            font-family: "Amazon Ember",Arial,sans-serif;
+            font-size: 9px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 0px;
+          }
+        }
+      }
+
+
+    }
+  }
+}
