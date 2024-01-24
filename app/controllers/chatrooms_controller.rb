@@ -18,13 +18,13 @@ class ChatroomsController < ApplicationController
       @chatroom = Chatroom.between(params[:sender_id],params[:recipient_id]).first
       redirect_to chatroom_path(@chatroom)
     else
-      @chatroom = Chatroom.create(sender_id: params[:sender_id], recipient_id: params[:recipient_id]) #método de instancia .save!
+      @chatroom = Chatroom.create(sender_id: params[:sender_id], recipient_id: params[:recipient_id]) #método de instancia .save y el ! al final solamente en testing o seeds... Para producción fuera
       redirect_to chatroom_path(@chatroom)
     end
   end
 
   def show
-    
+
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
 

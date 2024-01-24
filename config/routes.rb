@@ -35,4 +35,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  resources :favorite_teachers, only: %i[index create show destroy]
+  # get 'favorite_teachers/index'
+  # get 'favorite_teachers/create'
+  # get 'favorite_teachers/destroy'
+
 end

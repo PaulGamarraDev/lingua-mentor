@@ -24,7 +24,11 @@
                 <div class="price-section">
                   <div class="price">
                     <p><strong><i class="fa-solid fa-dollar-sign"></i> <%= teacher.data_teacher.usd_per_hour %></strong></p>
-                    <p><i class="fa-regular fa-heart"></i></p>
+                    <%# MODIFICACION DE CARD TEACHER %>
+                    <%= button_to chatrooms_path(user_id: current_user.id, teacher_id: teacher.id), class: "reserva-boton", method: :post do %>
+                      <i class="fa-regular fa-heart"></i>
+                    <% end %>
+                    <%# CIERRA MODIFICACION %>
                   </div>
                   <p>Clases de 60 minutos</p>
                 </div>
@@ -53,7 +57,6 @@
         </div>
       </div>
     </div>
-    
+
   <% end %>
 </div>
-
