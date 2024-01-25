@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'profesores', to: "users#teachers", as: :teachers
   get 'comunidad', to: "users#students", as: :students
   get 'perfil/:id', to: "users#show", as: :user
-  # get 'perfil/:id/reviews/new', to: "reviews#new", as: :new_review
+  get 'perfil/:id/reviews/new', to: "reviews#new", as: :new_review
 
   resources :teaching_language_sessions, only: %i[index new create show destroy]
 
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :chatrooms do
     resources :messages, only: :create
   end
-  resources :perfil, only: [] do
+  resources :user, only: [] do
     resources :reviews, only: [:new, :create]
   end
 
