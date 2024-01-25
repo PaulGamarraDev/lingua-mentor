@@ -2,7 +2,19 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show edit update destroy]
 
   def index
-    @bookings = Booking.where(user_id: current_user)
+    if current_user.teacher?
+      # Si el usuario es un profesor, obtenemos las reservas pendientes como profesor
+      @pendings = Booking.joins(:teaching_language_session)
+                         .where(teaching_language_sessions: { user_id: current_user.id })
+                         .where(bookings: { booking_status: :pending })
+
+      # Y también mostramos las reservas aprobadas que el profesor haya hecho
+      @bookings = current_user.bookings.where(booking_status: :approved)
+    else
+      # Si el usuario es un estudiante, obtenemos las reservas aprobadas para ese estudiante
+      @bookings = Booking.where(user_id: current_user, booking_status: :approved)
+      @pendings = Booking.none  # No hay reservas pendientes para estudiantes en este caso
+    end
   end
 
   def show
@@ -11,20 +23,20 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @teacher_name = params[:teacher_name]
-    @teaching_language_session_id = params[:teaching_language_session_id]
     puts "Teacher Name: #{@teacher_name}"
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
-    @booking.teaching_language_session = TeachingLanguageSession.find((params[:booking][:teaching_language_session_id]).to_i)
-    puts params[:booking][:teaching_language_session_id]
+    # teaching = TeachingLanguageSession.find(params[:teaching_language_session_id])
+    # @booking.teaching_language_session_id = teaching
+
 
     if @booking.save!
       redirect_to bookings_path
     else
-      render :new, status: :unprocessable_entity
+    render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +60,7 @@ class BookingsController < ApplicationController
 
 
   def booking_params
-    params.require(:booking).permit(:date, :time_in, :teaching_language_session_id, :user_id, :teacher_name, :teacher_language)
+    params.require(:booking).permit(:date, :time_in, :teacher_name, :teaching_language_session_id)
   end
 
   def set_booking

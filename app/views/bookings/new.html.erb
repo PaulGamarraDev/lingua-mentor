@@ -15,7 +15,7 @@
           <input name="booking[teaching_language_session_id]" type="hidden" value="<%= @teaching_language_session_id%>">
           <%= f.input :time_in, label: "Hora de inicio", as: :string, input_html: { data: { flatpickr_target: "timeInput" }, class: "custom-flatpickr-style" } %>
           <%= f.input :date, label: "Fecha", as: :string, input_html: { data: { flatpickr_target: "dateInput" }, class: "custom-flatpickr-style" } %>
-          <%= f.submit "Aceptar", class: 'botton-aceptar' %> 
+          <%= f.submit "Aceptar", class: 'botton-aceptar' %>
         <% end %>
         <%= link_to raw('<i class="fa-solid fa-arrow-left"></i>  Volver atrás'), bookings_path %>
       </div>
@@ -23,6 +23,7 @@
   </div>
 </div>
 
+  <%= console %>
 
     <%# <%= f.association :teaching_language_session, label: "Profesor", collection: TeachingLanguageSession.all.map{|t| ["#{t.language}-#{t.user.last_name}", t.id]}, prompt: 'Selecciona un idioma'  %>
 <% content_for :footer do %>

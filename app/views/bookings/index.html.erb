@@ -1,113 +1,233 @@
-<div class="page-content">
-  <div class="container" style="max-width: 1440px;">
-    <div class="bookings-container" data-controller="booking">
-      <aside class="bookings-navbar">
-        <button data-action="click->booking#indexPendientes" class="opcions">Clases pendientes</button>
-        <button data-action="click->booking#indexProgramadas" class="opcions">Clases programadas</button>
-        <button data-action="click->booking#indexHistorial" class="opcions">Historial</button>
-        <button data-action="click->booking#indexFavoritos" class="opcions">Favoritos</button>
-      </aside>
+<% if @current_user.teacher?  %>
+  <div class="page-content">
+    <div class="container" style="max-width: 1440px;">
+      <div class="bookings-container" data-controller="booking">
+        <aside class="bookings-navbar">
+          <button data-action="click->booking#indexPendientes" class="opcions">Clases pendientes</button>
+          <button data-action="click->booking#indexProgramadas" class="opcions">Clases programadas</button>
+          <button data-action="click->booking#indexHistorial" class="opcions">Historial</button>
+          <button data-action="click->booking#indexFavoritos" class="opcions">Favoritos</button>
+        </aside>
 
-      <%# Pendientes ---------------------------------------------------------------------------------------------------- %>
+        <%# Pendientes ---------------------------------------------------------------------------------------------------- %>
 
-      <div class="section-bookings" data-booking-target="pendientes">
+     <div class="section-bookings" data-booking-target="pendientes">
         <h2>Clases pendientes</h2>
         <div class="section-bookings-body">
-          <p>Escribe aqui abajo tu cod de clases pendientes</p> 
-          
-        </div>
-      </div>
+          <p>Escribe aqui abajo tu cod de clases pendientes</p>
+          <% @pendings.each do |pending| %>
+            <h1>Próxima clase</h1>
+            <%= pending.booking_status %>
+            <%= pending.date.strftime("%A, %d %b %Y") %>, <%= pending.time_in.strftime("%I:%M %p") %>
+            <%= pending.user.first_name %> <%= pending.user.last_name %>
 
-      <%# Programadas ---------------------------------------------------------------------------------------------------- %>
-
-      <div class="section-bookings" data-booking-target="programadas">
-        <h2>Clases programadas</h2>
-        <div class="section-bookings-body">
-          <% @bookings.each do |booking| %>
-            <% if booking.date > Date.yesterday && Time.now > booking.time_in %>
-              <div class="card-booking-table">
-                <div class="card-booking-image">
-                  <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
-                </div>
-                <div class="card-booking-name">
-                  <h2><%= booking.teaching_language_session.user.first_name %>.<%= booking.teaching_language_session.user.last_name.first %></h2>
-                  <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
-                </div>
-                <div class="card-booking-date">
-                  <h2>Duración de la clase</h2>
-                  <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
-                  <p>Recuerda estar conectado antes</p>
-                </div>
-                <div class="card-booking-fech">
-                  <h2>Clase programada</h2>
-                  <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
-                  <p>La hora indicada es local</p>
-                </div>
-                <div class="card-booking-time">
-                  <% def add_time_to_date(y, m, d, h, t) %>
-                    <% return datetime = DateTime.new(y, m, d, h, t) %>
-                  <% end %>
-                  <% estimated_time = Time.at((add_time_to_date(booking.date.year, booking.date.month, booking.date.day, booking.time_in.hour, booking.time_in.min) - DateTime.now).to_i) %>
-                  <h2><%= "Tiempo estimado #{estimated_time.strftime("%H:%M:%S")}" %></h2>
-                  <button type="button" disabled>Ingresar</button>
-                </div>
-                <div class="card-booking-button">
-                  <%= link_to "Posponer reserva", edit_booking_path(booking), class: "posponer"%>
-                  <%= link_to "Cancelar reserva", booking_path(booking), class: "cancelar", data: { turbo_method: :delete, turbo_confirm: "¿Seguro que quieres borrar la reservación?" } %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-
-<%# Historial ---------------------------------------------------------------------------------------------------- %>
-
-      <div class="section-bookings" data-booking-target="historial">
-        <h2>Historial</h2>
-        <div class="section-bookings-body">
-          <% @bookings.each do |booking| %>
-            <% if booking.date <= Date.yesterday || (booking.date > Date.yesterday && Time.now < booking.time_in) %>
-              <div class="card-booking-table">
-                <div class="card-booking-image">
-                  <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
-                </div>
-                <div class="card-booking-name">
-                  <h2><%= booking.teaching_language_session.user.first_name %> <%= booking.teaching_language_session.user.last_name %></h2>
-                  <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
-                </div>
-                <div class="card-booking-date">
-                  <h2 class="">Duración de la clase</h2>
-                  <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
-                  <p class="">Recuerda estar conectado antes</p>
-                </div>
-                <div class="card-booking-fech">
-                  <h2>Clase programada</h2>
-                  <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
-                  <p>La hora indicada es local</p>
-                </div>
-                <div class="card-booking-button">
-                  <h2>Volver a realiza una clase</h2>
-                  <%= link_to "Reservar" , edit_booking_path(booking), class: "volver-a-reservar" %>
-                </div>
-              </div>
+            <% if pending.booking_status == 'pending' %>
+              <%= link_to 'Aprobar', update_status_booking_path(pending, status: 'approved'), method: :patch %>
+              <%= link_to "Cancelar reserva", booking_path(pending), class: "cancelar", data: { turbo_method: :delete, turbo_confirm: "¿Seguro que quieres rechazar la reservación?" } %>
             <% end %>
           <% end %>
         </div>
       </div>
 
 
-<%# Favoritos ---------------------------------------------------------------------------------------------------- %>
+        <%# Programadas ---------------------------------------------------------------------------------------------------- %>
 
-      <div class="section-bookings" data-booking-target="favoritos">
-        <h2>Favoritos</h2>
-        <div class="section-bookings-body">
-        <p>Escribe aqui abajo tu cod de favoritos</p>
+        <div class="section-bookings" data-booking-target="programadas">
+          <h2>Clases programadas</h2>
+          <div class="section-bookings-body">
+            <% @bookings.each do |booking| %>
+              <% if booking.date > Date.yesterday && Time.now > booking.time_in %>
+                <div class="card-booking-table">
+                  <div class="card-booking-image">
+                    <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
+                  </div>
+                  <div class="card-booking-name">
+                    <h2><%= booking.teaching_language_session.user.first_name %>.<%= booking.teaching_language_session.user.last_name.first %></h2>
+                    <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
+                  </div>
+                  <div class="card-booking-date">
+                    <h2>Duración de la clase</h2>
+                    <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
+                    <p>Recuerda estar conectado antes</p>
+                  </div>
+                  <div class="card-booking-fech">
+                    <h2>Clase programada</h2>
+                    <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
+                    <p>La hora indicada es local</p>
+                  </div>
+                  <div class="card-booking-time">
+                    <% def add_time_to_date(y, m, d, h, t) %>
+                      <% return datetime = DateTime.new(y, m, d, h, t) %>
+                    <% end %>
+                    <% estimated_time = Time.at((add_time_to_date(booking.date.year, booking.date.month, booking.date.day, booking.time_in.hour, booking.time_in.min) - DateTime.now).to_i) %>
+                    <h2><%= "Tiempo estimado #{estimated_time.strftime("%H:%M:%S")}" %></h2>
+                    <button type="button" disabled>Ingresar</button>
+                  </div>
+                  <div class="card-booking-button">
+                    <%= link_to "Posponer reserva", edit_booking_path(booking), class: "posponer"%>
+                    <%= link_to "Cancelar reserva", booking_path(booking), class: "cancelar", data: { turbo_method: :delete, turbo_confirm: "¿Seguro que quieres borrar la reservación?" } %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
 
+  <%# Historial ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="historial">
+          <h2>Historial</h2>
+          <div class="section-bookings-body">
+            <% @bookings.each do |booking| %>
+              <% if booking.date <= Date.yesterday || (booking.date > Date.yesterday && Time.now < booking.time_in) %>
+                <div class="card-booking-table">
+                  <div class="card-booking-image">
+                    <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
+                  </div>
+                  <div class="card-booking-name">
+                    <h2><%= booking.teaching_language_session.user.first_name %> <%= booking.teaching_language_session.user.last_name %></h2>
+                    <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
+                  </div>
+                  <div class="card-booking-date">
+                    <h2 class="">Duración de la clase</h2>
+                    <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
+                    <p class="">Recuerda estar conectado antes</p>
+                  </div>
+                  <div class="card-booking-fech">
+                    <h2>Clase programada</h2>
+                    <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
+                    <p>La hora indicada es local</p>
+                  </div>
+                  <div class="card-booking-button">
+                    <h2>Volver a realiza una clase</h2>
+                    <%= link_to "Reservar" , edit_booking_path(booking), class: "volver-a-reservar" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+
+  <%# Favoritos ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="favoritos">
+          <h2>Favoritos</h2>
+          <div class="section-bookings-body">
+          <p>Escribe aqui abajo tu cod de favoritos</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+<% else %>
+  <div class="page-content">
+    <div class="container" style="max-width: 1440px;">
+      <div class="bookings-container" data-controller="booking">
+        <aside class="bookings-navbar">
+          <button data-action="click->booking#indexProgramadas" class="opcions">Clases programadas</button>
+          <button data-action="click->booking#indexHistorial" class="opcions">Historial</button>
+          <button data-action="click->booking#indexFavoritos" class="opcions">Favoritos</button>
+        </aside>
+
+        <%# Pendientes ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="pendientes">
+        </div>
+
+        <%# Programadas ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="programadas">
+          <h2>Clases programadas</h2>
+          <div class="section-bookings-body">
+            <% @bookings.each do |booking| %>
+              <% if booking.date > Date.yesterday && Time.now > booking.time_in %>
+                <div class="card-booking-table">
+                  <div class="card-booking-image">
+                    <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
+                  </div>
+                  <div class="card-booking-name">
+                    <h2><%= booking.teaching_language_session.user.first_name %>.<%= booking.teaching_language_session.user.last_name.first %></h2>
+                    <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
+                  </div>
+                  <div class="card-booking-date">
+                    <h2>Duración de la clase</h2>
+                    <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
+                    <p>Recuerda estar conectado antes</p>
+                  </div>
+                  <div class="card-booking-fech">
+                    <h2>Clase programada</h2>
+                    <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
+                    <p>La hora indicada es local</p>
+                  </div>
+                  <div class="card-booking-time">
+                    <% def add_time_to_date(y, m, d, h, t) %>
+                      <% return datetime = DateTime.new(y, m, d, h, t) %>
+                    <% end %>
+                    <% estimated_time = Time.at((add_time_to_date(booking.date.year, booking.date.month, booking.date.day, booking.time_in.hour, booking.time_in.min) - DateTime.now).to_i) %>
+                    <h2><%= "Tiempo estimado #{estimated_time.strftime("%H:%M:%S")}" %></h2>
+                    <button type="button" disabled>Ingresar</button>
+                  </div>
+                  <div class="card-booking-button">
+                    <%= link_to "Posponer reserva", edit_booking_path(booking), class: "posponer"%>
+                    <%= link_to "Cancelar reserva", booking_path(booking), class: "cancelar", data: { turbo_method: :delete, turbo_confirm: "¿Seguro que quieres borrar la reservación?" } %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+  <%# Historial ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="historial">
+          <h2>Historial</h2>
+          <div class="section-bookings-body">
+            <% @bookings.each do |booking| %>
+              <% if booking.date <= Date.yesterday || (booking.date > Date.yesterday && Time.now < booking.time_in) %>
+                <div class="card-booking-table">
+                  <div class="card-booking-image">
+                    <%= image_tag booking.teaching_language_session.user.profile_photo, alt: "foto de perfil del profesor" %>
+                  </div>
+                  <div class="card-booking-name">
+                    <h2><%= booking.teaching_language_session.user.first_name %> <%= booking.teaching_language_session.user.last_name %></h2>
+                    <p><i class="fas fa-graduation-cap"></i> <%= booking.teaching_language_session.language.to_s.capitalize %></p>
+                  </div>
+                  <div class="card-booking-date">
+                    <h2 class="">Duración de la clase</h2>
+                    <p><i class="fa-regular fa-clock"></i> Clase de 60 minutos </p>
+                    <p class="">Recuerda estar conectado antes</p>
+                  </div>
+                  <div class="card-booking-fech">
+                    <h2>Clase programada</h2>
+                    <p><%= booking.date.strftime("%A, %d %b %Y") %>, <%= booking.time_in.strftime("%I:%M %p") %></p>
+                    <p>La hora indicada es local</p>
+                  </div>
+                  <div class="card-booking-button">
+                    <h2>Volver a realiza una clase</h2>
+                    <%= link_to "Reservar" , edit_booking_path(booking), class: "volver-a-reservar" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+
+  <%# Favoritos ---------------------------------------------------------------------------------------------------- %>
+
+        <div class="section-bookings" data-booking-target="favoritos">
+          <h2>Favoritos</h2>
+          <div class="section-bookings-body">
+          <p>Escribe aqui abajo tu cod de favoritos</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<% end  %>
+
 </div>
 
 
@@ -115,12 +235,3 @@
 <% content_for :footer do %>
   <%= render 'shared/footer' %>
 <% end %>
-
-
-
-
-
-
-
-
-
