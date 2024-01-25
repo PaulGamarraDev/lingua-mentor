@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :teaching_language_sessions
   has_one :data_teacher
-  has_many :chatrooms, :foreign_key => :sender_id
-  has_many :reviews, :foreign_key => :recipient_id
-  has_many :favorite_teachers, :foreign_key => :teacher_id
+  has_many :chatrooms, foreign_key: :sender_id, class_name: 'User'
+  has_many :reviews, foreign_key: :recipient_id, class_name: 'User'
+  has_many :favorite_teachers, foreign_key: :teacher_id, class_name: 'User'
 
   #CLOUDINARY
   # has_one_attached :photo

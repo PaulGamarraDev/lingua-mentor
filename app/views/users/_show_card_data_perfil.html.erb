@@ -19,19 +19,21 @@
       <p> <%= @user.data_teacher.teacher_description %> </p>
     <% end %>
     <div class="info-buttons">
-
       <%= link_to("#") do %>
         <i class="fa-solid fa-thumbs-up"></i>
         <p>Seguir</p>
       <% end %>
 
-      <%= link_to("#") do %>
-        <i class="fa-solid fa-comment-dots"></i>
+      <%= button_to chatrooms_path(sender_id: current_user.id, recipient_id: @user.id), class: "custom-button", method: :post do %>
+        <i class="fa-solid fa-comment-dots"></i> 
         <p>Mensaje</p>
       <% end %>
 
       <% if @user.teacher? %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         <%= link_to new_booking_path(teacher_name: "#{@user.first_name} #{@user.last_name}", teaching_language_session_id: @user.teaching_language_sessions.first.id), class: "booking-button", disable: true do %>
           <i class="fa-solid fa-book"></i>
           <p>Reserva</p>
@@ -44,3 +46,10 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+
+<% if @user.teacher? %>
+  <%= link_to "Add a Comment", new_perfil_review_path(params[:id]) %>
+<% end %>
+>>>>>>> master

@@ -1,0 +1,23 @@
+<div class="container-review">
+  <h2 class="titulo-comentario">Hace tu comentario</h2>
+    <%= simple_form_for [@teacher, @review] do |f|%>
+      <div class="rating valoraciones">
+          <input type="radio" id="star5" name="comment[rating]" value="5">
+          <label for="star5" title="Amazing">5 stars</label>
+
+          <input type="radio" id="star4" name="comment[rating]" value="4">
+          <label for="star4" title="Very good">4 stars</label>
+
+          <input type="radio" id="star3" name="comment[rating]" value="3">
+          <label for="star3" title="Average">3 stars</label>
+
+          <input type="radio" id="star2" name="comment[rating]" value="2">
+          <label for="star2" title="Not good">2 stars</label>
+
+          <input type="radio" id="star1" name="comment[rating]" value="1">
+          <label for="star1" title="Terrible">1 star</label>
+        </div>
+      <%= f.input :comment, placesholder: "Escribe tu comentario", input_html: { class: "caja_de_comentario" } %>
+      <%= f.submit "Agregar comentario"  %>
+      <% end %>
+</div>

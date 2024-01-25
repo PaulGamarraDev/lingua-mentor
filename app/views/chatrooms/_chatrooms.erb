@@ -1,0 +1,39 @@
+<div class="container-partial">
+  <div class="title-chat">
+    <h2>Chats</h2>
+  </div>
+  <div class="list-chat">
+    <% @chatrooms.each do |chatroom| %>
+      <div class="users-chat">
+        <% if current_user == chatroom.sender %>
+          <%= link_to chatroom_path(chatroom), data: { turbo_frame: "chat" } do %>
+            <div class="image-user-chat">
+              <% if chatroom.recipient.profile_photo.present? %>
+                <%= image_tag chatroom.recipient.profile_photo, class: "profile-photo", alt: "foto de perfil de #{chatroom.recipient.first_name} #{chatroom.recipient.last_name}" %>
+              <% else %>
+                <%= image_tag 'gatito.jpg', class: "profile-photo", alt: "Foto por defecto" %>
+              <% end %>
+            </div>
+            <div class="data-user-chat">
+              <%= "#{chatroom.recipient.first_name} #{chatroom.recipient.last_name}" %>
+              <% last_message = chatroom.messages.last %>
+              <% if last_message %>
+                <p><%= last_message.content %></p>
+                <p class="flech"><%= last_message.created_at.strftime("%B %e, %Y %l:%M %p") %></p>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to "#{chatroom.sender.first_name} #{chatroom.sender.last_name}", chatroom_path(chatroom), data: { turbo_frame: "chat" } %>
+          <% last_message = chatroom.messages.last %>
+          <% if last_message %>
+            <p>Last Message: <%= last_message.content %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
