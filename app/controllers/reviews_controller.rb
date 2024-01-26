@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   def new
     @teacher = User.find(params[:id])
+    # @review = @recipient.reviews.new(review_params)
     @review = Review.new
     end
 

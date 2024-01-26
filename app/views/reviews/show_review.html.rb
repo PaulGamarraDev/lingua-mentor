@@ -1,10 +1,7 @@
-<h1><%= @recipient.name %></h1>
 
-<h2>Reviews</h2>
-<% @reviews.each do |review| %>
+<h2>Comentarios</h2>
+<% @comments.each do |comment| %>
   <div>
-    <p><strong><%= review.user.username %>:</strong></p>
-    <p>Rating: <%= review.rating %></p>
-    <p><%= review.comment %></p>
+    <strong><%= comment.rating %></strong>
+    <p><%= comment.comment %></p>
   </div>
-<% end %>
