@@ -4,8 +4,14 @@
   <%= turbo_frame_tag "chat" do  %>
     <div class="container-body-chat" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>" style="background-image: url('<%= asset_url('background-message.png') %>'); ">
       <div class="title-body-chat">
-        <%= link_to user_path(@chatroom.recipient), style: "text-decoration: none; color: inherit;", data: { turbo_frame: "replace" } do %>
-          <h2><%= @chatroom.recipient.first_name %> <%= @chatroom.recipient.last_name %></h2>
+        <% if current_user == @chatroom.sender %>
+          <%= link_to user_path(@chatroom.recipient), style: "text-decoration: none; color: inherit;" do %>
+            <h2><%= @chatroom.recipient.first_name %> <%= @chatroom.recipient.last_name %></h2>
+          <% end %>
+        <% else %>
+          <%= link_to user_path(@chatroom.sender), style: "text-decoration: none; color: inherit;" do %>
+            <h2><%= @chatroom.sender.first_name %> <%= @chatroom.sender.last_name %></h2>
+          <% end %>
         <% end %>
       </div>
       <div class="messages-body-chat" data-chatroom-subscription-target="messages" >

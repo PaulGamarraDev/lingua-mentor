@@ -24,16 +24,25 @@
             </div>
           <% end %>
         <% else %>
-          <%= link_to "#{chatroom.sender.first_name} #{chatroom.sender.last_name}", chatroom_path(chatroom), data: { turbo_frame: "chat" } %>
-          <% last_message = chatroom.messages.last %>
-          <% if last_message %>
-            <p>Last Message: <%= last_message.content %></p>
+          <%= link_to chatroom_path(chatroom), data: { turbo_frame: "chat" } do %>
+            <div class="image-user-chat">
+              <% if chatroom.sender.profile_photo.present? %>
+                <%= image_tag chatroom.sender.profile_photo, class: "profile-photo", alt: "foto de perfil de #{chatroom.sender.first_name} #{chatroom.sender.last_name}" %>
+              <% else %>
+                <%= image_tag 'gatito.jpg', class: "profile-photo", alt: "Foto por defecto" %>
+              <% end %>
+            </div>
+            <div class="data-user-chat">
+              <%= "#{chatroom.sender.first_name} #{chatroom.sender.last_name}" %>
+              <% last_message = chatroom.messages.last %>
+              <% if last_message %>
+                <p><%= last_message.content %></p>
+                <p class="flech"><%= last_message.created_at.strftime("%B %e, %Y %l:%M %p") %></p>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
-
-
-
