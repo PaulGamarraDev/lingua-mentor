@@ -79,3 +79,10 @@
     </div>
   </div>
 </div>
+<%# comentario  %>
+<div class="caja-comentario">
+  <% @reviews.each do |review| %>
+      <%= review.comment %>
+      <%= review.rating %>
+    <% end %>
+</div>
