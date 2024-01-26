@@ -1,8 +1,6 @@
-<div id="message-<%= message.id %>" class="<%= message.user == current_user ? 'current-user' : 'other-user' %>">
+<div id="message-<%= message.id %>" class="<%= message.user.id == current_user.id ? 'current-user' : 'other-user' %>">
   <div class="dates-messages">
-    <% if message.user == current_user %>
-      <strong></strong>
-    <% else %>
+    <% if message.user.id != current_user.id %>
       <%= image_tag(message.user.profile_photo.present? ? message.user.profile_photo : 'gatito.jpg', class: "profile-photo", alt: "Foto de perfil de #{message.user.first_name}") %>
     <% end %>
     <div class="text-enviado">
