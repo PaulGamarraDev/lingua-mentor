@@ -33,7 +33,7 @@
                   <p>Clases de 60 minutos</p>
                 </div>
                 <div class="dual-boton">
-                  <%= link_to "Reservar una clase", new_booking_path, class: "reserva-boton" %>
+                  <%= link_to "Reservar una clase", new_booking_path(teacher_name: "#{teacher.first_name} #{teacher.last_name}", teaching_language_session_id: teacher.teaching_language_sessions.first.id), class: "reserva-boton" %>
                   <%= link_to "Envia un mensaje", "#", class: "reserva-boton"%>
                 </div>
               </div>
