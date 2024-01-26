@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
 
   end
-  resources :user, only: [] do
+  resources :users, only: [] do
     resources :reviews, only: [:new, :create]
   end
 
