@@ -1,23 +1,23 @@
 <div class="container-review">
-  <h2 class="titulo-comentario">Hace tu comentario</h2>
+  <h2 class="titulo-comentario">¡Comenta!</h2>
     <%= simple_form_for [@teacher, @review] do |f|%>
       <div class="rating valoraciones">
           <input type="radio" id="star5" name="comment[rating]" value="5">
-          <label for="star5" title="Amazing"><i class="fa-solid fa-star" style="color: #63E6BE;"></i> Fabuloso</label>
+          <label for="star5" title="Amazing">Fabuloso</label>
 
           <input type="radio" id="star4" name="comment[rating]" value="4">
-          <label for="star4" title="Very good"><i class="fa-solid fa-star" style="color: #63E6BE;"></i>Muy Bueno</label>
+          <label for="star4" title="Very good"> Muy Bueno</label>
 
           <input type="radio" id="star3" name="comment[rating]" value="3">
-          <label for="star3" title="Average"><i class="fa-solid fa-star" style="color: #63E6BE;"></i>Bueno</label>
+          <label for="star3" title="Average"> Bueno</label>
 
           <input type="radio" id="star2" name="comment[rating]" value="2">
-          <label for="star2" title="Not good"><i class="fa-solid fa-star" style="color: #63E6BE;"></i>No tan Bueno</label>
+          <label for="star2" title="Not good">No tan Bueno</label>
 
           <input type="radio" id="star1" name="comment[rating]" value="1">
-          <label for="star1" title="Terrible"><i class="fa-solid fa-star" style="color: #63E6BE;"></i>Terrible</label>
+          <label for="star1" title="Terrible">Terrible</label>
         </div>
       <%= f.input :comment, placeholder: "Escribe tu comentario", input_html: { class: "caja_de_comentario" } %>
-      <%= f.submit "Agregar comentario", class: "boton-comentario"%>
+      <%= f.submit "Agregar comentario", class: "boton-comentario" %>
       <% end %>
 </div>
