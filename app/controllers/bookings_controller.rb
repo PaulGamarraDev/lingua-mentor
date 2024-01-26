@@ -43,6 +43,21 @@ class BookingsController < ApplicationController
   def edit
   end
 
+
+  def update_status
+    @booking = Booking.find(params[:id])
+    status = params[:status]
+
+    if status == 'approved'
+      @booking.update(booking_status: 'approved')
+    elsif status == 'rejected'
+      @booking.destroy
+    end
+
+    redirect_to root_path, notice: 'Estado de reserva actualizado con éxito.'
+  end
+
+
   def update
     if @booking.update(booking_params)
       redirect_to bookings_path

@@ -16,14 +16,19 @@
         <div class="section-bookings-body">
           <p>Escribe aqui abajo tu cod de clases pendientes</p>
           <% @pendings.each do |pending| %>
-            <h1>Próxima clase</h1>
-            <%= pending.booking_status %>
+          <% if pending.booking_status == 'approved' %>
+            <!-- Agregar aquí el código para mostrar la reserva aprobada -->
+            <h1>Clase aprobada</h1>
             <%= pending.date.strftime("%A, %d %b %Y") %>, <%= pending.time_in.strftime("%I:%M %p") %>
             <%= pending.user.first_name %> <%= pending.user.last_name %>
-
-            <% if pending.booking_status == 'pending' %>
-              <%= link_to 'Aprobar', update_status_booking_path(pending, status: 'approved'), method: :patch %>
-              <%= link_to "Cancelar reserva", booking_path(pending), class: "cancelar", data: { turbo_method: :delete, turbo_confirm: "¿Seguro que quieres rechazar la reservación?" } %>
+            <% elsif pending.booking_status == 'pending' %>
+              <!-- Código para las reservas pendientes -->
+              <h1>Próxima clase</h1>
+              <%= pending.booking_status %>
+              <%= pending.date.strftime("%A, %d %b %Y") %>, <%= pending.time_in.strftime("%I:%M %p") %>
+              <%= pending.user.first_name %> <%= pending.user.last_name %>
+              <%= link_to 'Ver reserva', update_status_booking_path(pending, status: 'approved'), method: :patch %>
+              <%= link_to "Cancelar reserva", update_status_booking_path(pending, status: 'rejected'), class: "cancelar", data: { turbo_method: :patch, turbo_confirm: "¿Seguro que quieres rechazar la reservación?" } %>
             <% end %>
           <% end %>
         </div>
@@ -222,7 +227,7 @@
           <p>Escribe aqui abajo tu cod de favoritos</p>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
