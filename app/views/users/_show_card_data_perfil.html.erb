@@ -25,7 +25,7 @@
       <% end %>
 
       <%= button_to chatrooms_path(sender_id: current_user.id, recipient_id: @user.id), class: "custom-button", method: :post do %>
-        <i class="fa-solid fa-comment-dots"></i> 
+        <i class="fa-solid fa-comment-dots"></i>
         <p>Mensaje</p>
       <% end %>
 
@@ -34,11 +34,13 @@
           <i class="fa-solid fa-book"></i>
           <p>Reserva</p>
         <% end %>
+
+        <%= link_to new_user_review_path(params[:id]) do %>
+          <i class="fa-solid fa-book"></i>
+          <p>Deja tu Reseña</p>
+        <% end  %>
+
       <% end %>
     </div>
   </div>
 </div>
-
-<% if @user.teacher? %>
-  <%= link_to "Add a Comment", new_perfil_review_path(params[:id]) %>
-<% end %>
