@@ -9,11 +9,13 @@ class BookingsController < ApplicationController
                          .where(bookings: { booking_status: :pending })
 
       # Y también mostramos las reservas aprobadas que el profesor haya hecho
-      @bookings = current_user.bookings.where(booking_status: :approved)
+      #@bookings = current_user.bookings.where(booking_status: :approved)
+      @bookings = Booking.where(user_id: current_user.id)
     else
       # Si el usuario es un estudiante, obtenemos las reservas aprobadas para ese estudiante
-      @bookings = Booking.where(user_id: current_user, booking_status: :approved)
-      @pendings = Booking.none  # No hay reservas pendientes para estudiantes en este caso
+      #@bookings = Booking.where(user_id: current_user, booking_status: :approved)
+      #@pendings = Booking.none  # No hay reservas pendientes para estudiantes en este caso
+      @bookings = Booking.where(user_id: current_user.id)
     end
   end
 
