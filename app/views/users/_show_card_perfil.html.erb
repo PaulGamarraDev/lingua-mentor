@@ -48,11 +48,17 @@
                 <h4><%= review.user.first_name %></h4>
                 <span class="review-date"><%= review.created_at.strftime('%d/%m/%Y') %></span>
               </div>
+
+
               <div class="rating-select" data-target="rating.ratingInput">
+                <% rating_value = review.rating.to_i %>
                 <% (1..review.rating).each do |value| %>
-                  <span class="fa fa-star <%= 'selected' if value <= review.rating.to_i %>" style="cursor: default;"></span>
+                  <span class="fa fa-star <%= 'selected' if value <= rating_value %>"></span>
                 <% end %>
               </div>
+
+
+
             </div>
             <p><%= review.comment %></p>
           <% end %>
