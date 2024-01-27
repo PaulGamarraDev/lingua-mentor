@@ -25,11 +25,6 @@
                   <div class="price-section">
                     <div class="price">
                       <p><strong><i class="fa-solid fa-dollar-sign"></i> <%= teacher.data_teacher.usd_per_hour %></strong></p>
-                      <%# MODIFICACION DE CARD TEACHER %>
-                      <%#= button_to chatrooms_path(user_id: current_user.id, teacher_id: teacher.id), class: "reserva-boton", method: :post do %>
-                        <%# <i class="fa-regular fa-heart"></i> %>
-                      <%# end %>
-                      <%# CIERRA MODIFICACION %>
                     </div>
                     <p>Clases de 60 minutos</p>
                   </div>
@@ -46,24 +41,23 @@
               </div>
             </div>
           <% end %>
-
-
-
-
           <div class="col-md-4 container-video">
             <div class="card-video">
-              <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=n7D29uDhqjs" frameborder="0" allowfullscreen class="video"></iframe>
+              <% if teacher.banner_image.present? %>
+                <%= image_tag teacher.banner_image, class: "card-img-top", alt: "foto de perfil del teacher" %>
+              <% else %>
+                <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+              <% end %>
             </div>
             <div class="botton-video">
-              <%#= link_to "Ver horarios disponibles", bookings_path %>
+              <%= link_to "Ver horarios disponibles", bookings_path %>
             </div>
           </div>
-
-
-
-
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
+
+
+
