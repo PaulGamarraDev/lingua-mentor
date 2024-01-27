@@ -1,6 +1,5 @@
-
-
 <div class="row">
+  <%# section idioma Reseñas--------------------------------------------------- %>
   <div class="col-md-4">
     <div class="card-container">
       <div class="titles-info">
@@ -8,7 +7,7 @@
       </div>
       <div class="infos">
         <h4>Nativo</h4>
-        <P><%= @user.native_language %></P>
+        <p><%= @user.native_language %></p>
       </div>
       <div class="infos">
         <h4>Habla con fluidez</h4>
@@ -25,8 +24,46 @@
         <% end %>
       </div>
     </div>
+
+    <div class="card-container">
+      <div class="titles-info">
+        <div class="total-reviews">
+          <h4>Reseñas</h4>
+          <p><%= @reviews.size %></p>
+        </div>
+        <% if @reviews.exists?(user_id: current_user.id) %>
+          <p>Gracias por dejar tu Reseña.</p>
+        <% else %>
+          <%= link_to new_review_path do %>
+            <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="infos">
+        <% unless @reviews.empty? %>
+          <% @reviews.each do |review| %>
+            <div class="review-img-name-rating">
+              <%= image_tag review.user.profile_photo %>
+              <div class="name-fecha">
+                <h4><%= review.user.first_name %></h4>
+                <span class="review-date"><%= review.created_at.strftime('%d/%m/%Y') %></span>
+              </div>
+              <div class="rating-select" data-target="rating.ratingInput">
+                <% (1..review.rating).each do |value| %>
+                  <span class="fa fa-star <%= 'selected' if value <= review.rating.to_i %>" style="cursor: default;"></span>
+                <% end %>
+              </div>
+            </div>
+            <p><%= review.comment %></p>
+          <% end %>
+        <% else %>
+          <p><strong><%= @user.first_name %></strong> aún no tiene reseñas.</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 
+  <%# section Sobre mi--------------------------------------------------- %>
   <div class="col-md-4">
     <div class="card-container">
       <div class="titles-info">
@@ -34,10 +71,10 @@
       </div>
       <div class="infos">
         <h4></h4>
-        <P><%= @user.country %>, <%= @user.city %></P>
+        <p><%= @user.country %>, <%= @user.city %></p>
       </div>
       <div class="infos">
-        <h4>¿Quieres conocer mas sobre mi?</h4>
+        <h4>¿Quieres conocer más sobre mí?</h4>
         <p><%= @user.about_me %></p>
       </div>
       <div class="infos">
@@ -53,14 +90,14 @@
     </div>
   </div>
 
+  <%# section Fotos--------------------------------------------------- %>
   <div class="col-md-4">
     <div class="tercero">
       <div class="card-container">
         <div class="titles-info">
           <h4>Fotos</h4>
-          <p>Ver mas</p>
+          <p>Ver más</p>
         </div>
-
         <div class="fotos-container">
           <% if @user.photo_album.attached? && @user.photo_album.present? %>
             <div class="row">
@@ -74,15 +111,7 @@
             <p>No hay fotos disponibles</p>
           <% end %>
         </div>
-
       </div>
     </div>
   </div>
-</div>
-<%# comentario  %>
-<div class="caja-comentario">
-  <% @reviews.each do |review| %>
-      <%= review.comment %>
-      <%= review.rating %>
-    <% end %>
 </div>

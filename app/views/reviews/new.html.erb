@@ -1,23 +1,10 @@
-<div class="container-review">
+
+
+<div class="container-review" data-controller="raiting">
   <h2 class="titulo-comentario">¡Comenta!</h2>
-    <%= simple_form_for [@teacher, @review] do |f|%>
-      <div class="rating valoraciones">
-          <input type="radio" id="star5" name="comment[rating]" value="5">
-          <label for="star5" title="Amazing">Fabuloso</label>
-
-          <input type="radio" id="star4" name="comment[rating]" value="4">
-          <label for="star4" title="Very good"> Muy Bueno</label>
-
-          <input type="radio" id="star3" name="comment[rating]" value="3">
-          <label for="star3" title="Average"> Bueno</label>
-
-          <input type="radio" id="star2" name="comment[rating]" value="2">
-          <label for="star2" title="Not good">No tan Bueno</label>
-
-          <input type="radio" id="star1" name="comment[rating]" value="1">
-          <label for="star1" title="Terrible">Terrible</label>
-        </div>
-      <%= f.input :comment, placeholder: "Escribe tu comentario", input_html: { class: "caja_de_comentario" } %>
-      <%= f.submit "Agregar comentario", class: "boton-comentario" %>
-      <% end %>
+  <%= simple_form_for [@teacher, @review] do |f|%>
+    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating", action: "click->form-submit#submit"} }  %>
+    <%= f.input :comment, placeholder: "Escribe tu comentario", input_html: { class: "caja_de_comentario" } %>
+    <%= f.submit "Agregar comentario", class: "boton-comentario" %>
+  <% end %>
 </div>
