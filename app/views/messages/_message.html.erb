@@ -1,10 +1,10 @@
-<div id="message-<%= message.id %>" class="<%= message.user.id == current_user.id ? 'current-user' : 'other-user' %>">
+<div id="message-<%= message.id %>" class="<%= message.chatroom.sender_id == message.user_id ? 'current-user' : 'other-user' %>">
   <div class="dates-messages">
-    <% if message.user.id != current_user.id %>
-      <%= image_tag(message.user.profile_photo.present? ? message.user.profile_photo : 'gatito.jpg', class: "profile-photo", alt: "Foto de perfil de #{message.user.first_name}") %>
-    <% end %>
+    <%# if message.chatroom.sender_id != current_user.id %>
+      <%#= image_tag(message.user.profile_photo.present? ? message.user.profile_photo : 'gatito.jpg', class: "profile-photo", alt: "Foto de perfil de #{message.user.first_name}") %>
+    <%# end %>
     <div class="text-enviado">
-      <p class="message-chat-enviado"><%= message.content %></p>
+      <p class="message-chat-enviado"><%= message.content %> </p>
       <P class="time-chat"><%= message.created_at.strftime("%l:%M %p") %></P>
     </div>
   </div>
