@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'mini_magick'
 
+Review.destroy_all
 Message.destroy_all
 Chatroom.destroy_all
 FavoriteTeacher.destroy_all
