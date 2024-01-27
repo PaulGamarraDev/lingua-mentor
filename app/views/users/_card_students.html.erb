@@ -1,31 +1,31 @@
 <div class="container" style="max-width: 1440px;">
   <div class="row">
     <% @students.each do |student| %>
-      <%# next if student == current_user %>
+      <% if current_user != student %>
+        <div class="col-md-3" >
+          <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
+            <div class="card-community">
+              <div class="img-community">
+                <% if student.profile_photo.present? %>
+                  <%= image_tag student.profile_photo, class: "card-img-top", alt: "foto de perfil del estudiante" %>
+                <% else %>
+                  <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
+                <% end %>
+              </div>
 
-      <div class="col-md-3" >
-        <%= link_to user_path(student), style: "text-decoration: none; color: inherit;" do %>
-          <div class="card-community">
-            <div class="img-community">
-              <% if student.profile_photo.present? %>
-                <%= image_tag student.profile_photo, class: "card-img-top", alt: "foto de perfil del estudiante" %>
-              <% else %>
-                <%= image_tag 'gatito.jpg', class: "card-img-top", alt: "Foto por defecto" %>
-              <% end %>
-            </div>
+              <div class="info">
+                <h2 class="name-community"><%= student.first_name %></h2>
+                <p class="abaut-me"><%= student.about_me %></p>
+                <div class="languague-community">
+                  <p>Nativo: <%= student.native_language %></p>
+                  <p>Aprende: <%= student.learning_languages %></p>
+              </div>
+              </div>
 
-            <div class="info">
-              <h2 class="name-community"><%= student.first_name %></h2>
-              <p class="abaut-me"><%= student.about_me %></p>
-              <div class="languague-community">
-                <p>Nativo: <%= student.native_language %></p>
-                <p>Aprende: <%= student.learning_languages %></p>
             </div>
-            </div>
-            
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
