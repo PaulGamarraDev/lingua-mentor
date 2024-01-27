@@ -11,3 +11,4 @@ pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
 # Añadido a través de terminal usando instrucción: importmap pin "@rails/actioncable" --from jsdelivr
 pin "@rails/actioncable", to: "https://cdn.jsdelivr.net/npm/@rails/actioncable@7.1.2/app/assets/javascripts/actioncable.esm.js"
 #pin "@rails/actioncable", to: "actioncable.esm.js"
+pin "star-rating.js", to: "https://cdn.jsdelivr.net/npm/star-rating.js@4.3.0/dist/star-rating.esm.js"

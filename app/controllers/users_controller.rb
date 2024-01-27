@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     if params[:query].present?
       @teachers = @teachers.search_by_name_location_and_languages(params[:query])
     end
-
   end
 
   def students
@@ -19,5 +18,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @reviews = Review.where(recipient_id: @user.id)
   end
-
 end
